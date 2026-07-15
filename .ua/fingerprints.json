@@ -1,0 +1,7349 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "6c24034808c0eace229303f5971d1c86075926f0",
+  "generatedAt": "2026-07-15T19:02:23.791Z",
+  "files": {
+    ".clang-format": {
+      "filePath": ".clang-format",
+      "contentHash": "46d171fb81f6fb01e2699cdcba51f4a3d92f51432213d7457e995bdb13b5ffd5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 199,
+      "hasStructuralAnalysis": false
+    },
+    ".clang-tidy": {
+      "filePath": ".clang-tidy",
+      "contentHash": "2af3bbdf8e3e00110a1f78e95ddfd52313c9d1e9b7b7f0ecec78b3c28beda6be",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 147,
+      "hasStructuralAnalysis": false
+    },
+    ".github/workflows/greetings.yml": {
+      "filePath": ".github/workflows/greetings.yml",
+      "contentHash": "7a1a1adffc48b3446db8543332c30d5cf00332cf940c561d85753e06be9f9929",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 17,
+      "hasStructuralAnalysis": true
+    },
+    ".github/workflows/update_readme_contributors.yml": {
+      "filePath": ".github/workflows/update_readme_contributors.yml",
+      "contentHash": "835605a9731413c2dafabceadb62f948eed93bf83c8c816cea533b886280de19",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 18,
+      "hasStructuralAnalysis": true
+    },
+    ".run/provider.run.xml": {
+      "filePath": ".run/provider.run.xml",
+      "contentHash": "b136817f03ffb4bd16824b27d03005aa3b69ef4fb0b89cc6dd7de160a7209cb7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 7,
+      "hasStructuralAnalysis": false
+    },
+    ".run/raftCoreRun.run.xml": {
+      "filePath": ".run/raftCoreRun.run.xml",
+      "contentHash": "f667216faf17cf2d2c24f58b94de720b3dfd0d3e3f492c129c2760b5327df9ae",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 7,
+      "hasStructuralAnalysis": false
+    },
+    "CMakeLists.txt": {
+      "filePath": "CMakeLists.txt",
+      "contentHash": "bcd74ceec832613bd4439e650b7569ad04cdd686ba206907054e6dae6f52dcfc",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 51,
+      "hasStructuralAnalysis": false
+    },
+    "docs/目录导览.md": {
+      "filePath": "docs/目录导览.md",
+      "contentHash": "09bde05aeb668a99cf20e35926c3f36fa3155c4180b12d95fe03944dbe4f497a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 37,
+      "hasStructuralAnalysis": true
+    },
+    "docs/rpc编码方式的改进.html": {
+      "filePath": "docs/rpc编码方式的改进.html",
+      "contentHash": "af0cc6051176eec8b7aaeb04ea64d00de584ae33293c169230ebabbe6c467fbf",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 13,
+      "hasStructuralAnalysis": false
+    },
+    "example/CMakeLists.txt": {
+      "filePath": "example/CMakeLists.txt",
+      "contentHash": "8215ab90805e38ca274c80d98e701212861ca32fea12a49789f1d289e937a385",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 5,
+      "hasStructuralAnalysis": false
+    },
+    "example/fiberExample/CMakeLists.txt": {
+      "filePath": "example/fiberExample/CMakeLists.txt",
+      "contentHash": "0f97f5b911e52e75969b5a5dfabb6b1dc56328aef5a275a9b6566ecccbeb702d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 24,
+      "hasStructuralAnalysis": false
+    },
+    "example/fiberExample/server.cpp": {
+      "filePath": "example/fiberExample/server.cpp",
+      "contentHash": "40bf8b3a71cacb055a34d8f01fa48d88520304d4a7ed587f77c4305ab93d39eb",
+      "functions": [
+        {
+          "name": "watch_io_read",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "test_accept",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "test_iomanager",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 35
+        },
+        {
+          "name": "main",
+          "params": [
+            "argc",
+            "argv"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "arpa/inet.h",
+          "specifiers": [
+            "arpa/inet.h"
+          ]
+        },
+        {
+          "source": "fcntl.h",
+          "specifiers": [
+            "fcntl.h"
+          ]
+        },
+        {
+          "source": "string.h",
+          "specifiers": [
+            "string.h"
+          ]
+        },
+        {
+          "source": "sys/socket.h",
+          "specifiers": [
+            "sys/socket.h"
+          ]
+        },
+        {
+          "source": "sys/types.h",
+          "specifiers": [
+            "sys/types.h"
+          ]
+        },
+        {
+          "source": "unistd.h",
+          "specifiers": [
+            "unistd.h"
+          ]
+        },
+        {
+          "source": "iostream",
+          "specifiers": [
+            "iostream"
+          ]
+        },
+        {
+          "source": "stack",
+          "specifiers": [
+            "stack"
+          ]
+        },
+        {
+          "source": "monsoon.h",
+          "specifiers": [
+            "monsoon.h"
+          ]
+        }
+      ],
+      "exports": [
+        "watch_io_read",
+        "test_accept",
+        "test_iomanager",
+        "main"
+      ],
+      "totalLines": 88,
+      "hasStructuralAnalysis": true
+    },
+    "example/fiberExample/test_hook.cpp": {
+      "filePath": "example/fiberExample/test_hook.cpp",
+      "contentHash": "6af5751b33b616c48815d398130839faa42133528309bba24069e78da8913372",
+      "functions": [
+        {
+          "name": "test_sleep",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "test_sock",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 40
+        },
+        {
+          "name": "main",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "arpa/inet.h",
+          "specifiers": [
+            "arpa/inet.h"
+          ]
+        },
+        {
+          "source": "fcntl.h",
+          "specifiers": [
+            "fcntl.h"
+          ]
+        },
+        {
+          "source": "sys/socket.h",
+          "specifiers": [
+            "sys/socket.h"
+          ]
+        },
+        {
+          "source": "sys/types.h",
+          "specifiers": [
+            "sys/types.h"
+          ]
+        },
+        {
+          "source": "unistd.h",
+          "specifiers": [
+            "unistd.h"
+          ]
+        },
+        {
+          "source": "monsoon.h",
+          "specifiers": [
+            "monsoon.h"
+          ]
+        }
+      ],
+      "exports": [
+        "test_sleep",
+        "test_sock",
+        "main"
+      ],
+      "totalLines": 77,
+      "hasStructuralAnalysis": true
+    },
+    "example/fiberExample/test_iomanager.cpp": {
+      "filePath": "example/fiberExample/test_iomanager.cpp",
+      "contentHash": "0f2a1dd4753eb1ca9081acef08438d3e87c23ba019b51f9016b4d7c3080842a2",
+      "functions": [
+        {
+          "name": "do_io_write",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "do_io_read",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "watch_io_read",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "test_io",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "test_iomanager",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "main",
+          "params": [
+            "argc",
+            "argv"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "arpa/inet.h",
+          "specifiers": [
+            "arpa/inet.h"
+          ]
+        },
+        {
+          "source": "fcntl.h",
+          "specifiers": [
+            "fcntl.h"
+          ]
+        },
+        {
+          "source": "sys/socket.h",
+          "specifiers": [
+            "sys/socket.h"
+          ]
+        },
+        {
+          "source": "sys/types.h",
+          "specifiers": [
+            "sys/types.h"
+          ]
+        },
+        {
+          "source": "unistd.h",
+          "specifiers": [
+            "unistd.h"
+          ]
+        },
+        {
+          "source": "monsoon.h",
+          "specifiers": [
+            "monsoon.h"
+          ]
+        }
+      ],
+      "exports": [
+        "do_io_write",
+        "do_io_read",
+        "watch_io_read",
+        "test_io",
+        "test_iomanager",
+        "main"
+      ],
+      "totalLines": 89,
+      "hasStructuralAnalysis": true
+    },
+    "example/fiberExample/test_scheduler.cpp": {
+      "filePath": "example/fiberExample/test_scheduler.cpp",
+      "contentHash": "46d37f9840a38ad4c8b033637db3ce7de44bdcd36014fe2a6001f94b7574904a",
+      "functions": [
+        {
+          "name": "test_fiber_1",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "test_fiber_2",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "test_fiber_3",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "test_fiber_4",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "test_user_caller_1",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "test_user_caller_2",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "main",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "monsoon.h",
+          "specifiers": [
+            "monsoon.h"
+          ]
+        }
+      ],
+      "exports": [
+        "test_fiber_1",
+        "test_fiber_2",
+        "test_fiber_3",
+        "test_fiber_4",
+        "test_user_caller_1",
+        "test_user_caller_2",
+        "main"
+      ],
+      "totalLines": 90,
+      "hasStructuralAnalysis": true
+    },
+    "example/fiberExample/test_thread.cc": {
+      "filePath": "example/fiberExample/test_thread.cc",
+      "contentHash": "f0b3b81adcd0d8af2c31f4cc7e1d737c2be7856d68bf91ee436126f3063fa0f7",
+      "functions": [
+        {
+          "name": "func1",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "func2",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "main",
+          "params": [
+            "argc",
+            "argv"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 17
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "iostream",
+          "specifiers": [
+            "iostream"
+          ]
+        },
+        {
+          "source": "vector",
+          "specifiers": [
+            "vector"
+          ]
+        },
+        {
+          "source": "monsoon.h",
+          "specifiers": [
+            "monsoon.h"
+          ]
+        }
+      ],
+      "exports": [
+        "func1",
+        "func2",
+        "main"
+      ],
+      "totalLines": 32,
+      "hasStructuralAnalysis": true
+    },
+    "example/raftCoreExample/caller.cpp": {
+      "filePath": "example/raftCoreExample/caller.cpp",
+      "contentHash": "fa748c724d2108158ae5e875b0c9f7d48a8632ba9092837c6022c62cdcda233a",
+      "functions": [
+        {
+          "name": "main",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "iostream",
+          "specifiers": [
+            "iostream"
+          ]
+        },
+        {
+          "source": "clerk.h",
+          "specifiers": [
+            "clerk.h"
+          ]
+        },
+        {
+          "source": "util.h",
+          "specifiers": [
+            "util.h"
+          ]
+        }
+      ],
+      "exports": [
+        "main"
+      ],
+      "totalLines": 20,
+      "hasStructuralAnalysis": true
+    },
+    "example/raftCoreExample/CMakeLists.txt": {
+      "filePath": "example/raftCoreExample/CMakeLists.txt",
+      "contentHash": "59d1a48db8a0486b771a1615fbbb727675fdce01eed14a08b721bcb94d72d6fd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 11,
+      "hasStructuralAnalysis": false
+    },
+    "example/raftCoreExample/raftKvDB.cpp": {
+      "filePath": "example/raftCoreExample/raftKvDB.cpp",
+      "contentHash": "b2756cc0adaec0101ee9deb44433bb02ba57854b184cf01eae0bd543b2262765",
+      "functions": [
+        {
+          "name": "main",
+          "params": [
+            "argc",
+            "argv"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 59
+        },
+        {
+          "name": "ShowArgsHelp",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "iostream",
+          "specifiers": [
+            "iostream"
+          ]
+        },
+        {
+          "source": "raft.h",
+          "specifiers": [
+            "raft.h"
+          ]
+        },
+        {
+          "source": "kvServer.h",
+          "specifiers": [
+            "kvServer.h"
+          ]
+        },
+        {
+          "source": "unistd.h",
+          "specifiers": [
+            "unistd.h"
+          ]
+        },
+        {
+          "source": "iostream",
+          "specifiers": [
+            "iostream"
+          ]
+        },
+        {
+          "source": "random",
+          "specifiers": [
+            "random"
+          ]
+        }
+      ],
+      "exports": [
+        "main",
+        "ShowArgsHelp"
+      ],
+      "totalLines": 75,
+      "hasStructuralAnalysis": true
+    },
+    "example/rpcExample/callee/CMakeLists.txt": {
+      "filePath": "example/rpcExample/callee/CMakeLists.txt",
+      "contentHash": "f812191a2de3718c77712ed95ec366cb47623ad63714c4e16d75330a6a83826e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 7,
+      "hasStructuralAnalysis": false
+    },
+    "example/rpcExample/callee/friendService.cpp": {
+      "filePath": "example/rpcExample/callee/friendService.cpp",
+      "contentHash": "8f808090a552bd0991425279b81334c5f76874beb395c1ef3eab472af0e09e0a",
+      "functions": [
+        {
+          "name": "GetFriendsList",
+          "params": [
+            "userid"
+          ],
+          "returnType": "std::vector<std::string>",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "GetFriendsList",
+          "params": [
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "main",
+          "params": [
+            "argc",
+            "argv"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 13
+        }
+      ],
+      "classes": [
+        {
+          "name": "FriendService",
+          "methods": [
+            "GetFriendsList",
+            "GetFriendsList"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 25
+        }
+      ],
+      "imports": [
+        {
+          "source": "mprpcchannel.h",
+          "specifiers": [
+            "mprpcchannel.h"
+          ]
+        },
+        {
+          "source": "iostream",
+          "specifiers": [
+            "iostream"
+          ]
+        },
+        {
+          "source": "string",
+          "specifiers": [
+            "string"
+          ]
+        },
+        {
+          "source": "rpcExample/friend.pb.h",
+          "specifiers": [
+            "rpcExample/friend.pb.h"
+          ]
+        },
+        {
+          "source": "vector",
+          "specifiers": [
+            "vector"
+          ]
+        },
+        {
+          "source": "rpcprovider.h",
+          "specifiers": [
+            "rpcprovider.h"
+          ]
+        }
+      ],
+      "exports": [
+        "GetFriendsList",
+        "GetFriendsList",
+        "FriendService",
+        "main"
+      ],
+      "totalLines": 51,
+      "hasStructuralAnalysis": true
+    },
+    "example/rpcExample/caller/callFriendService.cpp": {
+      "filePath": "example/rpcExample/caller/callFriendService.cpp",
+      "contentHash": "28d5f2279e591f3d6cbf31a2da12eddd51cf708dc169c48b982e2eabdb374ace",
+      "functions": [
+        {
+          "name": "main",
+          "params": [
+            "argc",
+            "argv"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 45
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "iostream",
+          "specifiers": [
+            "iostream"
+          ]
+        },
+        {
+          "source": "rpcExample/friend.pb.h",
+          "specifiers": [
+            "rpcExample/friend.pb.h"
+          ]
+        },
+        {
+          "source": "mprpcchannel.h",
+          "specifiers": [
+            "mprpcchannel.h"
+          ]
+        },
+        {
+          "source": "mprpccontroller.h",
+          "specifiers": [
+            "mprpccontroller.h"
+          ]
+        },
+        {
+          "source": "rpcprovider.h",
+          "specifiers": [
+            "rpcprovider.h"
+          ]
+        }
+      ],
+      "exports": [
+        "main"
+      ],
+      "totalLines": 58,
+      "hasStructuralAnalysis": true
+    },
+    "example/rpcExample/caller/CMakeLists.txt": {
+      "filePath": "example/rpcExample/caller/CMakeLists.txt",
+      "contentHash": "4d757c411ec72b4c6a856cde44d4c2b1d10d838cbffadb1b75c3441e49906569",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": false
+    },
+    "example/rpcExample/CMakeLists.txt": {
+      "filePath": "example/rpcExample/CMakeLists.txt",
+      "contentHash": "03fa03468add07ca55435d34c15ac940c05d3beb5894a160d52c8478e57594e6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 3,
+      "hasStructuralAnalysis": false
+    },
+    "example/rpcExample/friend.pb.cc": {
+      "filePath": "example/rpcExample/friend.pb.cc",
+      "contentHash": "987438e213f3657d9ef7604a9b642ff631aca2af608c515cee888800849bb909",
+      "functions": [
+        {
+          "name": "InitDefaultsscc_info_GetFriendsListRequest_friend_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitDefaultsscc_info_GetFriendsListResponse_friend_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitDefaultsscc_info_ResultCode_friend_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "ResultCode",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "ResultCode",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "~ResultCode",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "GetFriendsListRequest",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "GetFriendsListRequest",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "~GetFriendsListRequest",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "GetFriendsListResponse",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "GetFriendsListResponse",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "~GetFriendsListResponse",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 31
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "~FiendServiceRpc",
+          "params": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "GetFriendsList",
+          "params": [
+            "controller",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "CallMethod",
+          "params": [
+            "method",
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "FiendServiceRpc_Stub",
+          "params": [
+            "channel"
+          ],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "FiendServiceRpc_Stub",
+          "params": [
+            "channel",
+            "ownership"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "~FiendServiceRpc_Stub",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "GetFriendsList",
+          "params": [
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [
+        {
+          "name": "ResultCodeDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "GetFriendsListRequestDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "GetFriendsListResponseDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "ResultCode::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "GetFriendsListRequest::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "GetFriendsListResponse::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "imports": [
+        {
+          "source": "friend.pb.h",
+          "specifiers": [
+            "friend.pb.h"
+          ]
+        },
+        {
+          "source": "algorithm",
+          "specifiers": [
+            "algorithm"
+          ]
+        },
+        {
+          "source": "google/protobuf/io/coded_stream.h",
+          "specifiers": [
+            "google/protobuf/io/coded_stream.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/extension_set.h",
+          "specifiers": [
+            "google/protobuf/extension_set.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/wire_format_lite.h",
+          "specifiers": [
+            "google/protobuf/wire_format_lite.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/descriptor.h",
+          "specifiers": [
+            "google/protobuf/descriptor.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/generated_message_reflection.h",
+          "specifiers": [
+            "google/protobuf/generated_message_reflection.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/reflection_ops.h",
+          "specifiers": [
+            "google/protobuf/reflection_ops.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/wire_format.h",
+          "specifiers": [
+            "google/protobuf/wire_format.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/port_def.inc",
+          "specifiers": [
+            "google/protobuf/port_def.inc"
+          ]
+        },
+        {
+          "source": "google/protobuf/port_undef.inc",
+          "specifiers": [
+            "google/protobuf/port_undef.inc"
+          ]
+        }
+      ],
+      "exports": [
+        "ResultCodeDefaultTypeInternal",
+        "GetFriendsListRequestDefaultTypeInternal",
+        "GetFriendsListResponseDefaultTypeInternal",
+        "InitAsDefaultInstance",
+        "ResultCode::_Internal",
+        "ResultCode",
+        "ResultCode",
+        "SharedCtor",
+        "~ResultCode",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "InitAsDefaultInstance",
+        "GetFriendsListRequest::_Internal",
+        "GetFriendsListRequest",
+        "GetFriendsListRequest",
+        "SharedCtor",
+        "~GetFriendsListRequest",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "InitAsDefaultInstance",
+        "GetFriendsListResponse::_Internal",
+        "GetFriendsListResponse",
+        "GetFriendsListResponse",
+        "SharedCtor",
+        "~GetFriendsListResponse",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "~FiendServiceRpc",
+        "GetFriendsList",
+        "CallMethod",
+        "FiendServiceRpc_Stub",
+        "FiendServiceRpc_Stub",
+        "~FiendServiceRpc_Stub",
+        "GetFriendsList"
+      ],
+      "totalLines": 919,
+      "hasStructuralAnalysis": true
+    },
+    "example/rpcExample/friend.pb.h": {
+      "filePath": "example/rpcExample/friend.pb.h",
+      "contentHash": "5872cc05c832105020c806465bb84756763d544bc330b95fa71fad50fc6c3e5f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 919,
+      "hasStructuralAnalysis": true
+    },
+    "example/rpcExample/friend.proto": {
+      "filePath": "example/rpcExample/friend.proto",
+      "contentHash": "7f42ee1f0ab021e11ad11284beb5f22101fdd2e48df1053dad590754a24a4293",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 28,
+      "hasStructuralAnalysis": true
+    },
+    "example/rpcExample/rpc_example.md": {
+      "filePath": "example/rpcExample/rpc_example.md",
+      "contentHash": "71c6cddd2e46f4473e5573165dafdc0d5e0533110d8157e32766a4bdfb53812a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 19,
+      "hasStructuralAnalysis": true
+    },
+    "format.sh": {
+      "filePath": "format.sh",
+      "contentHash": "a40c6100a27995e2d7267b6350e0d12f1fc62ccda6c686f94f8bfc4474754f54",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": true
+    },
+    "src/CMakeLists.txt": {
+      "filePath": "src/CMakeLists.txt",
+      "contentHash": "de3417fcc0e1f6662c7e76d1113df65d0bd6c1f616bb188ae1b8f016854b0899",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 17,
+      "hasStructuralAnalysis": false
+    },
+    "src/common/CMakeLists.txt": {
+      "filePath": "src/common/CMakeLists.txt",
+      "contentHash": "13de08f85455a7a1ab76b292fb4d8852b30bfe09ababe238b4453682a91d335d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 7,
+      "hasStructuralAnalysis": false
+    },
+    "src/common/include/config.h": {
+      "filePath": "src/common/include/config.h",
+      "contentHash": "78a38e993bca5ff90ff1064891d1f9d9b60d5ad2415ab18ab3b1a5fc042aa679",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "src/common/include/util.h": {
+      "filePath": "src/common/include/util.h",
+      "contentHash": "29cb00fab5286faa07742c54280462784e9bd52543c73e68a41f21a9fb5575b9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 204,
+      "hasStructuralAnalysis": true
+    },
+    "src/common/util.cpp": {
+      "filePath": "src/common/util.cpp",
+      "contentHash": "8239027f7f76b2928a2e2fe2a6823ac1623d93a063737db77a0d0f87b72f4234",
+      "functions": [
+        {
+          "name": "myAssert",
+          "params": [
+            "condition",
+            "message"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "now",
+          "params": [],
+          "returnType": "std::chrono::_V2::system_clock::time_point",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "getRandomizedElectionTimeout",
+          "params": [],
+          "returnType": "std::chrono::milliseconds",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "sleepNMilliseconds",
+          "params": [
+            "N"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "getReleasePort",
+          "params": [
+            "port"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "isReleasePort",
+          "params": [
+            "usPort"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "DPrintf",
+          "params": [
+            "format"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "util.h",
+          "specifiers": [
+            "util.h"
+          ]
+        },
+        {
+          "source": "chrono",
+          "specifiers": [
+            "chrono"
+          ]
+        },
+        {
+          "source": "cstdarg",
+          "specifiers": [
+            "cstdarg"
+          ]
+        },
+        {
+          "source": "cstdio",
+          "specifiers": [
+            "cstdio"
+          ]
+        },
+        {
+          "source": "ctime",
+          "specifiers": [
+            "ctime"
+          ]
+        },
+        {
+          "source": "iomanip",
+          "specifiers": [
+            "iomanip"
+          ]
+        }
+      ],
+      "exports": [
+        "myAssert",
+        "now",
+        "getRandomizedElectionTimeout",
+        "sleepNMilliseconds",
+        "getReleasePort",
+        "isReleasePort",
+        "DPrintf"
+      ],
+      "totalLines": 69,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/CMakeLists.txt": {
+      "filePath": "src/fiber/CMakeLists.txt",
+      "contentHash": "0fd8255ab15e1153065f8b040e1a4d4dc6461a277c680c8f8c22dd1120e1180b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": false
+    },
+    "src/fiber/fd_manager.cpp": {
+      "filePath": "src/fiber/fd_manager.cpp",
+      "contentHash": "8142a2131c3fc71716d37482eb263f722df341503d6d84af17056c6c5817ae2b",
+      "functions": [
+        {
+          "name": "FdCtx",
+          "params": [
+            "fd"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "~FdCtx",
+          "params": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "init",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "setTimeout",
+          "params": [
+            "type",
+            "v"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "getTimeout",
+          "params": [
+            "type"
+          ],
+          "returnType": "uint64_t",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "FdManager",
+          "params": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "get",
+          "params": [
+            "fd",
+            "auto_create"
+          ],
+          "returnType": "FdCtx::ptr",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "del",
+          "params": [
+            "fd"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "fd_manager.hpp",
+          "specifiers": [
+            "fd_manager.hpp"
+          ]
+        },
+        {
+          "source": "sys/stat.h",
+          "specifiers": [
+            "sys/stat.h"
+          ]
+        },
+        {
+          "source": "sys/types.h",
+          "specifiers": [
+            "sys/types.h"
+          ]
+        },
+        {
+          "source": "unistd.h",
+          "specifiers": [
+            "unistd.h"
+          ]
+        },
+        {
+          "source": "hook.hpp",
+          "specifiers": [
+            "hook.hpp"
+          ]
+        }
+      ],
+      "exports": [
+        "FdCtx",
+        "~FdCtx",
+        "init",
+        "setTimeout",
+        "getTimeout",
+        "FdManager",
+        "get",
+        "del"
+      ],
+      "totalLines": 107,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/fiber.cpp": {
+      "filePath": "src/fiber/fiber.cpp",
+      "contentHash": "854a3dbd5b02096256776c88d4c135737753fc15c82b9108b20fa0d28b833a20",
+      "functions": [
+        {
+          "name": "Delete",
+          "params": [
+            "vp",
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "Fiber",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "SetThis",
+          "params": [
+            "f"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "GetThis",
+          "params": [],
+          "returnType": "Fiber::ptr",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "Fiber",
+          "params": [
+            "cb",
+            "stacksize",
+            "run_inscheduler"
+          ],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "resume",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "yield",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MainFunc",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "reset",
+          "params": [
+            "cb"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "~Fiber",
+          "params": [],
+          "exported": true,
+          "lineCount": 18
+        }
+      ],
+      "classes": [
+        {
+          "name": "StackAllocator",
+          "methods": [
+            "Delete"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "imports": [
+        {
+          "source": "fiber.hpp",
+          "specifiers": [
+            "fiber.hpp"
+          ]
+        },
+        {
+          "source": "assert.h",
+          "specifiers": [
+            "assert.h"
+          ]
+        },
+        {
+          "source": "atomic",
+          "specifiers": [
+            "atomic"
+          ]
+        },
+        {
+          "source": "scheduler.hpp",
+          "specifiers": [
+            "scheduler.hpp"
+          ]
+        },
+        {
+          "source": "utils.hpp",
+          "specifiers": [
+            "utils.hpp"
+          ]
+        }
+      ],
+      "exports": [
+        "Delete",
+        "StackAllocator",
+        "Fiber",
+        "SetThis",
+        "GetThis",
+        "Fiber",
+        "resume",
+        "yield",
+        "MainFunc",
+        "reset",
+        "~Fiber"
+      ],
+      "totalLines": 151,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/hook.cpp": {
+      "filePath": "src/fiber/hook.cpp",
+      "contentHash": "4d25aa022e7166f0249cf28bc9c4a1305bb1bbf56cde5a4276dc08f54b4a774b",
+      "functions": [
+        {
+          "name": "hook_init",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "_HOOKIniter",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "is_hook_enable",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "set_hook_enable",
+          "params": [
+            "flag"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "classes": [
+        {
+          "name": "_HOOKIniter",
+          "methods": [
+            "_HOOKIniter"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "timer_info",
+          "methods": [],
+          "properties": [
+            "cnacelled"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "hook.hpp",
+          "specifiers": [
+            "hook.hpp"
+          ]
+        },
+        {
+          "source": "dlfcn.h",
+          "specifiers": [
+            "dlfcn.h"
+          ]
+        },
+        {
+          "source": "cstdarg",
+          "specifiers": [
+            "cstdarg"
+          ]
+        },
+        {
+          "source": "string",
+          "specifiers": [
+            "string"
+          ]
+        },
+        {
+          "source": "fd_manager.hpp",
+          "specifiers": [
+            "fd_manager.hpp"
+          ]
+        },
+        {
+          "source": "fiber.hpp",
+          "specifiers": [
+            "fiber.hpp"
+          ]
+        },
+        {
+          "source": "iomanager.hpp",
+          "specifiers": [
+            "iomanager.hpp"
+          ]
+        }
+      ],
+      "exports": [
+        "hook_init",
+        "_HOOKIniter",
+        "_HOOKIniter",
+        "is_hook_enable",
+        "set_hook_enable",
+        "timer_info"
+      ],
+      "totalLines": 476,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/include/fd_manager.hpp": {
+      "filePath": "src/fiber/include/fd_manager.hpp",
+      "contentHash": "023e24c75e65672609c3372a9f78c9b703071846a370e48c3421b8a948919d56",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 81,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/include/fiber.hpp": {
+      "filePath": "src/fiber/include/fiber.hpp",
+      "contentHash": "12af2848888935ca840f4fe8785246f2e1e7541af7bec6a0d248e2461ac4c294",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 76,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/include/hook.hpp": {
+      "filePath": "src/fiber/include/hook.hpp",
+      "contentHash": "c3960917547c9c2b9821e6c64a24f0bb632168335d127bbffc1348966e6fd6a8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 94,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/include/iomanager.hpp": {
+      "filePath": "src/fiber/include/iomanager.hpp",
+      "contentHash": "c0fda1f3931a73e09ec55c880ecfa64885546a3df75a808f44467593408f1f49",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 81,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/include/monsoon.h": {
+      "filePath": "src/fiber/include/monsoon.h",
+      "contentHash": "18590a47a67c7c90d1e5d95a2870af7e9b7a3174dcaab4d3f87456ef5361ec87",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 11,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/include/mutex.hpp": {
+      "filePath": "src/fiber/include/mutex.hpp",
+      "contentHash": "13a06f41a9a61fa418d8fd0c856932f457fb9053e48bc7f595511caade644d9d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 165,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/include/noncopyable.hpp": {
+      "filePath": "src/fiber/include/noncopyable.hpp",
+      "contentHash": "7726eb7339449d56c399c51928138db2c701de640a1d294aac40e136154ba6b5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 14,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/include/scheduler.hpp": {
+      "filePath": "src/fiber/include/scheduler.hpp",
+      "contentHash": "919e70b621a995a8af022ee56eda6daf93a5e769223e6857227d00ad7ac05704",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 147,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/include/singleton.hpp": {
+      "filePath": "src/fiber/include/singleton.hpp",
+      "contentHash": "6f219718793f7db1abcd44a3aee92a2c5d9f3172a0b4e783fbd9926714c125c7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 59,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/include/thread.hpp": {
+      "filePath": "src/fiber/include/thread.hpp",
+      "contentHash": "b1a9057cda99acae62c2099f4569cdf9b443f03fc7d845922bd7647580f55ae0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 43,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/include/timer.hpp": {
+      "filePath": "src/fiber/include/timer.hpp",
+      "contentHash": "d295bb642e345976b0910e32c6eeddf0192384d4b6588d405be64eb5c3bc3ca5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 79,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/include/utils.hpp": {
+      "filePath": "src/fiber/include/utils.hpp",
+      "contentHash": "931958ab7bf0bcb324ede7b377eb8a5d0f6a6bf8542f41c4a4093d39268a71b2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 91,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/iomanager.cpp": {
+      "filePath": "src/fiber/iomanager.cpp",
+      "contentHash": "6474dd1f9d4a036a26b544fcc678459d450a69951a90d46eccfc9d65e180a88a",
+      "functions": [
+        {
+          "name": "resetEveContext",
+          "params": [
+            "ctx"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "triggerEvent",
+          "params": [
+            "event"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "IOManager",
+          "params": [
+            "threads",
+            "use_caller",
+            "name"
+          ],
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "~IOManager",
+          "params": [],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "addEvent",
+          "params": [
+            "fd",
+            "event",
+            "cb"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 49
+        },
+        {
+          "name": "delEvent",
+          "params": [
+            "fd",
+            "event"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 31
+        },
+        {
+          "name": "cancelEvent",
+          "params": [
+            "fd",
+            "event"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "cancelAll",
+          "params": [
+            "fd"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 36
+        },
+        {
+          "name": "tickle",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "idle",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 113
+        },
+        {
+          "name": "stopping",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "stopping",
+          "params": [
+            "timeout"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "contextResize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "OnTimerInsertedAtFront",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "iomanager.hpp",
+          "specifiers": [
+            "iomanager.hpp"
+          ]
+        }
+      ],
+      "exports": [
+        "resetEveContext",
+        "triggerEvent",
+        "IOManager",
+        "~IOManager",
+        "addEvent",
+        "delEvent",
+        "cancelEvent",
+        "cancelAll",
+        "tickle",
+        "idle",
+        "stopping",
+        "stopping",
+        "contextResize",
+        "OnTimerInsertedAtFront"
+      ],
+      "totalLines": 375,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/scheduler.cpp": {
+      "filePath": "src/fiber/scheduler.cpp",
+      "contentHash": "0ce5f21aadd3e956b8b5077e2d8ae278c88cb95347c6b695520dc17d7572977d",
+      "functions": [
+        {
+          "name": "Scheduler",
+          "params": [
+            "threads",
+            "use_caller",
+            "name"
+          ],
+          "exported": true,
+          "lineCount": 31
+        },
+        {
+          "name": "setThis",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "~Scheduler",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "start",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "run",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 76
+        },
+        {
+          "name": "tickle",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "stopping",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "idle",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "stop",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 37
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "scheduler.hpp",
+          "specifiers": [
+            "scheduler.hpp"
+          ]
+        },
+        {
+          "source": "fiber.hpp",
+          "specifiers": [
+            "fiber.hpp"
+          ]
+        },
+        {
+          "source": "hook.hpp",
+          "specifiers": [
+            "hook.hpp"
+          ]
+        }
+      ],
+      "exports": [
+        "Scheduler",
+        "setThis",
+        "~Scheduler",
+        "start",
+        "run",
+        "tickle",
+        "stopping",
+        "idle",
+        "stop"
+      ],
+      "totalLines": 204,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/thread.cpp": {
+      "filePath": "src/fiber/thread.cpp",
+      "contentHash": "cd784e7eeea6aef95791698057773ea70d77bd7241ec08f5b00bfe2a372b4b83",
+      "functions": [
+        {
+          "name": "Thread",
+          "params": [
+            "cb"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "~Thread",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "join",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "SetName",
+          "params": [
+            "name"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "thread.hpp",
+          "specifiers": [
+            "thread.hpp"
+          ]
+        },
+        {
+          "source": "utils.hpp",
+          "specifiers": [
+            "utils.hpp"
+          ]
+        }
+      ],
+      "exports": [
+        "Thread",
+        "~Thread",
+        "join",
+        "SetName"
+      ],
+      "totalLines": 68,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/timer.cpp": {
+      "filePath": "src/fiber/timer.cpp",
+      "contentHash": "2da2db12b0967b50f94f88e48fff47abd2f08ef199be4c69b8b954a8302f8042",
+      "functions": [
+        {
+          "name": "Comparator::operator()",
+          "params": [
+            "lhs",
+            "rhs"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "Timer",
+          "params": [
+            "ms",
+            "cb",
+            "recuring",
+            "manager"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "Timer",
+          "params": [
+            "next"
+          ],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "cancel",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "refresh",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "reset",
+          "params": [
+            "ms",
+            "from_now"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "TimerManager",
+          "params": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "~TimerManager",
+          "params": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "addTimer",
+          "params": [
+            "ms",
+            "cb",
+            "recurring"
+          ],
+          "returnType": "Timer::ptr",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "OnTimer",
+          "params": [
+            "weak_cond",
+            "cb"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "addConditionTimer",
+          "params": [
+            "ms",
+            "cb",
+            "weak_cond",
+            "recurring"
+          ],
+          "returnType": "Timer::ptr",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "getNextTimer",
+          "params": [],
+          "returnType": "uint64_t",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "listExpiredCb",
+          "params": [
+            "cbs"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 41
+        },
+        {
+          "name": "addTimer",
+          "params": [
+            "val",
+            "lock"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "detectClockRolllover",
+          "params": [
+            "now_ms"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "hasTimer",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "timer.hpp",
+          "specifiers": [
+            "timer.hpp"
+          ]
+        },
+        {
+          "source": "utils.hpp",
+          "specifiers": [
+            "utils.hpp"
+          ]
+        }
+      ],
+      "exports": [
+        "Comparator::operator()",
+        "Timer",
+        "Timer",
+        "cancel",
+        "refresh",
+        "reset",
+        "TimerManager",
+        "~TimerManager",
+        "addTimer",
+        "addConditionTimer",
+        "getNextTimer",
+        "listExpiredCb",
+        "addTimer",
+        "detectClockRolllover",
+        "hasTimer"
+      ],
+      "totalLines": 187,
+      "hasStructuralAnalysis": true
+    },
+    "src/fiber/utils.cpp": {
+      "filePath": "src/fiber/utils.cpp",
+      "contentHash": "a908128e9760b8d8c38f416dacff901a7f1bc569c37c19a5e86dbe96bc4f50b5",
+      "functions": [
+        {
+          "name": "GetThreadId",
+          "params": [],
+          "returnType": "pid_t",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "GetFiberId",
+          "params": [],
+          "returnType": "u_int32_t",
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "utils.hpp",
+          "specifiers": [
+            "utils.hpp"
+          ]
+        }
+      ],
+      "exports": [
+        "GetThreadId",
+        "GetFiberId"
+      ],
+      "totalLines": 10,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftClerk/clerk.cpp": {
+      "filePath": "src/raftClerk/clerk.cpp",
+      "contentHash": "a4ed353bb1033f993faa14f5c414f9cca768bcd1159c3fb613f78c39646666a8",
+      "functions": [
+        {
+          "name": "Get",
+          "params": [
+            "key"
+          ],
+          "returnType": "std::string",
+          "exported": true,
+          "lineCount": 28
+        },
+        {
+          "name": "PutAppend",
+          "params": [
+            "key",
+            "value",
+            "op"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 32
+        },
+        {
+          "name": "Put",
+          "params": [
+            "key",
+            "value"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "Append",
+          "params": [
+            "key",
+            "value"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "Init",
+          "params": [
+            "configFileName"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "Clerk",
+          "params": [],
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "clerk.h",
+          "specifiers": [
+            "clerk.h"
+          ]
+        },
+        {
+          "source": "raftServerRpcUtil.h",
+          "specifiers": [
+            "raftServerRpcUtil.h"
+          ]
+        },
+        {
+          "source": "util.h",
+          "specifiers": [
+            "util.h"
+          ]
+        },
+        {
+          "source": "string",
+          "specifiers": [
+            "string"
+          ]
+        },
+        {
+          "source": "vector",
+          "specifiers": [
+            "vector"
+          ]
+        }
+      ],
+      "exports": [
+        "Get",
+        "PutAppend",
+        "Put",
+        "Append",
+        "Init",
+        "Clerk"
+      ],
+      "totalLines": 104,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftClerk/CMakeLists.txt": {
+      "filePath": "src/raftClerk/CMakeLists.txt",
+      "contentHash": "55edfc6c6b445fb1e318f39e1d49aa722eb1ebd5a854cc427ae40f5489da041f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 8,
+      "hasStructuralAnalysis": false
+    },
+    "src/raftClerk/include/clerk.h": {
+      "filePath": "src/raftClerk/include/clerk.h",
+      "contentHash": "255a4dd274d5e68e0252d7a8fad65f577107aff90a8406127d029fc57d0a272f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 46,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftClerk/include/raftServerRpcUtil.h": {
+      "filePath": "src/raftClerk/include/raftServerRpcUtil.h",
+      "contentHash": "347f951e3ef58b57fbbbb24891966d14e181e0399768ab711a5d4fd69a4c82f4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 32,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftClerk/raftServerRpcUtil.cpp": {
+      "filePath": "src/raftClerk/raftServerRpcUtil.cpp",
+      "contentHash": "1c60c516841d8214548fb86aaacff11b442501e271361e97638e336342785a45",
+      "functions": [
+        {
+          "name": "raftServerRpcUtil",
+          "params": [
+            "ip",
+            "port"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "~raftServerRpcUtil",
+          "params": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "Get",
+          "params": [
+            "GetArgs",
+            "reply"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "PutAppend",
+          "params": [
+            "args",
+            "reply"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "raftServerRpcUtil.h",
+          "specifiers": [
+            "raftServerRpcUtil.h"
+          ]
+        }
+      ],
+      "exports": [
+        "raftServerRpcUtil",
+        "~raftServerRpcUtil",
+        "Get",
+        "PutAppend"
+      ],
+      "totalLines": 32,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftCore/CMakeLists.txt": {
+      "filePath": "src/raftCore/CMakeLists.txt",
+      "contentHash": "c6f6900e4f04b35cab4b06185c74c93f1c9c1ec42d0450938d34b982344159ce",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 17,
+      "hasStructuralAnalysis": false
+    },
+    "src/raftCore/include/ApplyMsg.h": {
+      "filePath": "src/raftCore/include/ApplyMsg.h",
+      "contentHash": "4a68e6ae015b6f3965c1bff99120c9ab59cdd2d51e8be15817e91c437e1c24ba",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 27,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftCore/include/kvServer.h": {
+      "filePath": "src/raftCore/include/kvServer.h",
+      "contentHash": "e1c973a4d7e9f8d6b78f3c5af439a475c981baeecaa6e6419a9f53fc1fa99bb1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 135,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftCore/include/Persister.h": {
+      "filePath": "src/raftCore/include/Persister.h",
+      "contentHash": "c022e6d72b01e5fcea51f9a42f2456a7b34633998c9cd0a0804948f8f6cc111d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 52,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftCore/include/raft.h": {
+      "filePath": "src/raftCore/include/raft.h",
+      "contentHash": "45effc41c5cea6fa26cfc0dd6e6f2d31af9984eb6c8187a6a4e15f25436b16e5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 169,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftCore/include/raftRpcUtil.h": {
+      "filePath": "src/raftCore/include/raftRpcUtil.h",
+      "contentHash": "cfc6ff36923481c3baf77aa94f11cfaac8718da2b826cdf5b39062de83fe6a09",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 32,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftCore/kvServer.cpp": {
+      "filePath": "src/raftCore/kvServer.cpp",
+      "contentHash": "de4d8fcf55113930483e43ce0a3c866da38fbd41daabee48250f22ceb3935700",
+      "functions": [
+        {
+          "name": "DprintfKVDB",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "ExecuteAppendOpOnKVDB",
+          "params": [
+            "op"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "ExecuteGetOpOnKVDB",
+          "params": [
+            "op",
+            "value",
+            "exist"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "ExecutePutOpOnKVDB",
+          "params": [
+            "op"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "Get",
+          "params": [
+            "args",
+            "reply"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 86
+        },
+        {
+          "name": "GetCommandFromRaft",
+          "params": [
+            "message"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "ifRequestDuplicate",
+          "params": [
+            "ClientId",
+            "RequestId"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "PutAppend",
+          "params": [
+            "args",
+            "reply"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 68
+        },
+        {
+          "name": "ReadRaftApplyCommandLoop",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "ReadSnapShotToInstall",
+          "params": [
+            "snapshot"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "SendMessageToWaitChan",
+          "params": [
+            "op",
+            "raftIndex"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "IfNeedToSendSnapShotCommand",
+          "params": [
+            "raftIndex",
+            "proportion"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "GetSnapShotFromRaft",
+          "params": [
+            "message"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "MakeSnapShot",
+          "params": [],
+          "returnType": "std::string",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "PutAppend",
+          "params": [
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "Get",
+          "params": [
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "KvServer",
+          "params": [
+            "me",
+            "maxraftstate",
+            "nodeInforFileName",
+            "port"
+          ],
+          "exported": true,
+          "lineCount": 74
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "kvServer.h",
+          "specifiers": [
+            "kvServer.h"
+          ]
+        },
+        {
+          "source": "rpcprovider.h",
+          "specifiers": [
+            "rpcprovider.h"
+          ]
+        },
+        {
+          "source": "mprpcconfig.h",
+          "specifiers": [
+            "mprpcconfig.h"
+          ]
+        }
+      ],
+      "exports": [
+        "DprintfKVDB",
+        "ExecuteAppendOpOnKVDB",
+        "ExecuteGetOpOnKVDB",
+        "ExecutePutOpOnKVDB",
+        "Get",
+        "GetCommandFromRaft",
+        "ifRequestDuplicate",
+        "PutAppend",
+        "ReadRaftApplyCommandLoop",
+        "ReadSnapShotToInstall",
+        "SendMessageToWaitChan",
+        "IfNeedToSendSnapShotCommand",
+        "GetSnapShotFromRaft",
+        "MakeSnapShot",
+        "PutAppend",
+        "Get",
+        "KvServer"
+      ],
+      "totalLines": 451,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftCore/Persister.cpp": {
+      "filePath": "src/raftCore/Persister.cpp",
+      "contentHash": "fe85e3cafac9bd8d4d4cd7c8a70bd0cb84ab7aee431862e558fd24c8b6651d52",
+      "functions": [
+        {
+          "name": "Save",
+          "params": [
+            "raftstate",
+            "snapshot"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "ReadSnapshot",
+          "params": [],
+          "returnType": "std::string",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "SaveRaftState",
+          "params": [
+            "data"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "RaftStateSize",
+          "params": [],
+          "returnType": "long long",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "ReadRaftState",
+          "params": [],
+          "returnType": "std::string",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "Persister",
+          "params": [
+            "me"
+          ],
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "~Persister",
+          "params": [],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "clearRaftState",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "clearSnapshot",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "clearRaftStateAndSnapshot",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "Persister.h",
+          "specifiers": [
+            "Persister.h"
+          ]
+        },
+        {
+          "source": "util.h",
+          "specifiers": [
+            "util.h"
+          ]
+        }
+      ],
+      "exports": [
+        "Save",
+        "ReadSnapshot",
+        "SaveRaftState",
+        "RaftStateSize",
+        "ReadRaftState",
+        "Persister",
+        "~Persister",
+        "clearRaftState",
+        "clearSnapshot",
+        "clearRaftStateAndSnapshot"
+      ],
+      "totalLines": 122,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftCore/raft.cpp": {
+      "filePath": "src/raftCore/raft.cpp",
+      "contentHash": "37117c9bca3cbaf19851638276ab923da0108109e0e8d2c3486ecb3131bc7de6",
+      "functions": [
+        {
+          "name": "AppendEntries1",
+          "params": [
+            "args",
+            "reply"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 146
+        },
+        {
+          "name": "applierTicker",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "CondInstallSnapshot",
+          "params": [
+            "lastIncludedTerm",
+            "lastIncludedIndex",
+            "snapshot"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "doElection",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 44
+        },
+        {
+          "name": "doHeartBeat",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 65
+        },
+        {
+          "name": "electionTimeOutTicker",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 47
+        },
+        {
+          "name": "getApplyLogs",
+          "params": [],
+          "returnType": "std::vector<ApplyMsg>",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "getNewCommandIndex",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "getPrevLogInfo",
+          "params": [
+            "server",
+            "preIndex",
+            "preTerm"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "GetState",
+          "params": [
+            "term",
+            "isLeader"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "InstallSnapshot",
+          "params": [
+            "args",
+            "reply"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 57
+        },
+        {
+          "name": "pushMsgToKvServer",
+          "params": [
+            "msg"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "leaderHearBeatTicker",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 47
+        },
+        {
+          "name": "leaderSendSnapShot",
+          "params": [
+            "server"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "leaderUpdateCommitIndex",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "matchLog",
+          "params": [
+            "logIndex",
+            "logTerm"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "persist",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "RequestVote",
+          "params": [
+            "args",
+            "reply"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 73
+        },
+        {
+          "name": "UpToDate",
+          "params": [
+            "index",
+            "term"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "getLastLogIndexAndTerm",
+          "params": [
+            "lastLogIndex",
+            "lastLogTerm"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "getLastLogIndex",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "getLastLogTerm",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "getLogTermFromLogIndex",
+          "params": [
+            "logIndex"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "GetRaftStateSize",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "getSlicesIndexFromLogIndex",
+          "params": [
+            "logIndex"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "sendRequestVote",
+          "params": [
+            "server",
+            "args",
+            "reply",
+            "votedNum"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 66
+        },
+        {
+          "name": "sendAppendEntries",
+          "params": [
+            "server",
+            "args",
+            "reply",
+            "appendNums"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 97
+        },
+        {
+          "name": "AppendEntries",
+          "params": [
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "InstallSnapshot",
+          "params": [
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "RequestVote",
+          "params": [
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "Start",
+          "params": [
+            "command",
+            "newLogIndex",
+            "newLogTerm",
+            "isLeader"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "init",
+          "params": [
+            "peers",
+            "me",
+            "persister",
+            "applyCh"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 60
+        },
+        {
+          "name": "persistData",
+          "params": [],
+          "returnType": "std::string",
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "readPersist",
+          "params": [
+            "data"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "Snapshot",
+          "params": [
+            "index",
+            "snapshot"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 36
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "raft.h",
+          "specifiers": [
+            "raft.h"
+          ]
+        },
+        {
+          "source": "boost/archive/text_iarchive.hpp",
+          "specifiers": [
+            "boost/archive/text_iarchive.hpp"
+          ]
+        },
+        {
+          "source": "boost/archive/text_oarchive.hpp",
+          "specifiers": [
+            "boost/archive/text_oarchive.hpp"
+          ]
+        },
+        {
+          "source": "memory",
+          "specifiers": [
+            "memory"
+          ]
+        },
+        {
+          "source": "config.h",
+          "specifiers": [
+            "config.h"
+          ]
+        },
+        {
+          "source": "util.h",
+          "specifiers": [
+            "util.h"
+          ]
+        }
+      ],
+      "exports": [
+        "AppendEntries1",
+        "applierTicker",
+        "CondInstallSnapshot",
+        "doElection",
+        "doHeartBeat",
+        "electionTimeOutTicker",
+        "getApplyLogs",
+        "getNewCommandIndex",
+        "getPrevLogInfo",
+        "GetState",
+        "InstallSnapshot",
+        "pushMsgToKvServer",
+        "leaderHearBeatTicker",
+        "leaderSendSnapShot",
+        "leaderUpdateCommitIndex",
+        "matchLog",
+        "persist",
+        "RequestVote",
+        "UpToDate",
+        "getLastLogIndexAndTerm",
+        "getLastLogIndex",
+        "getLastLogTerm",
+        "getLogTermFromLogIndex",
+        "GetRaftStateSize",
+        "getSlicesIndexFromLogIndex",
+        "sendRequestVote",
+        "sendAppendEntries",
+        "AppendEntries",
+        "InstallSnapshot",
+        "RequestVote",
+        "Start",
+        "init",
+        "persistData",
+        "readPersist",
+        "Snapshot"
+      ],
+      "totalLines": 1122,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftCore/raftRpcUtil.cpp": {
+      "filePath": "src/raftCore/raftRpcUtil.cpp",
+      "contentHash": "a10a1022461cdd5809ce948e73e6c8f4aa208db0dcdb9ac398e7e2aa31a75ec0",
+      "functions": [
+        {
+          "name": "AppendEntries",
+          "params": [
+            "args",
+            "response"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "InstallSnapshot",
+          "params": [
+            "args",
+            "response"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "RequestVote",
+          "params": [
+            "args",
+            "response"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "RaftRpcUtil",
+          "params": [
+            "ip",
+            "port"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "~RaftRpcUtil",
+          "params": [],
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "raftRpcUtil.h",
+          "specifiers": [
+            "raftRpcUtil.h"
+          ]
+        },
+        {
+          "source": "mprpcchannel.h",
+          "specifiers": [
+            "mprpcchannel.h"
+          ]
+        },
+        {
+          "source": "mprpccontroller.h",
+          "specifiers": [
+            "mprpccontroller.h"
+          ]
+        }
+      ],
+      "exports": [
+        "AppendEntries",
+        "InstallSnapshot",
+        "RequestVote",
+        "RaftRpcUtil",
+        "~RaftRpcUtil"
+      ],
+      "totalLines": 38,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftRpcPro/CMakeLists.txt": {
+      "filePath": "src/raftRpcPro/CMakeLists.txt",
+      "contentHash": "43eeff5ed83199167718436c4c96345da01dbd0934c58f8a9f9c80a3ce903a8a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": false
+    },
+    "src/raftRpcPro/include/kvServerRPC.pb.h": {
+      "filePath": "src/raftRpcPro/include/kvServerRPC.pb.h",
+      "contentHash": "10257faf1f19d7d9c100c737c7c7fb50cb559025377d38f5c15739a611ff1679",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1725,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftRpcPro/include/raftRPC.pb.h": {
+      "filePath": "src/raftRpcPro/include/raftRPC.pb.h",
+      "contentHash": "5b7d4147ee0e80039eecad8ab737007f5aabbf9b324a73c8669b924d8efb2d69",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2095,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftRpcPro/kvServerRPC.pb.cc": {
+      "filePath": "src/raftRpcPro/kvServerRPC.pb.cc",
+      "contentHash": "c266fd32fee6fb39a03cf22c1b7062bcd594517f4b7498a10e9599c3f988bee8",
+      "functions": [
+        {
+          "name": "InitDefaultsscc_info_GetArgs_kvServerRPC_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitDefaultsscc_info_GetReply_kvServerRPC_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitDefaultsscc_info_PutAppendArgs_kvServerRPC_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitDefaultsscc_info_PutAppendReply_kvServerRPC_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "GetArgs",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "GetArgs",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "~GetArgs",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 37
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "GetReply",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "GetReply",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "~GetReply",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "PutAppendArgs",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "PutAppendArgs",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "~PutAppendArgs",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 51
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "PutAppendReply",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "PutAppendReply",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "~PutAppendReply",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "~kvServerRpc",
+          "params": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "PutAppend",
+          "params": [
+            "controller",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "Get",
+          "params": [
+            "controller",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "CallMethod",
+          "params": [
+            "method",
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 28
+        },
+        {
+          "name": "kvServerRpc_Stub",
+          "params": [
+            "channel"
+          ],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "kvServerRpc_Stub",
+          "params": [
+            "channel",
+            "ownership"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "~kvServerRpc_Stub",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "PutAppend",
+          "params": [
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "Get",
+          "params": [
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [
+        {
+          "name": "GetArgsDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "GetReplyDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "PutAppendArgsDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "PutAppendReplyDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "GetArgs::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "GetReply::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "PutAppendArgs::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "PutAppendReply::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "kvServerRPC.pb.h",
+          "specifiers": [
+            "kvServerRPC.pb.h"
+          ]
+        },
+        {
+          "source": "algorithm",
+          "specifiers": [
+            "algorithm"
+          ]
+        },
+        {
+          "source": "google/protobuf/io/coded_stream.h",
+          "specifiers": [
+            "google/protobuf/io/coded_stream.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/extension_set.h",
+          "specifiers": [
+            "google/protobuf/extension_set.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/wire_format_lite.h",
+          "specifiers": [
+            "google/protobuf/wire_format_lite.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/descriptor.h",
+          "specifiers": [
+            "google/protobuf/descriptor.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/generated_message_reflection.h",
+          "specifiers": [
+            "google/protobuf/generated_message_reflection.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/reflection_ops.h",
+          "specifiers": [
+            "google/protobuf/reflection_ops.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/wire_format.h",
+          "specifiers": [
+            "google/protobuf/wire_format.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/port_def.inc",
+          "specifiers": [
+            "google/protobuf/port_def.inc"
+          ]
+        },
+        {
+          "source": "google/protobuf/port_undef.inc",
+          "specifiers": [
+            "google/protobuf/port_undef.inc"
+          ]
+        }
+      ],
+      "exports": [
+        "GetArgsDefaultTypeInternal",
+        "GetReplyDefaultTypeInternal",
+        "PutAppendArgsDefaultTypeInternal",
+        "PutAppendReplyDefaultTypeInternal",
+        "InitAsDefaultInstance",
+        "GetArgs::_Internal",
+        "GetArgs",
+        "GetArgs",
+        "SharedCtor",
+        "~GetArgs",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "InitAsDefaultInstance",
+        "GetReply::_Internal",
+        "GetReply",
+        "GetReply",
+        "SharedCtor",
+        "~GetReply",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "InitAsDefaultInstance",
+        "PutAppendArgs::_Internal",
+        "PutAppendArgs",
+        "PutAppendArgs",
+        "SharedCtor",
+        "~PutAppendArgs",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "InitAsDefaultInstance",
+        "PutAppendReply::_Internal",
+        "PutAppendReply",
+        "PutAppendReply",
+        "SharedCtor",
+        "~PutAppendReply",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "~kvServerRpc",
+        "PutAppend",
+        "Get",
+        "CallMethod",
+        "kvServerRpc_Stub",
+        "kvServerRpc_Stub",
+        "~kvServerRpc_Stub",
+        "PutAppend",
+        "Get"
+      ],
+      "totalLines": 1342,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftRpcPro/kvServerRPC.proto": {
+      "filePath": "src/raftRpcPro/kvServerRPC.proto",
+      "contentHash": "3776daf76b82234dd28af7484bb990189a23d42e6a323a6f9a4037932818fd18",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 73,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftRpcPro/raftRPC.pb.cc": {
+      "filePath": "src/raftRpcPro/raftRPC.pb.cc",
+      "contentHash": "b0ba8138366a7c6057ffb9b445cb773d45e8899017f6412d67a0214ae1c4a448",
+      "functions": [
+        {
+          "name": "InitDefaultsscc_info_AppendEntriesArgs_raftRPC_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitDefaultsscc_info_AppendEntriesReply_raftRPC_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitDefaultsscc_info_InstallSnapshotRequest_raftRPC_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitDefaultsscc_info_InstallSnapshotResponse_raftRPC_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitDefaultsscc_info_LogEntry_raftRPC_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitDefaultsscc_info_RequestVoteArgs_raftRPC_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitDefaultsscc_info_RequestVoteReply_raftRPC_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "LogEntry",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "LogEntry",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "~LogEntry",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 37
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "AppendEntriesArgs",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "AppendEntriesArgs",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "~AppendEntriesArgs",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 58
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "AppendEntriesReply",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "AppendEntriesReply",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "~AppendEntriesReply",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 42
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "RequestVoteArgs",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "RequestVoteArgs",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "~RequestVoteArgs",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 44
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "RequestVoteReply",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "RequestVoteReply",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "~RequestVoteReply",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 35
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "InstallSnapshotRequest",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "InstallSnapshotRequest",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "~InstallSnapshotRequest",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 51
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "InstallSnapshotResponse",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "InstallSnapshotResponse",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "~InstallSnapshotResponse",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "~raftRpc",
+          "params": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "AppendEntries",
+          "params": [
+            "controller",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "InstallSnapshot",
+          "params": [
+            "controller",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "RequestVote",
+          "params": [
+            "controller",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "CallMethod",
+          "params": [
+            "method",
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 36
+        },
+        {
+          "name": "raftRpc_Stub",
+          "params": [
+            "channel"
+          ],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "raftRpc_Stub",
+          "params": [
+            "channel",
+            "ownership"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "~raftRpc_Stub",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "AppendEntries",
+          "params": [
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "InstallSnapshot",
+          "params": [
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "RequestVote",
+          "params": [
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [
+        {
+          "name": "LogEntryDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "AppendEntriesArgsDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "AppendEntriesReplyDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RequestVoteArgsDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RequestVoteReplyDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "InstallSnapshotRequestDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "InstallSnapshotResponseDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "LogEntry::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "AppendEntriesArgs::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "AppendEntriesReply::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "RequestVoteArgs::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "RequestVoteReply::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InstallSnapshotRequest::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InstallSnapshotResponse::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "raftRPC.pb.h",
+          "specifiers": [
+            "raftRPC.pb.h"
+          ]
+        },
+        {
+          "source": "algorithm",
+          "specifiers": [
+            "algorithm"
+          ]
+        },
+        {
+          "source": "google/protobuf/io/coded_stream.h",
+          "specifiers": [
+            "google/protobuf/io/coded_stream.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/extension_set.h",
+          "specifiers": [
+            "google/protobuf/extension_set.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/wire_format_lite.h",
+          "specifiers": [
+            "google/protobuf/wire_format_lite.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/descriptor.h",
+          "specifiers": [
+            "google/protobuf/descriptor.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/generated_message_reflection.h",
+          "specifiers": [
+            "google/protobuf/generated_message_reflection.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/reflection_ops.h",
+          "specifiers": [
+            "google/protobuf/reflection_ops.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/wire_format.h",
+          "specifiers": [
+            "google/protobuf/wire_format.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/port_def.inc",
+          "specifiers": [
+            "google/protobuf/port_def.inc"
+          ]
+        },
+        {
+          "source": "google/protobuf/port_undef.inc",
+          "specifiers": [
+            "google/protobuf/port_undef.inc"
+          ]
+        }
+      ],
+      "exports": [
+        "LogEntryDefaultTypeInternal",
+        "AppendEntriesArgsDefaultTypeInternal",
+        "AppendEntriesReplyDefaultTypeInternal",
+        "RequestVoteArgsDefaultTypeInternal",
+        "RequestVoteReplyDefaultTypeInternal",
+        "InstallSnapshotRequestDefaultTypeInternal",
+        "InstallSnapshotResponseDefaultTypeInternal",
+        "InitAsDefaultInstance",
+        "LogEntry::_Internal",
+        "LogEntry",
+        "LogEntry",
+        "SharedCtor",
+        "~LogEntry",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "InitAsDefaultInstance",
+        "AppendEntriesArgs::_Internal",
+        "AppendEntriesArgs",
+        "AppendEntriesArgs",
+        "SharedCtor",
+        "~AppendEntriesArgs",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "InitAsDefaultInstance",
+        "AppendEntriesReply::_Internal",
+        "AppendEntriesReply",
+        "AppendEntriesReply",
+        "SharedCtor",
+        "~AppendEntriesReply",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "InitAsDefaultInstance",
+        "RequestVoteArgs::_Internal",
+        "RequestVoteArgs",
+        "RequestVoteArgs",
+        "SharedCtor",
+        "~RequestVoteArgs",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "InitAsDefaultInstance",
+        "RequestVoteReply::_Internal",
+        "RequestVoteReply",
+        "RequestVoteReply",
+        "SharedCtor",
+        "~RequestVoteReply",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "InitAsDefaultInstance",
+        "InstallSnapshotRequest::_Internal",
+        "InstallSnapshotRequest",
+        "InstallSnapshotRequest",
+        "SharedCtor",
+        "~InstallSnapshotRequest",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "InitAsDefaultInstance",
+        "InstallSnapshotResponse::_Internal",
+        "InstallSnapshotResponse",
+        "InstallSnapshotResponse",
+        "SharedCtor",
+        "~InstallSnapshotResponse",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata",
+        "~raftRpc",
+        "AppendEntries",
+        "InstallSnapshot",
+        "RequestVote",
+        "CallMethod",
+        "raftRpc_Stub",
+        "raftRpc_Stub",
+        "~raftRpc_Stub",
+        "AppendEntries",
+        "InstallSnapshot",
+        "RequestVote"
+      ],
+      "totalLines": 2361,
+      "hasStructuralAnalysis": true
+    },
+    "src/raftRpcPro/raftRPC.proto": {
+      "filePath": "src/raftRpcPro/raftRPC.proto",
+      "contentHash": "c22a9b050dc8798e42452d99ada2e59a3318bed4d409f94f691476fcd1f2f219",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 92,
+      "hasStructuralAnalysis": true
+    },
+    "src/rpc/CMakeLists.txt": {
+      "filePath": "src/rpc/CMakeLists.txt",
+      "contentHash": "fdbf6f0cc48598bcea5630fe04e3c418b2b3d2a70e60a3e0dcb86f5bf5027b44",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 12,
+      "hasStructuralAnalysis": false
+    },
+    "src/rpc/include/mprpcchannel.h": {
+      "filePath": "src/rpc/include/mprpcchannel.h",
+      "contentHash": "9a47fc70a5a541fb807eb4a585265ec9f9e4b99e5751add740c615e6d885db20",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 39,
+      "hasStructuralAnalysis": true
+    },
+    "src/rpc/include/mprpcconfig.h": {
+      "filePath": "src/rpc/include/mprpcconfig.h",
+      "contentHash": "503d18c785e5e3a34fe580334957dc21f5efe6a149ae95e1119f0b7191cddd31",
+      "functions": [],
+      "classes": [
+        {
+          "name": "MprpcConfig",
+          "methods": [
+            "LoadConfigFile",
+            "Load",
+            "Trim"
+          ],
+          "properties": [
+            "m_configMap"
+          ],
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "imports": [
+        {
+          "source": "string",
+          "specifiers": [
+            "string"
+          ]
+        },
+        {
+          "source": "unordered_map",
+          "specifiers": [
+            "unordered_map"
+          ]
+        }
+      ],
+      "exports": [
+        "LoadConfigFile",
+        "Load",
+        "MprpcConfig"
+      ],
+      "totalLines": 19,
+      "hasStructuralAnalysis": true
+    },
+    "src/rpc/include/mprpccontroller.h": {
+      "filePath": "src/rpc/include/mprpccontroller.h",
+      "contentHash": "d8bf2d535f8a486c683d651f7dd827d7ead9dbf5d57aaf76f4b90b559e1efd45",
+      "functions": [],
+      "classes": [
+        {
+          "name": "MprpcController",
+          "methods": [
+            "Reset",
+            "Failed",
+            "ErrorText",
+            "SetFailed",
+            "StartCancel",
+            "IsCanceled",
+            "NotifyOnCancel"
+          ],
+          "properties": [
+            "m_failed",
+            "m_errText"
+          ],
+          "exported": true,
+          "lineCount": 17
+        }
+      ],
+      "imports": [
+        {
+          "source": "google/protobuf/service.h",
+          "specifiers": [
+            "google/protobuf/service.h"
+          ]
+        },
+        {
+          "source": "string",
+          "specifiers": [
+            "string"
+          ]
+        }
+      ],
+      "exports": [
+        "Reset",
+        "Failed",
+        "ErrorText",
+        "SetFailed",
+        "StartCancel",
+        "IsCanceled",
+        "NotifyOnCancel",
+        "MprpcController"
+      ],
+      "totalLines": 21,
+      "hasStructuralAnalysis": true
+    },
+    "src/rpc/include/rpcheader.pb.h": {
+      "filePath": "src/rpc/include/rpcheader.pb.h",
+      "contentHash": "fe24e6af9b99e2c909b3e3a63d4b3ae2ca856dbdd251cb9e7005c4b323257936",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 462,
+      "hasStructuralAnalysis": true
+    },
+    "src/rpc/include/rpcprovider.h": {
+      "filePath": "src/rpc/include/rpcprovider.h",
+      "contentHash": "64b50c15f60d353d662be22e25d3cb8ed41644d34eb967966fd5ec3b3eee3eb1",
+      "functions": [],
+      "classes": [
+        {
+          "name": "RpcProvider",
+          "methods": [
+            "NotifyService",
+            "Run",
+            "OnConnection",
+            "OnMessage",
+            "SendRpcResponse"
+          ],
+          "properties": [
+            "m_eventLoop",
+            "m_muduo_server",
+            "m_serviceMap"
+          ],
+          "exported": true,
+          "lineCount": 31
+        }
+      ],
+      "imports": [
+        {
+          "source": "google/protobuf/descriptor.h",
+          "specifiers": [
+            "google/protobuf/descriptor.h"
+          ]
+        },
+        {
+          "source": "muduo/net/EventLoop.h",
+          "specifiers": [
+            "muduo/net/EventLoop.h"
+          ]
+        },
+        {
+          "source": "muduo/net/InetAddress.h",
+          "specifiers": [
+            "muduo/net/InetAddress.h"
+          ]
+        },
+        {
+          "source": "muduo/net/TcpConnection.h",
+          "specifiers": [
+            "muduo/net/TcpConnection.h"
+          ]
+        },
+        {
+          "source": "muduo/net/TcpServer.h",
+          "specifiers": [
+            "muduo/net/TcpServer.h"
+          ]
+        },
+        {
+          "source": "functional",
+          "specifiers": [
+            "functional"
+          ]
+        },
+        {
+          "source": "string",
+          "specifiers": [
+            "string"
+          ]
+        },
+        {
+          "source": "unordered_map",
+          "specifiers": [
+            "unordered_map"
+          ]
+        },
+        {
+          "source": "google/protobuf/service.h",
+          "specifiers": [
+            "google/protobuf/service.h"
+          ]
+        }
+      ],
+      "exports": [
+        "NotifyService",
+        "Run",
+        "RpcProvider"
+      ],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    "src/rpc/mprpcchannel.cpp": {
+      "filePath": "src/rpc/mprpcchannel.cpp",
+      "contentHash": "0694645c99d1b04cbfa3efd943d61e0ab7dd09a2680bc9709ce8dad792e1fa46",
+      "functions": [
+        {
+          "name": "CallMethod",
+          "params": [
+            "method",
+            "controller",
+            "request",
+            "response",
+            "done"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 108
+        },
+        {
+          "name": "newConnect",
+          "params": [
+            "ip",
+            "port",
+            "errMsg"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "MprpcChannel",
+          "params": [
+            "ip",
+            "port",
+            "connectNow"
+          ],
+          "exported": true,
+          "lineCount": 19
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "mprpcchannel.h",
+          "specifiers": [
+            "mprpcchannel.h"
+          ]
+        },
+        {
+          "source": "arpa/inet.h",
+          "specifiers": [
+            "arpa/inet.h"
+          ]
+        },
+        {
+          "source": "netinet/in.h",
+          "specifiers": [
+            "netinet/in.h"
+          ]
+        },
+        {
+          "source": "sys/socket.h",
+          "specifiers": [
+            "sys/socket.h"
+          ]
+        },
+        {
+          "source": "unistd.h",
+          "specifiers": [
+            "unistd.h"
+          ]
+        },
+        {
+          "source": "cerrno",
+          "specifiers": [
+            "cerrno"
+          ]
+        },
+        {
+          "source": "string",
+          "specifiers": [
+            "string"
+          ]
+        },
+        {
+          "source": "mprpccontroller.h",
+          "specifiers": [
+            "mprpccontroller.h"
+          ]
+        },
+        {
+          "source": "rpcheader.pb.h",
+          "specifiers": [
+            "rpcheader.pb.h"
+          ]
+        },
+        {
+          "source": "util.h",
+          "specifiers": [
+            "util.h"
+          ]
+        }
+      ],
+      "exports": [
+        "CallMethod",
+        "newConnect",
+        "MprpcChannel"
+      ],
+      "totalLines": 172,
+      "hasStructuralAnalysis": true
+    },
+    "src/rpc/mprpcconfig.cpp": {
+      "filePath": "src/rpc/mprpcconfig.cpp",
+      "contentHash": "e794dbb6a7b8b785a25c1841f619523c1c90503c4c78c9b6aa74790c5d02e15d",
+      "functions": [
+        {
+          "name": "LoadConfigFile",
+          "params": [
+            "config_file"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 41
+        },
+        {
+          "name": "Load",
+          "params": [
+            "key"
+          ],
+          "returnType": "std::string",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "Trim",
+          "params": [
+            "src_buf"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 13
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "mprpcconfig.h",
+          "specifiers": [
+            "mprpcconfig.h"
+          ]
+        },
+        {
+          "source": "iostream",
+          "specifiers": [
+            "iostream"
+          ]
+        },
+        {
+          "source": "string",
+          "specifiers": [
+            "string"
+          ]
+        }
+      ],
+      "exports": [
+        "LoadConfigFile",
+        "Load",
+        "Trim"
+      ],
+      "totalLines": 71,
+      "hasStructuralAnalysis": true
+    },
+    "src/rpc/mprpccontroller.cpp": {
+      "filePath": "src/rpc/mprpccontroller.cpp",
+      "contentHash": "204e1ce5cf4e455dd76f91dc121cd965cd5657def070db656c4d55361723540b",
+      "functions": [
+        {
+          "name": "MprpcController",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "Reset",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "Failed",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "ErrorText",
+          "params": [],
+          "returnType": "std::string",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "SetFailed",
+          "params": [
+            "reason"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "StartCancel",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "IsCanceled",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "NotifyOnCancel",
+          "params": [
+            "callback"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "mprpccontroller.h",
+          "specifiers": [
+            "mprpccontroller.h"
+          ]
+        }
+      ],
+      "exports": [
+        "MprpcController",
+        "Reset",
+        "Failed",
+        "ErrorText",
+        "SetFailed",
+        "StartCancel",
+        "IsCanceled",
+        "NotifyOnCancel"
+      ],
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "src/rpc/rpcheader.pb.cpp": {
+      "filePath": "src/rpc/rpcheader.pb.cpp",
+      "contentHash": "2cb6f4710b2ca9751ab547efc5808e56f5e88acf35d2b0b6ed9be446ff624a18",
+      "functions": [
+        {
+          "name": "InitDefaultsscc_info_RpcHeader_rpcheader_2eproto",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "InitAsDefaultInstance",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "RpcHeader",
+          "params": [
+            "arena"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "RpcHeader",
+          "params": [
+            "from"
+          ],
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "SharedCtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "~RpcHeader",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SharedDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "ArenaDtor",
+          "params": [
+            "object"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RegisterArenaDtor",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "SetCachedSize",
+          "params": [
+            "size"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "Clear",
+          "params": [],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "ByteSizeLong",
+          "params": [],
+          "returnType": "size_t",
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "MergeFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CopyFrom",
+          "params": [
+            "from"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "IsInitialized",
+          "params": [],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "InternalSwap",
+          "params": [
+            "other"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "GetMetadata",
+          "params": [],
+          "returnType": "::PROTOBUF_NAMESPACE_ID::Metadata",
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "classes": [
+        {
+          "name": "RpcHeaderDefaultTypeInternal",
+          "methods": [],
+          "properties": [
+            "_instance"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RpcHeader::_Internal",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "rpcheader.pb.h",
+          "specifiers": [
+            "rpcheader.pb.h"
+          ]
+        },
+        {
+          "source": "algorithm",
+          "specifiers": [
+            "algorithm"
+          ]
+        },
+        {
+          "source": "google/protobuf/descriptor.h",
+          "specifiers": [
+            "google/protobuf/descriptor.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/extension_set.h",
+          "specifiers": [
+            "google/protobuf/extension_set.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/generated_message_reflection.h",
+          "specifiers": [
+            "google/protobuf/generated_message_reflection.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/io/coded_stream.h",
+          "specifiers": [
+            "google/protobuf/io/coded_stream.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/reflection_ops.h",
+          "specifiers": [
+            "google/protobuf/reflection_ops.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/wire_format.h",
+          "specifiers": [
+            "google/protobuf/wire_format.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/wire_format_lite.h",
+          "specifiers": [
+            "google/protobuf/wire_format_lite.h"
+          ]
+        },
+        {
+          "source": "google/protobuf/port_def.inc",
+          "specifiers": [
+            "google/protobuf/port_def.inc"
+          ]
+        },
+        {
+          "source": "google/protobuf/port_undef.inc",
+          "specifiers": [
+            "google/protobuf/port_undef.inc"
+          ]
+        }
+      ],
+      "exports": [
+        "RpcHeaderDefaultTypeInternal",
+        "InitAsDefaultInstance",
+        "RpcHeader::_Internal",
+        "RpcHeader",
+        "RpcHeader",
+        "SharedCtor",
+        "~RpcHeader",
+        "SharedDtor",
+        "ArenaDtor",
+        "RegisterArenaDtor",
+        "SetCachedSize",
+        "Clear",
+        "ByteSizeLong",
+        "MergeFrom",
+        "MergeFrom",
+        "CopyFrom",
+        "CopyFrom",
+        "IsInitialized",
+        "InternalSwap",
+        "GetMetadata"
+      ],
+      "totalLines": 358,
+      "hasStructuralAnalysis": true
+    },
+    "src/rpc/rpcheader.proto": {
+      "filePath": "src/rpc/rpcheader.proto",
+      "contentHash": "af8195546fc1fcf802159882ac01f2e160af2753932fd388756f5a75b370c217",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 10,
+      "hasStructuralAnalysis": true
+    },
+    "src/rpc/rpcprovider.cpp": {
+      "filePath": "src/rpc/rpcprovider.cpp",
+      "contentHash": "2fec2d422fd5b10c456e1487a0ccbfdf2c9bcd232a6df72a220c42323df0b0f5",
+      "functions": [
+        {
+          "name": "NotifyService",
+          "params": [
+            "service"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "Run",
+          "params": [
+            "nodeIndex",
+            "port"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 67
+        },
+        {
+          "name": "OnConnection",
+          "params": [
+            "conn"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "OnMessage",
+          "params": [
+            "conn",
+            "buffer"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 103
+        },
+        {
+          "name": "SendRpcResponse",
+          "params": [
+            "conn",
+            "response"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "~RpcProvider",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "rpcprovider.h",
+          "specifiers": [
+            "rpcprovider.h"
+          ]
+        },
+        {
+          "source": "arpa/inet.h",
+          "specifiers": [
+            "arpa/inet.h"
+          ]
+        },
+        {
+          "source": "netdb.h",
+          "specifiers": [
+            "netdb.h"
+          ]
+        },
+        {
+          "source": "unistd.h",
+          "specifiers": [
+            "unistd.h"
+          ]
+        },
+        {
+          "source": "cstring",
+          "specifiers": [
+            "cstring"
+          ]
+        },
+        {
+          "source": "fstream",
+          "specifiers": [
+            "fstream"
+          ]
+        },
+        {
+          "source": "string",
+          "specifiers": [
+            "string"
+          ]
+        },
+        {
+          "source": "rpcheader.pb.h",
+          "specifiers": [
+            "rpcheader.pb.h"
+          ]
+        },
+        {
+          "source": "util.h",
+          "specifiers": [
+            "util.h"
+          ]
+        }
+      ],
+      "exports": [
+        "NotifyService",
+        "Run",
+        "OnConnection",
+        "OnMessage",
+        "SendRpcResponse",
+        "~RpcProvider"
+      ],
+      "totalLines": 255,
+      "hasStructuralAnalysis": true
+    },
+    "src/skipList/CMakeLists.txt": {
+      "filePath": "src/skipList/CMakeLists.txt",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": false
+    },
+    "src/skipList/include/skipList.h": {
+      "filePath": "src/skipList/include/skipList.h",
+      "contentHash": "2253ca90b493e5b689cd612f823eaf91f204ccc287a2b36e4653a6c81f617c10",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 480,
+      "hasStructuralAnalysis": true
+    },
+    "test/测试文件运行说明.md": {
+      "filePath": "test/测试文件运行说明.md",
+      "contentHash": "164e50cf084df140fee1ce43886b71ba285b5a5ebe3f9e9b2c88f7084683adb6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 36,
+      "hasStructuralAnalysis": true
+    },
+    "test/defer_run.cpp": {
+      "filePath": "test/defer_run.cpp",
+      "contentHash": "ea8b72ddfb77c2010738e4abb702537bb96ebc7b4a8df1b833102db322697ed9",
+      "functions": [
+        {
+          "name": "testFun1",
+          "params": [
+            "name"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "testFun2",
+          "params": [
+            "name"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "main",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "iostream",
+          "specifiers": [
+            "iostream"
+          ]
+        },
+        {
+          "source": "string",
+          "specifiers": [
+            "string"
+          ]
+        },
+        {
+          "source": "include/defer.h",
+          "specifiers": [
+            "include/defer.h"
+          ]
+        }
+      ],
+      "exports": [
+        "testFun1",
+        "testFun2",
+        "main"
+      ],
+      "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "test/format.cpp": {
+      "filePath": "test/format.cpp",
+      "contentHash": "ccfecd09c6a1c70d1430dbf5696ce7af5f94b9ad07b2c0b91862acceee5985b4",
+      "functions": [
+        {
+          "name": "myAssert",
+          "params": [
+            "condition",
+            "message"
+          ],
+          "returnType": "void",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "main",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../src/common/include/util.h",
+          "specifiers": [
+            "../src/common/include/util.h"
+          ]
+        }
+      ],
+      "exports": [
+        "myAssert",
+        "main"
+      ],
+      "totalLines": 21,
+      "hasStructuralAnalysis": true
+    },
+    "test/include/defer.h": {
+      "filePath": "test/include/defer.h",
+      "contentHash": "70f284508e5bbf644ed6cf9cad15f9d93aaacfefe9ef28a41e6d7cf311cf6c68",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "test/run.cpp": {
+      "filePath": "test/run.cpp",
+      "contentHash": "5e3c84784a5df631f429d6961a0f918bf82e223d233264cf9ed50ef5773428ad",
+      "functions": [
+        {
+          "name": "SerializablePair",
+          "params": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "SerializablePair",
+          "params": [
+            "first",
+            "second"
+          ],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "main",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 38
+        }
+      ],
+      "classes": [
+        {
+          "name": "SerializablePair",
+          "methods": [
+            "SerializablePair",
+            "SerializablePair"
+          ],
+          "properties": [
+            "first",
+            "second"
+          ],
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "imports": [
+        {
+          "source": "boost/archive/text_iarchive.hpp",
+          "specifiers": [
+            "boost/archive/text_iarchive.hpp"
+          ]
+        },
+        {
+          "source": "boost/archive/text_oarchive.hpp",
+          "specifiers": [
+            "boost/archive/text_oarchive.hpp"
+          ]
+        },
+        {
+          "source": "fstream",
+          "specifiers": [
+            "fstream"
+          ]
+        },
+        {
+          "source": "iostream",
+          "specifiers": [
+            "iostream"
+          ]
+        },
+        {
+          "source": "utility",
+          "specifiers": [
+            "utility"
+          ]
+        },
+        {
+          "source": "vector",
+          "specifiers": [
+            "vector"
+          ]
+        }
+      ],
+      "exports": [
+        "SerializablePair",
+        "SerializablePair",
+        "SerializablePair",
+        "main"
+      ],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    }
+  }
+}

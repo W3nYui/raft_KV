@@ -1,0 +1,704 @@
+{
+  "name": "KVRaftCpp",
+  "description": "一个使用 C++20 与 CMake 构建的 Raft 分布式键值存储项目，包含协程、RPC、Raft 核心、客户端与跳表存储示例模块。",
+  "languages": [
+    "c",
+    "cpp",
+    "html",
+    "markdown",
+    "protobuf",
+    "shell",
+    "txt",
+    "unknown",
+    "xml",
+    "yaml"
+  ],
+  "frameworks": [
+    "CMake"
+  ],
+  "files": [
+    {
+      "path": ".clang-format",
+      "language": "unknown",
+      "sizeLines": 198,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".clang-tidy",
+      "language": "unknown",
+      "sizeLines": 146,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".github/workflows/greetings.yml",
+      "language": "yaml",
+      "sizeLines": 16,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/update_readme_contributors.yml",
+      "language": "yaml",
+      "sizeLines": 17,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".run/provider.run.xml",
+      "language": "xml",
+      "sizeLines": 6,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".run/raftCoreRun.run.xml",
+      "language": "xml",
+      "sizeLines": 6,
+      "fileCategory": "config"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 50,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/目录导览.md",
+      "language": "markdown",
+      "sizeLines": 36,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/rpc编码方式的改进.html",
+      "language": "html",
+      "sizeLines": 12,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "example/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 4,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "example/fiberExample/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 23,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "example/fiberExample/server.cpp",
+      "language": "cpp",
+      "sizeLines": 87,
+      "fileCategory": "code"
+    },
+    {
+      "path": "example/fiberExample/test_hook.cpp",
+      "language": "cpp",
+      "sizeLines": 76,
+      "fileCategory": "code"
+    },
+    {
+      "path": "example/fiberExample/test_iomanager.cpp",
+      "language": "cpp",
+      "sizeLines": 88,
+      "fileCategory": "code"
+    },
+    {
+      "path": "example/fiberExample/test_scheduler.cpp",
+      "language": "cpp",
+      "sizeLines": 89,
+      "fileCategory": "code"
+    },
+    {
+      "path": "example/fiberExample/test_thread.cc",
+      "language": "cpp",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "example/raftCoreExample/caller.cpp",
+      "language": "cpp",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "example/raftCoreExample/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 10,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "example/raftCoreExample/raftKvDB.cpp",
+      "language": "cpp",
+      "sizeLines": 74,
+      "fileCategory": "code"
+    },
+    {
+      "path": "example/rpcExample/callee/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 6,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "example/rpcExample/callee/friendService.cpp",
+      "language": "cpp",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "example/rpcExample/caller/callFriendService.cpp",
+      "language": "cpp",
+      "sizeLines": 57,
+      "fileCategory": "code"
+    },
+    {
+      "path": "example/rpcExample/caller/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 3,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "example/rpcExample/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 2,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "example/rpcExample/friend.pb.cc",
+      "language": "cpp",
+      "sizeLines": 918,
+      "fileCategory": "code"
+    },
+    {
+      "path": "example/rpcExample/friend.pb.h",
+      "language": "c",
+      "sizeLines": 918,
+      "fileCategory": "code"
+    },
+    {
+      "path": "example/rpcExample/friend.proto",
+      "language": "protobuf",
+      "sizeLines": 27,
+      "fileCategory": "data"
+    },
+    {
+      "path": "example/rpcExample/rpc_example.md",
+      "language": "markdown",
+      "sizeLines": 18,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "format.sh",
+      "language": "shell",
+      "sizeLines": 1,
+      "fileCategory": "script"
+    },
+    {
+      "path": "src/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 16,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/common/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 6,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/common/include/config.h",
+      "language": "c",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/common/include/util.h",
+      "language": "c",
+      "sizeLines": 203,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/common/util.cpp",
+      "language": "cpp",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 8,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/fiber/fd_manager.cpp",
+      "language": "cpp",
+      "sizeLines": 106,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/fiber.cpp",
+      "language": "cpp",
+      "sizeLines": 150,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/hook.cpp",
+      "language": "cpp",
+      "sizeLines": 475,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/include/fd_manager.hpp",
+      "language": "cpp",
+      "sizeLines": 80,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/include/fiber.hpp",
+      "language": "cpp",
+      "sizeLines": 75,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/include/hook.hpp",
+      "language": "cpp",
+      "sizeLines": 93,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/include/iomanager.hpp",
+      "language": "cpp",
+      "sizeLines": 80,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/include/monsoon.h",
+      "language": "c",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/include/mutex.hpp",
+      "language": "cpp",
+      "sizeLines": 164,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/include/noncopyable.hpp",
+      "language": "cpp",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/include/scheduler.hpp",
+      "language": "cpp",
+      "sizeLines": 146,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/include/singleton.hpp",
+      "language": "cpp",
+      "sizeLines": 58,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/include/thread.hpp",
+      "language": "cpp",
+      "sizeLines": 42,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/include/timer.hpp",
+      "language": "cpp",
+      "sizeLines": 78,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/include/utils.hpp",
+      "language": "cpp",
+      "sizeLines": 90,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/iomanager.cpp",
+      "language": "cpp",
+      "sizeLines": 374,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/scheduler.cpp",
+      "language": "cpp",
+      "sizeLines": 203,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/thread.cpp",
+      "language": "cpp",
+      "sizeLines": 67,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/timer.cpp",
+      "language": "cpp",
+      "sizeLines": 186,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/fiber/utils.cpp",
+      "language": "cpp",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftClerk/clerk.cpp",
+      "language": "cpp",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftClerk/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 7,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/raftClerk/include/clerk.h",
+      "language": "c",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftClerk/include/raftServerRpcUtil.h",
+      "language": "c",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftClerk/raftServerRpcUtil.cpp",
+      "language": "cpp",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftCore/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 16,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/raftCore/include/ApplyMsg.h",
+      "language": "c",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftCore/include/kvServer.h",
+      "language": "c",
+      "sizeLines": 134,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftCore/include/Persister.h",
+      "language": "c",
+      "sizeLines": 51,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftCore/include/raft.h",
+      "language": "c",
+      "sizeLines": 168,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftCore/include/raftRpcUtil.h",
+      "language": "c",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftCore/kvServer.cpp",
+      "language": "cpp",
+      "sizeLines": 450,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftCore/Persister.cpp",
+      "language": "cpp",
+      "sizeLines": 121,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftCore/raft.cpp",
+      "language": "cpp",
+      "sizeLines": 1121,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftCore/raftRpcUtil.cpp",
+      "language": "cpp",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftRpcPro/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 8,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/raftRpcPro/include/kvServerRPC.pb.h",
+      "language": "c",
+      "sizeLines": 1724,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftRpcPro/include/raftRPC.pb.h",
+      "language": "c",
+      "sizeLines": 2094,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftRpcPro/kvServerRPC.pb.cc",
+      "language": "cpp",
+      "sizeLines": 1341,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftRpcPro/kvServerRPC.proto",
+      "language": "protobuf",
+      "sizeLines": 72,
+      "fileCategory": "data"
+    },
+    {
+      "path": "src/raftRpcPro/raftRPC.pb.cc",
+      "language": "cpp",
+      "sizeLines": 2360,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/raftRpcPro/raftRPC.proto",
+      "language": "protobuf",
+      "sizeLines": 91,
+      "fileCategory": "data"
+    },
+    {
+      "path": "src/rpc/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 11,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/rpc/include/mprpcchannel.h",
+      "language": "c",
+      "sizeLines": 38,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/rpc/include/mprpcconfig.h",
+      "language": "c",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/rpc/include/mprpccontroller.h",
+      "language": "c",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/rpc/include/rpcheader.pb.h",
+      "language": "c",
+      "sizeLines": 461,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/rpc/include/rpcprovider.h",
+      "language": "c",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/rpc/mprpcchannel.cpp",
+      "language": "cpp",
+      "sizeLines": 171,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/rpc/mprpcconfig.cpp",
+      "language": "cpp",
+      "sizeLines": 70,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/rpc/mprpccontroller.cpp",
+      "language": "cpp",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/rpc/rpcheader.pb.cpp",
+      "language": "cpp",
+      "sizeLines": 357,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/rpc/rpcheader.proto",
+      "language": "protobuf",
+      "sizeLines": 9,
+      "fileCategory": "data"
+    },
+    {
+      "path": "src/rpc/rpcprovider.cpp",
+      "language": "cpp",
+      "sizeLines": 254,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/skipList/CMakeLists.txt",
+      "language": "txt",
+      "sizeLines": 0,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/skipList/include/skipList.h",
+      "language": "c",
+      "sizeLines": 479,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/测试文件运行说明.md",
+      "language": "markdown",
+      "sizeLines": 35,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "test/defer_run.cpp",
+      "language": "cpp",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/format.cpp",
+      "language": "cpp",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/include/defer.h",
+      "language": "c",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/run.cpp",
+      "language": "cpp",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 96,
+  "filteredByIgnore": 6,
+  "estimatedComplexity": "moderate",
+  "importMap": {
+    ".clang-format": [],
+    ".clang-tidy": [],
+    ".github/workflows/greetings.yml": [],
+    ".github/workflows/update_readme_contributors.yml": [],
+    ".run/provider.run.xml": [],
+    ".run/raftCoreRun.run.xml": [],
+    "CMakeLists.txt": [],
+    "docs/目录导览.md": [],
+    "docs/rpc编码方式的改进.html": [],
+    "example/CMakeLists.txt": [],
+    "example/fiberExample/CMakeLists.txt": [],
+    "example/fiberExample/server.cpp": [],
+    "example/fiberExample/test_hook.cpp": [],
+    "example/fiberExample/test_iomanager.cpp": [],
+    "example/fiberExample/test_scheduler.cpp": [],
+    "example/fiberExample/test_thread.cc": [],
+    "example/raftCoreExample/caller.cpp": [],
+    "example/raftCoreExample/CMakeLists.txt": [],
+    "example/raftCoreExample/raftKvDB.cpp": [],
+    "example/rpcExample/callee/CMakeLists.txt": [],
+    "example/rpcExample/callee/friendService.cpp": [],
+    "example/rpcExample/caller/callFriendService.cpp": [],
+    "example/rpcExample/caller/CMakeLists.txt": [],
+    "example/rpcExample/CMakeLists.txt": [],
+    "example/rpcExample/friend.pb.cc": [
+      "example/rpcExample/friend.pb.h"
+    ],
+    "example/rpcExample/friend.pb.h": [],
+    "example/rpcExample/friend.proto": [],
+    "example/rpcExample/rpc_example.md": [],
+    "format.sh": [],
+    "src/CMakeLists.txt": [],
+    "src/common/CMakeLists.txt": [],
+    "src/common/include/config.h": [],
+    "src/common/include/util.h": [],
+    "src/common/util.cpp": [],
+    "src/fiber/CMakeLists.txt": [],
+    "src/fiber/fd_manager.cpp": [],
+    "src/fiber/fiber.cpp": [],
+    "src/fiber/hook.cpp": [],
+    "src/fiber/include/fd_manager.hpp": [],
+    "src/fiber/include/fiber.hpp": [],
+    "src/fiber/include/hook.hpp": [],
+    "src/fiber/include/iomanager.hpp": [],
+    "src/fiber/include/monsoon.h": [],
+    "src/fiber/include/mutex.hpp": [],
+    "src/fiber/include/noncopyable.hpp": [],
+    "src/fiber/include/scheduler.hpp": [],
+    "src/fiber/include/singleton.hpp": [],
+    "src/fiber/include/thread.hpp": [],
+    "src/fiber/include/timer.hpp": [],
+    "src/fiber/include/utils.hpp": [],
+    "src/fiber/iomanager.cpp": [],
+    "src/fiber/scheduler.cpp": [],
+    "src/fiber/thread.cpp": [],
+    "src/fiber/timer.cpp": [],
+    "src/fiber/utils.cpp": [],
+    "src/raftClerk/clerk.cpp": [],
+    "src/raftClerk/CMakeLists.txt": [],
+    "src/raftClerk/include/clerk.h": [],
+    "src/raftClerk/include/raftServerRpcUtil.h": [],
+    "src/raftClerk/raftServerRpcUtil.cpp": [],
+    "src/raftCore/CMakeLists.txt": [],
+    "src/raftCore/include/ApplyMsg.h": [],
+    "src/raftCore/include/kvServer.h": [],
+    "src/raftCore/include/Persister.h": [],
+    "src/raftCore/include/raft.h": [],
+    "src/raftCore/include/raftRpcUtil.h": [],
+    "src/raftCore/kvServer.cpp": [],
+    "src/raftCore/Persister.cpp": [],
+    "src/raftCore/raft.cpp": [],
+    "src/raftCore/raftRpcUtil.cpp": [],
+    "src/raftRpcPro/CMakeLists.txt": [],
+    "src/raftRpcPro/include/kvServerRPC.pb.h": [],
+    "src/raftRpcPro/include/raftRPC.pb.h": [],
+    "src/raftRpcPro/kvServerRPC.pb.cc": [],
+    "src/raftRpcPro/kvServerRPC.proto": [],
+    "src/raftRpcPro/raftRPC.pb.cc": [],
+    "src/raftRpcPro/raftRPC.proto": [],
+    "src/rpc/CMakeLists.txt": [],
+    "src/rpc/include/mprpcchannel.h": [],
+    "src/rpc/include/mprpcconfig.h": [],
+    "src/rpc/include/mprpccontroller.h": [],
+    "src/rpc/include/rpcheader.pb.h": [],
+    "src/rpc/include/rpcprovider.h": [],
+    "src/rpc/mprpcchannel.cpp": [],
+    "src/rpc/mprpcconfig.cpp": [],
+    "src/rpc/mprpccontroller.cpp": [],
+    "src/rpc/rpcheader.pb.cpp": [],
+    "src/rpc/rpcheader.proto": [],
+    "src/rpc/rpcprovider.cpp": [],
+    "src/skipList/CMakeLists.txt": [],
+    "src/skipList/include/skipList.h": [],
+    "test/测试文件运行说明.md": [],
+    "test/defer_run.cpp": [
+      "test/include/defer.h"
+    ],
+    "test/format.cpp": [
+      "src/common/include/util.h"
+    ],
+    "test/include/defer.h": [],
+    "test/run.cpp": []
+  }
+}

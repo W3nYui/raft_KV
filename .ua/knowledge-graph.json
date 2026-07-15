@@ -1,0 +1,5030 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "KVRaftCpp",
+    "languages": [
+      "c",
+      "cpp",
+      "html",
+      "markdown",
+      "protobuf",
+      "shell",
+      "txt",
+      "unknown",
+      "xml",
+      "yaml"
+    ],
+    "frameworks": [
+      "CMake"
+    ],
+    "description": "一个使用 C++20 与 CMake 构建的 Raft 分布式键值存储项目，包含协程、RPC、Raft 核心、客户端与跳表存储示例模块。",
+    "analyzedAt": "2026-07-15T19:01:47.937Z",
+    "gitCommitHash": "6c24034808c0eace229303f5971d1c86075926f0"
+  },
+  "nodes": [
+    {
+      "id": "pipeline:.github/workflows/greetings.yml",
+      "type": "pipeline",
+      "name": "greetings.yml",
+      "filePath": ".github/workflows/greetings.yml",
+      "summary": "在首次提交 Issue 或 Pull Request 时运行的 GitHub Actions 工作流，借助 first-interaction 动作以仓库令牌发布欢迎留言。该工作流使用 pull_request_target 事件并授予 Issue 与 Pull Request 写入权限。",
+      "tags": [
+        "ci-cd",
+        "github-actions",
+        "首次互动",
+        "社区治理"
+      ],
+      "complexity": "simple",
+      "languageNotes": "YAML 通过事件、作业、权限和复用 Action 组合声明式自动化；pull_request_target 会在基仓库上下文中运行，应审慎使用具写入权限的令牌。"
+    },
+    {
+      "id": "pipeline:.github/workflows/update_readme_contributors.yml",
+      "type": "pipeline",
+      "name": "update_readme_contributors.yml",
+      "filePath": ".github/workflows/update_readme_contributors.yml",
+      "summary": "仅在推送到 main 分支时执行的 GitHub Actions 工作流，调用 contributors-readme-action 更新 README.md 中的贡献者列表，并通过 GITHUB_TOKEN 访问仓库。",
+      "tags": [
+        "ci-cd",
+        "github-actions",
+        "readme",
+        "贡献者"
+      ],
+      "complexity": "simple",
+      "languageNotes": "工作流将触发条件限定为 main 分支推送，并把仓库令牌作为环境变量传给第三方 Action，以便其读取或更新贡献者信息。"
+    },
+    {
+      "id": "document:example/rpcExample/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "example/rpcExample/CMakeLists.txt",
+      "summary": "RPC 示例目录的 CMake 入口，将客户端与服务端两个子目录纳入构建。它用于把协议演示拆分为可独立编译的调用方和提供方。",
+      "tags": [
+        "构建系统",
+        "cmake",
+        "rpc-示例"
+      ],
+      "complexity": "simple",
+      "languageNotes": "通过 add_subdirectory 组织层级化构建，可让客户端和服务端各自维护目标定义。"
+    },
+    {
+      "id": "schema:example/rpcExample/friend.proto",
+      "type": "schema",
+      "name": "friend.proto",
+      "filePath": "example/rpcExample/friend.proto",
+      "summary": "定义好友查询 RPC 的 Protobuf 协议，包括统一结果码、请求与响应消息，以及 GetFriendsList 服务方法。启用 C++ 通用服务桩生成，供示例客户端和服务端共享同一接口契约。",
+      "tags": [
+        "protobuf",
+        "rpc-协议",
+        "模式定义",
+        "好友服务"
+      ],
+      "complexity": "simple",
+      "languageNotes": "proto3 使用字段编号保证二进制兼容性；cc_generic_services 会生成 C++ Service 与 Stub 基类。"
+    },
+    {
+      "id": "schema:example/rpcExample/friend.proto:ResultCode",
+      "type": "schema",
+      "name": "ResultCode",
+      "summary": "好友 RPC 响应复用的结果码消息，携带整数错误码和字节形式的错误描述。",
+      "tags": [
+        "protobuf",
+        "错误处理",
+        "响应模型"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:example/rpcExample/rpc_example.md",
+      "type": "document",
+      "name": "rpc_example.md",
+      "filePath": "example/rpcExample/rpc_example.md",
+      "summary": "说明 RPC 示例的准备与实现流程：编写 .proto 契约、使用 protoc 生成 C++ 代码，并参考客户端和服务端示例完成调用。",
+      "tags": [
+        "文档",
+        "rpc-示例",
+        "protobuf",
+        "入门指南"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:src/raftRpcPro/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "src/raftRpcPro/CMakeLists.txt",
+      "summary": "收集 raftRpcPro 目录内的源文件，并将其缓存为供上层构建逻辑引用的 src_raftRpcPro 变量。",
+      "tags": [
+        "构建配置",
+        "cmake",
+        "源文件收集"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 aux_source_directory 自动枚举目录源码，新增文件时无需逐一维护列表，但会降低构建输入的显式性。"
+    },
+    {
+      "id": "schema:src/raftRpcPro/kvServerRPC.proto",
+      "type": "schema",
+      "name": "kvServerRPC.proto",
+      "filePath": "src/raftRpcPro/kvServerRPC.proto",
+      "summary": "定义客户端访问分布式键值服务的 Protobuf 消息与 kvServerRpc 服务，包括读取、写入和追加操作。",
+      "tags": [
+        "protobuf",
+        "键值服务",
+        "rpc-接口",
+        "模式定义"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "启用 cc_generic_services，使 Protobuf C++ 代码生成包含可继承的服务端基类与客户端桩。"
+    },
+    {
+      "id": "schema:src/raftRpcPro/kvServerRPC.proto:GetArgs",
+      "type": "schema",
+      "name": "GetArgs",
+      "filePath": "src/raftRpcPro/kvServerRPC.proto",
+      "summary": "定义 Get RPC 的请求载荷，以键、客户端标识和请求序号支持读取与幂等性追踪。",
+      "tags": [
+        "protobuf",
+        "读取请求",
+        "客户端标识"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:src/raftRpcPro/kvServerRPC.proto:GetReply",
+      "type": "schema",
+      "name": "GetReply",
+      "filePath": "src/raftRpcPro/kvServerRPC.proto",
+      "summary": "定义 Get RPC 的返回载荷，携带错误状态与读取到的字节值。",
+      "tags": [
+        "protobuf",
+        "读取响应",
+        "错误状态"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:src/raftRpcPro/kvServerRPC.proto:PutAppendArgs",
+      "type": "schema",
+      "name": "PutAppendArgs",
+      "filePath": "src/raftRpcPro/kvServerRPC.proto",
+      "summary": "定义 Put 或 Append 写请求，包含键值、操作类型及用于去重的客户端和请求标识。",
+      "tags": [
+        "protobuf",
+        "写入请求",
+        "幂等性",
+        "键值操作"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:src/raftRpcPro/kvServerRPC.proto:PutAppendReply",
+      "type": "schema",
+      "name": "PutAppendReply",
+      "filePath": "src/raftRpcPro/kvServerRPC.proto",
+      "summary": "定义 PutAppend RPC 的简洁响应，仅返回操作执行结果的错误状态。",
+      "tags": [
+        "protobuf",
+        "写入响应",
+        "错误状态"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:src/raftRpcPro/kvServerRPC.proto:rpc-kvServerRpc.PutAppend",
+      "type": "endpoint",
+      "name": "rpc kvServerRpc.PutAppend",
+      "filePath": "src/raftRpcPro/kvServerRPC.proto",
+      "summary": "暴露写入或追加键值的客户端 RPC 端点，使用 PutAppendArgs 和 PutAppendReply 交换数据。",
+      "tags": [
+        "rpc",
+        "键值写入",
+        "客户端接口"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:src/raftRpcPro/kvServerRPC.proto:rpc-kvServerRpc.Get",
+      "type": "endpoint",
+      "name": "rpc kvServerRpc.Get",
+      "filePath": "src/raftRpcPro/kvServerRPC.proto",
+      "summary": "暴露按键读取值的客户端 RPC 端点，使用 GetArgs 和 GetReply 交换数据。",
+      "tags": [
+        "rpc",
+        "键值读取",
+        "客户端接口"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:src/raftRpcPro/raftRPC.proto",
+      "type": "schema",
+      "name": "raftRPC.proto",
+      "filePath": "src/raftRpcPro/raftRPC.proto",
+      "summary": "定义 Raft 节点之间复制日志、选举和安装快照所需的 Protobuf 消息与 raftRpc 服务。",
+      "tags": [
+        "protobuf",
+        "raft",
+        "节点通信",
+        "共识协议"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该模式将 Raft 的核心状态术语直接编码为消息字段，便于对照论文理解 AppendEntries、RequestVote 和快照传输。"
+    },
+    {
+      "id": "schema:src/raftRpcPro/raftRPC.proto:LogEntry",
+      "type": "schema",
+      "name": "LogEntry",
+      "filePath": "src/raftRpcPro/raftRPC.proto",
+      "summary": "表示可复制的 Raft 日志条目，保存状态机命令、所属任期和日志索引。",
+      "tags": [
+        "protobuf",
+        "raft-日志",
+        "复制状态机"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:src/raftRpcPro/raftRPC.proto:AppendEntriesArgs",
+      "type": "schema",
+      "name": "AppendEntriesArgs",
+      "filePath": "src/raftRpcPro/raftRPC.proto",
+      "summary": "定义领导者向跟随者发送日志复制或心跳时的请求，包含前序日志定位、条目批次和提交索引。",
+      "tags": [
+        "protobuf",
+        "日志复制",
+        "心跳",
+        "raft"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:src/raftRpcPro/raftRPC.proto:AppendEntriesReply",
+      "type": "schema",
+      "name": "AppendEntriesReply",
+      "filePath": "src/raftRpcPro/raftRPC.proto",
+      "summary": "定义日志复制响应，反馈任期、复制成功状态、下一索引修正建议和节点应用状态。",
+      "tags": [
+        "protobuf",
+        "日志复制",
+        "复制响应",
+        "raft"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:src/raftRpcPro/raftRPC.proto:RequestVoteArgs",
+      "type": "schema",
+      "name": "RequestVoteArgs",
+      "filePath": "src/raftRpcPro/raftRPC.proto",
+      "summary": "定义候选人在 Raft 选举中请求投票的参数，包括任期、候选者标识和最后日志位置。",
+      "tags": [
+        "protobuf",
+        "raft-选举",
+        "请求投票"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:src/raftRpcPro/raftRPC.proto:RequestVoteReply",
+      "type": "schema",
+      "name": "RequestVoteReply",
+      "filePath": "src/raftRpcPro/raftRPC.proto",
+      "summary": "定义投票响应，返回接收节点的任期、是否授予选票及投票状态。",
+      "tags": [
+        "protobuf",
+        "raft-选举",
+        "投票响应"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:src/raftRpcPro/raftRPC.proto:InstallSnapshotRequest",
+      "type": "schema",
+      "name": "InstallSnapshotRequest",
+      "filePath": "src/raftRpcPro/raftRPC.proto",
+      "summary": "定义领导者向落后节点安装快照的请求，传输快照边界元数据和原始快照字节。",
+      "tags": [
+        "protobuf",
+        "raft-快照",
+        "状态同步"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:src/raftRpcPro/raftRPC.proto:InstallSnapshotResponse",
+      "type": "schema",
+      "name": "InstallSnapshotResponse",
+      "filePath": "src/raftRpcPro/raftRPC.proto",
+      "summary": "定义快照安装响应，仅回传接收节点任期以协助领导者处理任期变化。",
+      "tags": [
+        "protobuf",
+        "raft-快照",
+        "快照响应"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:src/raftRpcPro/raftRPC.proto:rpc-raftRpc.AppendEntries",
+      "type": "endpoint",
+      "name": "rpc raftRpc.AppendEntries",
+      "filePath": "src/raftRpcPro/raftRPC.proto",
+      "summary": "暴露领导者向其他 Raft 节点复制日志和发送心跳的 RPC 端点。",
+      "tags": [
+        "rpc",
+        "raft",
+        "日志复制",
+        "心跳"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:src/raftRpcPro/raftRPC.proto:rpc-raftRpc.InstallSnapshot",
+      "type": "endpoint",
+      "name": "rpc raftRpc.InstallSnapshot",
+      "filePath": "src/raftRpcPro/raftRPC.proto",
+      "summary": "暴露领导者向严重落后节点传输状态快照的 RPC 端点。",
+      "tags": [
+        "rpc",
+        "raft",
+        "快照安装",
+        "状态同步"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "endpoint:src/raftRpcPro/raftRPC.proto:rpc-raftRpc.RequestVote",
+      "type": "endpoint",
+      "name": "rpc raftRpc.RequestVote",
+      "filePath": "src/raftRpcPro/raftRPC.proto",
+      "summary": "暴露候选者向其他 Raft 节点请求选票的 RPC 端点。",
+      "tags": [
+        "rpc",
+        "raft",
+        "领导者选举",
+        "请求投票"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.clang-format",
+      "type": "file",
+      "name": ".clang-format",
+      "filePath": ".clang-format",
+      "summary": "定义项目的 ClangFormat 风格规则，用于统一 C/C++ 源码的缩进、换行和括号格式。",
+      "tags": [
+        "代码格式化",
+        "clang-format",
+        "c-cpp"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该配置通过 style=file 被格式化脚本自动读取。"
+    },
+    {
+      "id": "file:.clang-tidy",
+      "type": "file",
+      "name": ".clang-tidy",
+      "filePath": ".clang-tidy",
+      "summary": "配置 Clang-Tidy 静态检查集合和诊断选项，为 C/C++ 代码质量审查提供统一基线。",
+      "tags": [
+        "静态分析",
+        "clang-tidy",
+        "代码质量"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:.run/provider.run.xml",
+      "type": "config",
+      "name": "provider.run.xml",
+      "filePath": ".run/provider.run.xml",
+      "summary": "IDE 的 CMake 运行配置，构建并启动名为 provider 的 RPC 服务端示例目标。",
+      "tags": [
+        "ide-配置",
+        "cmake",
+        "rpc-示例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.run/raftCoreRun.run.xml",
+      "type": "config",
+      "name": "raftCoreRun.run.xml",
+      "filePath": ".run/raftCoreRun.run.xml",
+      "summary": "IDE 的 CMake 运行配置，以节点数和配置文件参数启动 raftCoreRun 示例。",
+      "tags": [
+        "ide-配置",
+        "cmake",
+        "raft-示例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "CMakeLists.txt",
+      "summary": "项目顶层 CMake 构建入口，设置 C++20、调试输出目录、全局头文件与库搜索路径，并聚合 src 和 example 子目录。",
+      "tags": [
+        "构建系统",
+        "cmake",
+        "cxx20",
+        "项目入口"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "顶层配置还定义了格式化目标，并把各子模块对象集合链接为静态库。"
+    },
+    {
+      "id": "document:docs/目录导览.md",
+      "type": "document",
+      "name": "目录导览.md",
+      "filePath": "docs/目录导览.md",
+      "summary": "介绍仓库目录职责，重点标出通用工具、协程、Raft、RPC、跳表和示例程序的所在位置。",
+      "tags": [
+        "文档",
+        "项目导览",
+        "架构概览"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:docs/rpc编码方式的改进.html",
+      "type": "file",
+      "name": "rpc编码方式的改进.html",
+      "filePath": "docs/rpc编码方式的改进.html",
+      "summary": "以内嵌 diagrams.net 图示记录 RPC 请求头编码方案的调整，对比固定长度与 Varint32 长度字段。",
+      "tags": [
+        "rpc",
+        "协议编码",
+        "架构图"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:example/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "example/CMakeLists.txt",
+      "summary": "示例程序构建入口，聚合 fiber、Raft Core 与 RPC 示例子目录。",
+      "tags": [
+        "构建系统",
+        "cmake",
+        "示例程序"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:example/fiberExample/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "example/fiberExample/CMakeLists.txt",
+      "summary": "定义协程与 I/O 调度示例的可执行目标，并将它们链接到项目基础库。",
+      "tags": [
+        "构建系统",
+        "cmake",
+        "协程",
+        "示例程序"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:example/fiberExample/server.cpp",
+      "type": "file",
+      "name": "server.cpp",
+      "filePath": "example/fiberExample/server.cpp",
+      "summary": "演示将监听套接字和连接读事件注册到 IOManager，由协程调度器异步处理 TCP 客户端数据。",
+      "tags": [
+        "协程",
+        "io-manager",
+        "网络服务",
+        "示例程序"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:example/fiberExample/server.cpp:test_accept",
+      "type": "function",
+      "name": "test_accept",
+      "filePath": "example/fiberExample/server.cpp",
+      "lineRange": [
+        18,
+        46
+      ],
+      "summary": "接受客户端连接，将新连接设为非阻塞并注册可读回调，读取后回显数据并关闭连接。",
+      "tags": [
+        "网络服务",
+        "非阻塞-io",
+        "事件回调"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:example/fiberExample/server.cpp:test_iomanager",
+      "type": "function",
+      "name": "test_iomanager",
+      "filePath": "example/fiberExample/server.cpp",
+      "lineRange": [
+        48,
+        82
+      ],
+      "summary": "创建、绑定和监听 TCP socket，再把 accept 回调交给 IOManager 驱动。",
+      "tags": [
+        "socket",
+        "io-manager",
+        "服务启动"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:example/fiberExample/test_hook.cpp",
+      "type": "file",
+      "name": "test_hook.cpp",
+      "filePath": "example/fiberExample/test_hook.cpp",
+      "summary": "验证 hook 层对 sleep 和 socket I/O 的协程化改写，展示阻塞 API 在调度器中的让出行为。",
+      "tags": [
+        "协程",
+        "hook",
+        "socket",
+        "测试示例"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:example/fiberExample/test_hook.cpp:test_sleep",
+      "type": "function",
+      "name": "test_sleep",
+      "filePath": "example/fiberExample/test_hook.cpp",
+      "lineRange": [
+        10,
+        29
+      ],
+      "summary": "在协程调度环境中调用 sleep，观察 hook 将阻塞等待转换为可调度等待的效果。",
+      "tags": [
+        "hook",
+        "协程",
+        "sleep"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:example/fiberExample/test_hook.cpp:test_sock",
+      "type": "function",
+      "name": "test_sock",
+      "filePath": "example/fiberExample/test_hook.cpp",
+      "lineRange": [
+        31,
+        70
+      ],
+      "summary": "连接远程 socket、发送 HTTP 请求并接收数据，用于验证网络调用的 hook 行为。",
+      "tags": [
+        "hook",
+        "socket",
+        "网络测试"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:example/fiberExample/test_iomanager.cpp",
+      "type": "file",
+      "name": "test_iomanager.cpp",
+      "filePath": "example/fiberExample/test_iomanager.cpp",
+      "summary": "覆盖 IOManager 的读写事件注册、取消和回调调度，验证非阻塞 socket 的协程 I/O 流程。",
+      "tags": [
+        "io-manager",
+        "协程",
+        "socket",
+        "测试示例"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:example/fiberExample/test_iomanager.cpp:do_io_write",
+      "type": "function",
+      "name": "do_io_write",
+      "filePath": "example/fiberExample/test_iomanager.cpp",
+      "lineRange": [
+        12,
+        22
+      ],
+      "summary": "检查 socket 错误状态并输出异步写事件的结果。",
+      "tags": [
+        "io-manager",
+        "socket",
+        "写事件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:example/fiberExample/test_iomanager.cpp:do_io_read",
+      "type": "function",
+      "name": "do_io_read",
+      "filePath": "example/fiberExample/test_iomanager.cpp",
+      "lineRange": [
+        25,
+        44
+      ],
+      "summary": "读取已就绪 socket 的响应数据，处理错误后取消事件并结束连接。",
+      "tags": [
+        "io-manager",
+        "socket",
+        "读事件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:example/fiberExample/test_iomanager.cpp:test_io",
+      "type": "function",
+      "name": "test_io",
+      "filePath": "example/fiberExample/test_iomanager.cpp",
+      "lineRange": [
+        51,
+        77
+      ],
+      "summary": "建立非阻塞 TCP 连接，分别注册写和读事件以验证 IOManager 的事件驱动执行。",
+      "tags": [
+        "io-manager",
+        "非阻塞-io",
+        "集成测试"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:example/fiberExample/test_scheduler.cpp",
+      "type": "file",
+      "name": "test_scheduler.cpp",
+      "filePath": "example/fiberExample/test_scheduler.cpp",
+      "summary": "通过普通调度和 caller 模式调度两组实验，展示 Scheduler 对多个 Fiber 的执行与停止过程。",
+      "tags": [
+        "协程",
+        "调度器",
+        "fiber",
+        "测试示例"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:example/fiberExample/test_scheduler.cpp:test_user_caller_1",
+      "type": "function",
+      "name": "test_user_caller_1",
+      "filePath": "example/fiberExample/test_scheduler.cpp",
+      "lineRange": [
+        31,
+        57
+      ],
+      "summary": "以 caller 参与调度的模式创建 Scheduler，并调度多个 Fiber 后启动和停止。",
+      "tags": [
+        "调度器",
+        "fiber",
+        "caller-模式"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:example/fiberExample/test_scheduler.cpp:test_user_caller_2",
+      "type": "function",
+      "name": "test_user_caller_2",
+      "filePath": "example/fiberExample/test_scheduler.cpp",
+      "lineRange": [
+        60,
+        88
+      ],
+      "summary": "在 caller 模式下调度任务并插入等待，以观察协程恢复和调度器退出时机。",
+      "tags": [
+        "调度器",
+        "fiber",
+        "协程测试"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:example/fiberExample/test_thread.cc",
+      "type": "file",
+      "name": "test_thread.cc",
+      "filePath": "example/fiberExample/test_thread.cc",
+      "summary": "创建多个项目线程、记录线程标识与名称，并等待所有线程完成以演示线程封装。",
+      "tags": [
+        "线程",
+        "并发",
+        "测试示例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:example/fiberExample/test_thread.cc:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "example/fiberExample/test_thread.cc",
+      "lineRange": [
+        15,
+        31
+      ],
+      "summary": "构造线程对象集合、启动执行函数并逐个 join，验证线程生命周期管理。",
+      "tags": [
+        "线程",
+        "生命周期",
+        "示例入口"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:example/raftCoreExample/caller.cpp",
+      "type": "file",
+      "name": "caller.cpp",
+      "filePath": "example/raftCoreExample/caller.cpp",
+      "summary": "Raft 客户端示例入口，初始化 Clerk 并循环发起键值查询请求。",
+      "tags": [
+        "raft",
+        "客户端",
+        "键值存储",
+        "示例程序"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:example/raftCoreExample/caller.cpp:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "example/raftCoreExample/caller.cpp",
+      "lineRange": [
+        7,
+        20
+      ],
+      "summary": "创建并初始化 Clerk，然后周期性读取指定键以验证集群服务可用性。",
+      "tags": [
+        "raft",
+        "客户端",
+        "示例入口"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:example/raftCoreExample/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "example/raftCoreExample/CMakeLists.txt",
+      "summary": "定义 Raft KV 服务端启动器与客户端调用器两个示例可执行目标。",
+      "tags": [
+        "构建系统",
+        "cmake",
+        "raft",
+        "示例程序"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:example/raftCoreExample/raftKvDB.cpp",
+      "type": "file",
+      "name": "raftKvDB.cpp",
+      "filePath": "example/raftCoreExample/raftKvDB.cpp",
+      "summary": "Raft KV 服务端示例启动器，解析节点数量和配置文件参数，为每个节点 fork 子进程并创建 KvServer。",
+      "tags": [
+        "raft",
+        "键值存储",
+        "多进程",
+        "示例入口"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:example/raftCoreExample/raftKvDB.cpp:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "example/raftCoreExample/raftKvDB.cpp",
+      "lineRange": [
+        14,
+        72
+      ],
+      "summary": "解析启动参数，随机分配连续端口并 fork 多个子进程运行 KvServer 节点。",
+      "tags": [
+        "raft",
+        "多进程",
+        "节点启动",
+        "命令行"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:example/rpcExample/callee/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "example/rpcExample/callee/CMakeLists.txt",
+      "summary": "定义 RPC 服务端示例的构建目标及其链接依赖。",
+      "tags": [
+        "构建系统",
+        "cmake",
+        "rpc-服务端"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:example/rpcExample/callee/friendService.cpp",
+      "type": "file",
+      "name": "friendService.cpp",
+      "filePath": "example/rpcExample/callee/friendService.cpp",
+      "summary": "实现好友查询 RPC 服务，并把服务实例注册到 RpcProvider 后监听本地端口。",
+      "tags": [
+        "rpc",
+        "服务端",
+        "protobuf",
+        "示例程序"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:example/rpcExample/callee/friendService.cpp:FriendService",
+      "type": "class",
+      "name": "FriendService",
+      "filePath": "example/rpcExample/callee/friendService.cpp",
+      "lineRange": [
+        12,
+        36
+      ],
+      "summary": "继承生成的 FiendServiceRpc 服务基类，实现好友列表业务逻辑与 Protobuf 响应填充。",
+      "tags": [
+        "rpc-服务",
+        "protobuf",
+        "业务实现"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:example/rpcExample/caller/callFriendService.cpp",
+      "type": "file",
+      "name": "callFriendService.cpp",
+      "filePath": "example/rpcExample/caller/callFriendService.cpp",
+      "summary": "通过生成的 RPC Stub 和 MprpcChannel 调用远程好友查询服务，并区分传输失败与业务错误。",
+      "tags": [
+        "rpc",
+        "客户端",
+        "protobuf",
+        "示例程序"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:example/rpcExample/caller/callFriendService.cpp:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "example/rpcExample/caller/callFriendService.cpp",
+      "lineRange": [
+        13,
+        57
+      ],
+      "summary": "构造请求、控制器与 Stub，循环调用 GetFriendsList 并打印成功或失败结果。",
+      "tags": [
+        "rpc-客户端",
+        "protobuf",
+        "示例入口"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:example/rpcExample/caller/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "example/rpcExample/caller/CMakeLists.txt",
+      "summary": "定义 RPC 客户端调用示例的构建目标及链接依赖。",
+      "tags": [
+        "构建系统",
+        "cmake",
+        "rpc-客户端"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:example/rpcExample/friend.pb.cc",
+      "type": "file",
+      "name": "friend.pb.cc",
+      "filePath": "example/rpcExample/friend.pb.cc",
+      "summary": "由 friend.proto 生成的 Protobuf C++ 实现，提供好友服务消息序列化、反序列化和服务 Stub 分发代码。",
+      "tags": [
+        "protobuf",
+        "生成代码",
+        "rpc",
+        "序列化"
+      ],
+      "complexity": "complex",
+      "languageNotes": "此文件为 protoc 生成产物；应修改 .proto 契约而非直接维护实现。"
+    },
+    {
+      "id": "file:example/rpcExample/friend.pb.h",
+      "type": "file",
+      "name": "friend.pb.h",
+      "filePath": "example/rpcExample/friend.pb.h",
+      "summary": "由 friend.proto 生成的 Protobuf C++ 声明，暴露好友服务消息类型、服务基类和客户端 Stub 接口。",
+      "tags": [
+        "protobuf",
+        "生成代码",
+        "rpc",
+        "接口定义"
+      ],
+      "complexity": "complex",
+      "languageNotes": "此文件为 protoc 生成产物；重新生成时会被覆盖。"
+    },
+    {
+      "id": "file:format.sh",
+      "type": "file",
+      "name": "format.sh",
+      "filePath": "format.sh",
+      "summary": "批量调用 clang-format 格式化项目 C/C++ 源码，并显式排除 Protobuf 生成文件。",
+      "tags": [
+        "代码格式化",
+        "shell",
+        "开发工具"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:src/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "src/CMakeLists.txt",
+      "summary": "源码模块构建入口，汇总 common、fiber、rpc、Raft、客户端、协议和跳表子模块。",
+      "tags": [
+        "构建系统",
+        "cmake",
+        "源码模块"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:src/common/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "src/common/CMakeLists.txt",
+      "summary": "声明 common 公共组件的 CMake 构建目标，并将通用实现编入主工程。",
+      "tags": [
+        "构建配置",
+        "公共组件",
+        "cmake"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/common/include/config.h",
+      "type": "file",
+      "name": "config.h",
+      "filePath": "src/common/include/config.h",
+      "summary": "集中定义 Raft 心跳、选举、提交以及协程调度线程数等运行时常量。",
+      "tags": [
+        "配置常量",
+        "raft",
+        "协程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/common/include/util.h",
+      "type": "file",
+      "name": "util.h",
+      "filePath": "src/common/include/util.h",
+      "summary": "提供延迟执行、线程安全队列、操作请求序列化以及端口和调试辅助接口，是 Raft/KV 公共基础设施。",
+      "tags": [
+        "公共工具",
+        "序列化",
+        "并发队列"
+      ],
+      "complexity": "complex",
+      "languageNotes": "利用模板与 RAII 实现延迟执行和阻塞队列，并用 Boost text archive 序列化 Op 命令。"
+    },
+    {
+      "id": "file:src/common/util.cpp",
+      "type": "file",
+      "name": "util.cpp",
+      "filePath": "src/common/util.cpp",
+      "summary": "实现断言、时间、随机选举超时、端口探测和调试输出等进程级工具函数。",
+      "tags": [
+        "公共工具",
+        "超时",
+        "网络端口"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:src/fiber/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "src/fiber/CMakeLists.txt",
+      "summary": "定义 fiber 协程运行时组件的源文件集合与构建目标。",
+      "tags": [
+        "构建配置",
+        "协程运行时",
+        "cmake"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/fiber/fd_manager.cpp",
+      "type": "file",
+      "name": "fd_manager.cpp",
+      "filePath": "src/fiber/fd_manager.cpp",
+      "summary": "实现文件描述符上下文初始化、Socket 非阻塞标记和读写超时记录，并维护可扩展的描述符上下文表。",
+      "tags": [
+        "文件描述符",
+        "socket",
+        "非阻塞"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/fiber/fiber.cpp",
+      "type": "file",
+      "name": "fiber.cpp",
+      "filePath": "src/fiber/fiber.cpp",
+      "summary": "实现用户态 Fiber 的栈分配、ucontext 切换、状态机推进、回调执行与复用。",
+      "tags": [
+        "协程",
+        "上下文切换",
+        "状态机"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "基于 POSIX ucontext 在调度器主协程与子协程之间执行 resume/yield 切换。"
+    },
+    {
+      "id": "file:src/fiber/hook.cpp",
+      "type": "file",
+      "name": "hook.cpp",
+      "filePath": "src/fiber/hook.cpp",
+      "summary": "通过动态符号解析和线程局部开关劫持阻塞式系统调用，使其可与 IOManager 协程调度协作。",
+      "tags": [
+        "系统调用钩子",
+        "协程",
+        "io复用"
+      ],
+      "complexity": "complex",
+      "languageNotes": "使用 dlsym 保存 libc 原始函数指针，并以线程局部状态控制 Hook 是否生效。"
+    },
+    {
+      "id": "file:src/fiber/include/fd_manager.hpp",
+      "type": "file",
+      "name": "fd_manager.hpp",
+      "filePath": "src/fiber/include/fd_manager.hpp",
+      "summary": "声明文件描述符上下文与管理器接口，封装 Socket 状态、用户/系统非阻塞标记和超时信息。",
+      "tags": [
+        "文件描述符",
+        "socket",
+        "资源管理"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/fiber/include/fiber.hpp",
+      "type": "file",
+      "name": "fiber.hpp",
+      "filePath": "src/fiber/include/fiber.hpp",
+      "summary": "声明 Fiber 状态机、协程栈和上下文，以及恢复、让出和当前协程访问接口。",
+      "tags": [
+        "协程",
+        "状态机",
+        "上下文切换"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/fiber/include/hook.hpp",
+      "type": "file",
+      "name": "hook.hpp",
+      "filePath": "src/fiber/include/hook.hpp",
+      "summary": "声明 Hook 开关和 sleep、socket、读写等系统调用的原始函数指针类型。",
+      "tags": [
+        "系统调用钩子",
+        "socket",
+        "接口声明"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/fiber/include/iomanager.hpp",
+      "type": "file",
+      "name": "iomanager.hpp",
+      "filePath": "src/fiber/include/iomanager.hpp",
+      "summary": "声明将 epoll 事件循环、Scheduler 和 TimerManager 融合的 IOManager，以及每个描述符的读写事件上下文。",
+      "tags": [
+        "epoll",
+        "协程调度",
+        "定时器"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/fiber/include/monsoon.h",
+      "type": "file",
+      "name": "monsoon.h",
+      "filePath": "src/fiber/include/monsoon.h",
+      "summary": "提供 fiber 运行时的极简聚合头文件入口。",
+      "tags": [
+        "聚合头文件",
+        "协程",
+        "接口入口"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/fiber/include/mutex.hpp",
+      "type": "file",
+      "name": "mutex.hpp",
+      "filePath": "src/fiber/include/mutex.hpp",
+      "summary": "封装 POSIX 信号量、互斥锁、读写锁及其 RAII 作用域锁，用于运行时共享状态同步。",
+      "tags": [
+        "同步原语",
+        "raii",
+        "读写锁"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/fiber/include/noncopyable.hpp",
+      "type": "file",
+      "name": "noncopyable.hpp",
+      "filePath": "src/fiber/include/noncopyable.hpp",
+      "summary": "定义禁止拷贝的基类，约束互斥量等资源拥有对象的语义。",
+      "tags": [
+        "资源管理",
+        "禁止拷贝",
+        "基础类型"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/fiber/include/scheduler.hpp",
+      "type": "file",
+      "name": "scheduler.hpp",
+      "filePath": "src/fiber/include/scheduler.hpp",
+      "summary": "声明 N:M 协程调度器、任务封装和线程池队列，支持把 Fiber 或回调投递给指定线程。",
+      "tags": [
+        "协程调度",
+        "线程池",
+        "任务队列"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/fiber/include/singleton.hpp",
+      "type": "file",
+      "name": "singleton.hpp",
+      "filePath": "src/fiber/include/singleton.hpp",
+      "summary": "提供线程安全的模板单例访问器，供文件描述符管理器等全局服务使用。",
+      "tags": [
+        "单例",
+        "模板",
+        "全局服务"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/fiber/include/thread.hpp",
+      "type": "file",
+      "name": "thread.hpp",
+      "filePath": "src/fiber/include/thread.hpp",
+      "summary": "声明 pthread 线程包装器，负责线程创建、命名、当前线程查询与 join。",
+      "tags": [
+        "线程",
+        "pthread",
+        "资源管理"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/fiber/include/timer.hpp",
+      "type": "file",
+      "name": "timer.hpp",
+      "filePath": "src/fiber/include/timer.hpp",
+      "summary": "声明可取消、刷新和重置的定时器及有序集合管理器，用于驱动超时回调。",
+      "tags": [
+        "定时器",
+        "超时",
+        "回调队列"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/fiber/include/utils.hpp",
+      "type": "file",
+      "name": "utils.hpp",
+      "filePath": "src/fiber/include/utils.hpp",
+      "summary": "提供运行时线程/协程 ID、单调时钟、调用栈和断言诊断辅助函数。",
+      "tags": [
+        "诊断工具",
+        "调用栈",
+        "线程标识"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/fiber/iomanager.cpp",
+      "type": "file",
+      "name": "iomanager.cpp",
+      "filePath": "src/fiber/iomanager.cpp",
+      "summary": "实现 epoll 驱动的 IO 事件注册、取消、唤醒与分发，并在空闲协程中联合处理定时器超时。",
+      "tags": [
+        "epoll",
+        "io复用",
+        "协程调度"
+      ],
+      "complexity": "complex",
+      "languageNotes": "通过 pipe 唤醒 epoll_wait，并将就绪事件转换为 Fiber 或回调任务交给调度器。"
+    },
+    {
+      "id": "file:src/fiber/scheduler.cpp",
+      "type": "file",
+      "name": "scheduler.cpp",
+      "filePath": "src/fiber/scheduler.cpp",
+      "summary": "实现调度器生命周期、工作线程创建、任务挑选、Fiber 执行和停止收敛流程。",
+      "tags": [
+        "协程调度",
+        "线程池",
+        "生命周期"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/fiber/thread.cpp",
+      "type": "file",
+      "name": "thread.cpp",
+      "filePath": "src/fiber/thread.cpp",
+      "summary": "实现 pthread 线程包装器，在线程入口设置 TLS 当前线程信息后执行回调。",
+      "tags": [
+        "线程",
+        "pthread",
+        "线程局部存储"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/fiber/timer.cpp",
+      "type": "file",
+      "name": "timer.cpp",
+      "filePath": "src/fiber/timer.cpp",
+      "summary": "实现按到期时间排序的定时器集合，支持条件定时器、到期回调收集和系统时钟回拨检测。",
+      "tags": [
+        "定时器",
+        "超时",
+        "回调调度"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/fiber/utils.cpp",
+      "type": "file",
+      "name": "utils.cpp",
+      "filePath": "src/fiber/utils.cpp",
+      "summary": "实现当前内核线程 ID 与当前 Fiber ID 的轻量查询。",
+      "tags": [
+        "线程标识",
+        "协程标识",
+        "公共工具"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/common/util.cpp:getReleasePort",
+      "type": "function",
+      "name": "getReleasePort",
+      "filePath": "src/common/util.cpp",
+      "lineRange": [
+        27,
+        38
+      ],
+      "summary": "从候选端口范围中寻找可绑定端口，供本地多节点测试启动时使用。",
+      "tags": [
+        "端口探测",
+        "网络",
+        "测试支持"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/common/util.cpp:isReleasePort",
+      "type": "function",
+      "name": "isReleasePort",
+      "filePath": "src/common/util.cpp",
+      "lineRange": [
+        40,
+        53
+      ],
+      "summary": "通过创建并绑定 Socket 验证指定端口当前是否可用。",
+      "tags": [
+        "端口探测",
+        "socket",
+        "网络"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/common/util.cpp:DPrintf",
+      "type": "function",
+      "name": "DPrintf",
+      "filePath": "src/common/util.cpp",
+      "lineRange": [
+        55,
+        68
+      ],
+      "summary": "输出带本地时间戳的可变参数调试日志。",
+      "tags": [
+        "调试日志",
+        "可变参数",
+        "诊断"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/fd_manager.cpp:init",
+      "type": "function",
+      "name": "init",
+      "filePath": "src/fiber/fd_manager.cpp",
+      "lineRange": [
+        23,
+        55
+      ],
+      "summary": "检测描述符是否为 Socket，并读取或设置系统非阻塞标记以初始化上下文。",
+      "tags": [
+        "文件描述符",
+        "非阻塞",
+        "socket"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/fd_manager.cpp:get",
+      "type": "function",
+      "name": "get",
+      "filePath": "src/fiber/fd_manager.cpp",
+      "lineRange": [
+        75,
+        98
+      ],
+      "summary": "在线程安全保护下查询描述符上下文，必要时扩容并创建新上下文。",
+      "tags": [
+        "文件描述符",
+        "资源管理",
+        "读写锁"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/fiber/fiber.cpp:StackAllocator",
+      "type": "class",
+      "name": "StackAllocator",
+      "filePath": "src/fiber/fiber.cpp",
+      "lineRange": [
+        20,
+        24
+      ],
+      "summary": "封装协程栈内存的分配与释放策略。",
+      "tags": [
+        "协程栈",
+        "内存管理",
+        "运行时"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/fiber/fiber.cpp:GetThis",
+      "type": "function",
+      "name": "GetThis",
+      "filePath": "src/fiber/fiber.cpp",
+      "lineRange": [
+        39,
+        48
+      ],
+      "summary": "返回当前线程正在运行的 Fiber；首次访问时创建线程主协程。",
+      "tags": [
+        "协程",
+        "线程局部存储",
+        "初始化"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/fiber.cpp:resume",
+      "type": "function",
+      "name": "resume",
+      "filePath": "src/fiber/fiber.cpp",
+      "lineRange": [
+        69,
+        82
+      ],
+      "summary": "把就绪 Fiber 切换到运行态，并从调度器主协程或调用线程恢复执行。",
+      "tags": [
+        "协程",
+        "上下文切换",
+        "调度"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/fiber.cpp:yield",
+      "type": "function",
+      "name": "yield",
+      "filePath": "src/fiber/fiber.cpp",
+      "lineRange": [
+        86,
+        99
+      ],
+      "summary": "将运行中的 Fiber 置为就绪态并切回调度器或调用线程。",
+      "tags": [
+        "协程",
+        "上下文切换",
+        "让出执行权"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/fiber.cpp:MainFunc",
+      "type": "function",
+      "name": "MainFunc",
+      "filePath": "src/fiber/fiber.cpp",
+      "lineRange": [
+        102,
+        115
+      ],
+      "summary": "执行 Fiber 回调并在正常完成后清理回调、标记终止并让出控制权。",
+      "tags": [
+        "协程入口",
+        "生命周期",
+        "回调"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/fiber.cpp:reset",
+      "type": "function",
+      "name": "reset",
+      "filePath": "src/fiber/fiber.cpp",
+      "lineRange": [
+        119,
+        130
+      ],
+      "summary": "在已终止 Fiber 上重建上下文并安装新的回调，以复用协程对象和栈。",
+      "tags": [
+        "协程复用",
+        "上下文切换",
+        "生命周期"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/fiber/hook.cpp:_HOOKIniter",
+      "type": "class",
+      "name": "_HOOKIniter",
+      "filePath": "src/fiber/hook.cpp",
+      "lineRange": [
+        50,
+        56
+      ],
+      "summary": "在静态初始化阶段触发 Hook 原始系统调用地址的解析。",
+      "tags": [
+        "系统调用钩子",
+        "静态初始化",
+        "运行时"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/fiber/hook.cpp:hook_init",
+      "type": "function",
+      "name": "hook_init",
+      "filePath": "src/fiber/hook.cpp",
+      "lineRange": [
+        36,
+        45
+      ],
+      "summary": "使用 dlsym 解析并缓存被 Hook 的 libc 系统调用原始实现。",
+      "tags": [
+        "系统调用钩子",
+        "动态链接",
+        "初始化"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/iomanager.cpp:IOManager",
+      "type": "function",
+      "name": "IOManager",
+      "filePath": "src/fiber/iomanager.cpp",
+      "lineRange": [
+        36,
+        57
+      ],
+      "summary": "创建 epoll 实例和唤醒管道，初始化描述符上下文并启动调度器。",
+      "tags": [
+        "epoll",
+        "初始化",
+        "协程调度"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/iomanager.cpp:addEvent",
+      "type": "function",
+      "name": "addEvent",
+      "filePath": "src/fiber/iomanager.cpp",
+      "lineRange": [
+        72,
+        120
+      ],
+      "summary": "将读或写事件注册到 epoll，并保存应恢复的 Fiber 或待执行回调。",
+      "tags": [
+        "epoll",
+        "事件注册",
+        "协程调度"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/iomanager.cpp:delEvent",
+      "type": "function",
+      "name": "delEvent",
+      "filePath": "src/fiber/iomanager.cpp",
+      "lineRange": [
+        122,
+        152
+      ],
+      "summary": "从 epoll 与描述符上下文中移除指定事件，但不执行其等待任务。",
+      "tags": [
+        "epoll",
+        "事件取消",
+        "资源管理"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/iomanager.cpp:cancelEvent",
+      "type": "function",
+      "name": "cancelEvent",
+      "filePath": "src/fiber/iomanager.cpp",
+      "lineRange": [
+        155,
+        184
+      ],
+      "summary": "移除指定 epoll 事件并触发已登记的 Fiber 或回调。",
+      "tags": [
+        "epoll",
+        "事件取消",
+        "回调调度"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/iomanager.cpp:cancelAll",
+      "type": "function",
+      "name": "cancelAll",
+      "filePath": "src/fiber/iomanager.cpp",
+      "lineRange": [
+        186,
+        221
+      ],
+      "summary": "取消一个描述符上的全部等待事件，并逐一触发关联任务。",
+      "tags": [
+        "epoll",
+        "批量取消",
+        "协程调度"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/iomanager.cpp:idle",
+      "type": "function",
+      "name": "idle",
+      "filePath": "src/fiber/iomanager.cpp",
+      "lineRange": [
+        238,
+        350
+      ],
+      "summary": "在空闲协程中执行带超时的 epoll_wait，处理就绪 IO、收集过期定时器并投递任务。",
+      "tags": [
+        "epoll",
+        "事件循环",
+        "定时器"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/fiber/scheduler.cpp:Scheduler",
+      "type": "function",
+      "name": "Scheduler",
+      "filePath": "src/fiber/scheduler.cpp",
+      "lineRange": [
+        13,
+        43
+      ],
+      "summary": "初始化调度器名称、调用线程主 Fiber 与工作线程配置。",
+      "tags": [
+        "协程调度",
+        "初始化",
+        "线程池"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/scheduler.cpp:start",
+      "type": "function",
+      "name": "start",
+      "filePath": "src/fiber/scheduler.cpp",
+      "lineRange": [
+        57,
+        70
+      ],
+      "summary": "按配置创建工作线程并让每个线程进入调度循环。",
+      "tags": [
+        "协程调度",
+        "线程池",
+        "生命周期"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/scheduler.cpp:run",
+      "type": "function",
+      "name": "run",
+      "filePath": "src/fiber/scheduler.cpp",
+      "lineRange": [
+        73,
+        148
+      ],
+      "summary": "循环选择匹配线程的任务，把回调包装为 Fiber 并恢复执行，同时处理空闲 Fiber。",
+      "tags": [
+        "协程调度",
+        "任务队列",
+        "事件循环"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/fiber/scheduler.cpp:stop",
+      "type": "function",
+      "name": "stop",
+      "filePath": "src/fiber/scheduler.cpp",
+      "lineRange": [
+        165,
+        201
+      ],
+      "summary": "发起调度器停止，唤醒空闲线程并等待调用线程及工作线程全部退出。",
+      "tags": [
+        "协程调度",
+        "生命周期",
+        "线程同步"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/thread.cpp:Thread",
+      "type": "function",
+      "name": "Thread",
+      "filePath": "src/fiber/thread.cpp",
+      "lineRange": [
+        9,
+        19
+      ],
+      "summary": "创建 pthread 并用信号量等待新线程完成 TLS 初始化。",
+      "tags": [
+        "pthread",
+        "线程创建",
+        "同步"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/thread.cpp:join",
+      "type": "function",
+      "name": "join",
+      "filePath": "src/fiber/thread.cpp",
+      "lineRange": [
+        42,
+        51
+      ],
+      "summary": "等待被包装的 pthread 结束，并防止重复 join。",
+      "tags": [
+        "pthread",
+        "线程同步",
+        "生命周期"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/timer.cpp:Comparator::operator()",
+      "type": "function",
+      "name": "Comparator::operator()",
+      "filePath": "src/fiber/timer.cpp",
+      "lineRange": [
+        5,
+        22
+      ],
+      "summary": "按到期时间及地址稳定排序 Timer 指针，使定时器集合能找到最早到期项。",
+      "tags": [
+        "定时器",
+        "排序",
+        "数据结构"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/timer.cpp:cancel",
+      "type": "function",
+      "name": "cancel",
+      "filePath": "src/fiber/timer.cpp",
+      "lineRange": [
+        28,
+        37
+      ],
+      "summary": "从管理器集合移除定时器并清空回调，避免其后续执行。",
+      "tags": [
+        "定时器",
+        "取消",
+        "资源管理"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/timer.cpp:refresh",
+      "type": "function",
+      "name": "refresh",
+      "filePath": "src/fiber/timer.cpp",
+      "lineRange": [
+        38,
+        51
+      ],
+      "summary": "以当前时间重新计算定时器到期点并重新插入有序集合。",
+      "tags": [
+        "定时器",
+        "刷新",
+        "超时"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/timer.cpp:reset",
+      "type": "function",
+      "name": "reset",
+      "filePath": "src/fiber/timer.cpp",
+      "lineRange": [
+        56,
+        79
+      ],
+      "summary": "更新定时器周期，并可选择以当前时间或原计划时间为基准重排。",
+      "tags": [
+        "定时器",
+        "重置",
+        "超时"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/timer.cpp:getNextTimer",
+      "type": "function",
+      "name": "getNextTimer",
+      "filePath": "src/fiber/timer.cpp",
+      "lineRange": [
+        104,
+        117
+      ],
+      "summary": "返回距最早到期定时器的等待时间，为 epoll 等待超时提供依据。",
+      "tags": [
+        "定时器",
+        "超时计算",
+        "事件循环"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/timer.cpp:listExpiredCb",
+      "type": "function",
+      "name": "listExpiredCb",
+      "filePath": "src/fiber/timer.cpp",
+      "lineRange": [
+        119,
+        159
+      ],
+      "summary": "提取所有到期回调，重排周期性定时器，并处理系统时钟回拨。",
+      "tags": [
+        "定时器",
+        "回调队列",
+        "时钟回拨"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/fiber/timer.cpp:addTimer",
+      "type": "function",
+      "name": "addTimer",
+      "filePath": "src/fiber/timer.cpp",
+      "lineRange": [
+        161,
+        171
+      ],
+      "summary": "在写锁保护下插入定时器，若成为最早项则通知 IOManager 更新等待。",
+      "tags": [
+        "定时器",
+        "读写锁",
+        "事件唤醒"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:src/raftClerk/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "src/raftClerk/CMakeLists.txt",
+      "summary": "定义 Raft 客户端模块的构建目标，并将客户端实现纳入工程编译。",
+      "tags": [
+        "cmake-构建",
+        "客户端-模块",
+        "构建-配置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/raftClerk/clerk.cpp",
+      "type": "file",
+      "name": "clerk.cpp",
+      "filePath": "src/raftClerk/clerk.cpp",
+      "summary": "实现客户端 Clerk 的读写请求重试逻辑，通过最近领导者优化并在失败时轮换节点。",
+      "tags": [
+        "raft-客户端",
+        "rpc-调用",
+        "请求-重试"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 C++ 成员函数封装面向键值服务的同步 RPC 调用。"
+    },
+    {
+      "id": "file:src/raftClerk/include/clerk.h",
+      "type": "file",
+      "name": "clerk.h",
+      "filePath": "src/raftClerk/include/clerk.h",
+      "summary": "声明键值客户端的身份、请求序号、节点连接池及 Get、Put、Append 公共接口。",
+      "tags": [
+        "raft-客户端",
+        "键值-api",
+        "头文件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/raftClerk/include/raftServerRpcUtil.h",
+      "type": "file",
+      "name": "raftServerRpcUtil.h",
+      "filePath": "src/raftClerk/include/raftServerRpcUtil.h",
+      "summary": "声明客户端到单个键值服务器的 Protobuf RPC 代理封装。",
+      "tags": [
+        "rpc-客户端",
+        "protobuf-存根",
+        "连接-封装"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/raftClerk/raftServerRpcUtil.cpp",
+      "type": "file",
+      "name": "raftServerRpcUtil.cpp",
+      "filePath": "src/raftClerk/raftServerRpcUtil.cpp",
+      "summary": "构造 Protobuf 服务存根，并转发 Get 与 PutAppend 请求到远程键值服务器。",
+      "tags": [
+        "rpc-客户端",
+        "protobuf-存根",
+        "请求-转发"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:src/raftCore/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "src/raftCore/CMakeLists.txt",
+      "summary": "配置 Raft 核心和键值服务实现的源文件、头文件及依赖链接。",
+      "tags": [
+        "cmake-构建",
+        "raft-核心",
+        "构建-配置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/raftCore/Persister.cpp",
+      "type": "file",
+      "name": "Persister.cpp",
+      "filePath": "src/raftCore/Persister.cpp",
+      "summary": "实现 Raft 状态与快照的线程安全文件持久化、读取和清理操作。",
+      "tags": [
+        "raft-持久化",
+        "快照-存储",
+        "文件-io"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/raftCore/include/ApplyMsg.h",
+      "type": "file",
+      "name": "ApplyMsg.h",
+      "filePath": "src/raftCore/include/ApplyMsg.h",
+      "summary": "定义 Raft 向上层状态机投递已提交命令或快照的消息载体。",
+      "tags": [
+        "raft-应用",
+        "状态机-消息",
+        "快照-事件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/raftCore/include/Persister.h",
+      "type": "file",
+      "name": "Persister.h",
+      "filePath": "src/raftCore/include/Persister.h",
+      "summary": "声明持久化器的 Raft 状态、快照读写与清理接口及互斥保护字段。",
+      "tags": [
+        "raft-持久化",
+        "快照-存储",
+        "头文件"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/raftCore/include/kvServer.h",
+      "type": "file",
+      "name": "kvServer.h",
+      "filePath": "src/raftCore/include/kvServer.h",
+      "summary": "声明基于 Raft 的键值服务器、重复请求去重、应用通知、快照和 Protobuf 服务接口。",
+      "tags": [
+        "键值-服务",
+        "raft-状态机",
+        "rpc-服务"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/raftCore/include/raft.h",
+      "type": "file",
+      "name": "raft.h",
+      "filePath": "src/raftCore/include/raft.h",
+      "summary": "声明 Raft 共识节点的日志复制、选举、提交、快照和持久化状态及 RPC 服务接口。",
+      "tags": [
+        "raft-核心",
+        "共识-协议",
+        "日志-复制"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/raftCore/include/raftRpcUtil.h",
+      "type": "file",
+      "name": "raftRpcUtil.h",
+      "filePath": "src/raftCore/include/raftRpcUtil.h",
+      "summary": "声明 Raft 节点间 AppendEntries、InstallSnapshot 和 RequestVote 的远程调用代理。",
+      "tags": [
+        "raft-rpc",
+        "节点-通信",
+        "protobuf-存根"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/raftCore/kvServer.cpp",
+      "type": "file",
+      "name": "kvServer.cpp",
+      "filePath": "src/raftCore/kvServer.cpp",
+      "summary": "实现 Raft 驱动的键值状态机、客户端 RPC、已提交日志应用、重复请求控制与快照协作。",
+      "tags": [
+        "键值-服务",
+        "raft-状态机",
+        "快照-管理"
+      ],
+      "complexity": "complex",
+      "languageNotes": "通过等待通道把客户端请求与对应 Raft 日志索引的应用结果关联起来。"
+    },
+    {
+      "id": "class:src/raftClerk/include/clerk.h:Clerk",
+      "type": "class",
+      "name": "Clerk",
+      "filePath": "src/raftClerk/include/clerk.h",
+      "lineRange": [
+        18,
+        43
+      ],
+      "summary": "面向用户的键值客户端，维护请求身份、最近领导者和服务器 RPC 代理。",
+      "tags": [
+        "raft-客户端",
+        "键值-api",
+        "请求-重试"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/raftClerk/include/raftServerRpcUtil.h:raftServerRpcUtil",
+      "type": "class",
+      "name": "raftServerRpcUtil",
+      "filePath": "src/raftClerk/include/raftServerRpcUtil.h",
+      "lineRange": [
+        16,
+        30
+      ],
+      "summary": "封装一个远端键值节点的 Protobuf 存根及其读写方法。",
+      "tags": [
+        "rpc-客户端",
+        "protobuf-存根",
+        "节点-代理"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/raftCore/include/ApplyMsg.h:ApplyMsg",
+      "type": "class",
+      "name": "ApplyMsg",
+      "filePath": "src/raftCore/include/ApplyMsg.h",
+      "lineRange": [
+        4,
+        25
+      ],
+      "summary": "携带已提交日志命令或待安装快照的元数据，连接 Raft 与状态机。",
+      "tags": [
+        "raft-应用",
+        "状态机-消息",
+        "数据-传输"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/raftCore/include/Persister.h:Persister",
+      "type": "class",
+      "name": "Persister",
+      "filePath": "src/raftCore/include/Persister.h",
+      "lineRange": [
+        9,
+        50
+      ],
+      "summary": "以互斥锁保护 Raft 状态和快照文件，提供恢复所需的存取接口。",
+      "tags": [
+        "raft-持久化",
+        "快照-存储",
+        "线程-安全"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/raftCore/include/kvServer.h:KvServer",
+      "type": "class",
+      "name": "KvServer",
+      "filePath": "src/raftCore/include/kvServer.h",
+      "lineRange": [
+        25,
+        132
+      ],
+      "summary": "实现 Protobuf 键值服务并将写操作提交给 Raft，在应用阶段维护本地状态机。",
+      "tags": [
+        "键值-服务",
+        "raft-状态机",
+        "rpc-服务"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/raftCore/include/raft.h:Raft",
+      "type": "class",
+      "name": "Raft",
+      "filePath": "src/raftCore/include/raft.h",
+      "lineRange": [
+        34,
+        167
+      ],
+      "summary": "实现 Raft 共识状态、选举、日志复制、提交推进、持久化和快照安装。",
+      "tags": [
+        "raft-核心",
+        "共识-协议",
+        "日志-复制"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/raftCore/include/raft.h:BoostPersistRaftNode",
+      "type": "class",
+      "name": "BoostPersistRaftNode",
+      "filePath": "src/raftCore/include/raft.h",
+      "lineRange": [
+        143,
+        165
+      ],
+      "summary": "定义供 Boost.Serialization 使用的 Raft 持久化状态载体。",
+      "tags": [
+        "raft-持久化",
+        "boost-序列化",
+        "状态-快照"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftClerk/clerk.cpp:Get",
+      "type": "function",
+      "name": "Get",
+      "filePath": "src/raftClerk/clerk.cpp",
+      "lineRange": [
+        12,
+        39
+      ],
+      "summary": "向集群尝试读取键值，失败后轮换服务器并更新最近成功的领导者。",
+      "tags": [
+        "键值-读取",
+        "请求-重试",
+        "raft-客户端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftClerk/clerk.cpp:PutAppend",
+      "type": "function",
+      "name": "PutAppend",
+      "filePath": "src/raftClerk/clerk.cpp",
+      "lineRange": [
+        41,
+        72
+      ],
+      "summary": "构造带客户端与请求编号的写请求，并重试直到某个服务器确认成功。",
+      "tags": [
+        "键值-写入",
+        "请求-重试",
+        "去重-标识"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftClerk/clerk.cpp:Init",
+      "type": "function",
+      "name": "Init",
+      "filePath": "src/raftClerk/clerk.cpp",
+      "lineRange": [
+        78,
+        101
+      ],
+      "summary": "读取节点配置并为集群中的每个服务器建立客户端 RPC 代理。",
+      "tags": [
+        "客户端-初始化",
+        "配置-加载",
+        "rpc-连接"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/Persister.cpp:ReadSnapshot",
+      "type": "function",
+      "name": "ReadSnapshot",
+      "filePath": "src/raftCore/Persister.cpp",
+      "lineRange": [
+        16,
+        33
+      ],
+      "summary": "在线程安全条件下读取当前快照文件内容以支持状态恢复。",
+      "tags": [
+        "快照-读取",
+        "raft-持久化",
+        "线程-安全"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/Persister.cpp:ReadRaftState",
+      "type": "function",
+      "name": "ReadRaftState",
+      "filePath": "src/raftCore/Persister.cpp",
+      "lineRange": [
+        49,
+        60
+      ],
+      "summary": "读取已持久化的 Raft 元数据和日志字节串。",
+      "tags": [
+        "状态-恢复",
+        "raft-持久化",
+        "文件-io"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/Persister.cpp:Persister",
+      "type": "function",
+      "name": "Persister",
+      "filePath": "src/raftCore/Persister.cpp",
+      "lineRange": [
+        62,
+        90
+      ],
+      "summary": "按节点编号初始化状态与快照文件，并打开对应的持久化输出流。",
+      "tags": [
+        "持久化-初始化",
+        "节点-隔离",
+        "文件-io"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/kvServer.cpp:DprintfKVDB",
+      "type": "function",
+      "name": "DprintfKVDB",
+      "filePath": "src/raftCore/kvServer.cpp",
+      "lineRange": [
+        7,
+        18
+      ],
+      "summary": "输出当前键值状态机的调试信息，辅助检查数据应用结果。",
+      "tags": [
+        "调试-输出",
+        "键值-服务",
+        "状态机-诊断"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/raftCore/kvServer.cpp:ExecuteAppendOpOnKVDB",
+      "type": "function",
+      "name": "ExecuteAppendOpOnKVDB",
+      "filePath": "src/raftCore/kvServer.cpp",
+      "lineRange": [
+        20,
+        39
+      ],
+      "summary": "将已提交的 Append 命令应用到跳表和键值数据状态。",
+      "tags": [
+        "状态机-应用",
+        "键值-追加",
+        "raft-提交"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/kvServer.cpp:ExecuteGetOpOnKVDB",
+      "type": "function",
+      "name": "ExecuteGetOpOnKVDB",
+      "filePath": "src/raftCore/kvServer.cpp",
+      "lineRange": [
+        41,
+        64
+      ],
+      "summary": "在本地状态机中执行 Get 并返回键存在性和对应值。",
+      "tags": [
+        "状态机-读取",
+        "键值-查询",
+        "raft-提交"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/kvServer.cpp:Get",
+      "type": "function",
+      "name": "Get",
+      "filePath": "src/raftCore/kvServer.cpp",
+      "lineRange": [
+        79,
+        164
+      ],
+      "summary": "把客户端读取请求封装为 Raft 命令，等待其应用后返回读结果或领导者错误。",
+      "tags": [
+        "键值-读取",
+        "raft-提交",
+        "rpc-处理"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/kvServer.cpp:GetCommandFromRaft",
+      "type": "function",
+      "name": "GetCommandFromRaft",
+      "filePath": "src/raftCore/kvServer.cpp",
+      "lineRange": [
+        166,
+        198
+      ],
+      "summary": "分派 Raft 已提交的应用消息，执行命令或触发快照安装路径。",
+      "tags": [
+        "状态机-应用",
+        "raft-提交",
+        "消息-分派"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/kvServer.cpp:PutAppend",
+      "type": "function",
+      "name": "PutAppend",
+      "filePath": "src/raftCore/kvServer.cpp",
+      "lineRange": [
+        212,
+        279
+      ],
+      "summary": "处理客户端写请求，进行重复检测、提交到 Raft 并等待对应日志应用。",
+      "tags": [
+        "键值-写入",
+        "请求-去重",
+        "raft-提交"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/kvServer.cpp:ReadRaftApplyCommandLoop",
+      "type": "function",
+      "name": "ReadRaftApplyCommandLoop",
+      "filePath": "src/raftCore/kvServer.cpp",
+      "lineRange": [
+        281,
+        297
+      ],
+      "summary": "持续消费 Raft 应用队列，将命令和快照交给键值状态机处理。",
+      "tags": [
+        "应用-循环",
+        "状态机-应用",
+        "并发-队列"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/kvServer.cpp:ReadSnapShotToInstall",
+      "type": "function",
+      "name": "ReadSnapShotToInstall",
+      "filePath": "src/raftCore/kvServer.cpp",
+      "lineRange": [
+        303,
+        322
+      ],
+      "summary": "反序列化快照并恢复键值数据、去重记录和最后快照索引。",
+      "tags": [
+        "快照-恢复",
+        "状态机-恢复",
+        "boost-序列化"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/kvServer.cpp:SendMessageToWaitChan",
+      "type": "function",
+      "name": "SendMessageToWaitChan",
+      "filePath": "src/raftCore/kvServer.cpp",
+      "lineRange": [
+        324,
+        340
+      ],
+      "summary": "按 Raft 日志索引向等待中的客户端请求通道发送应用结果。",
+      "tags": [
+        "请求-关联",
+        "并发-队列",
+        "raft-索引"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/kvServer.cpp:KvServer",
+      "type": "function",
+      "name": "KvServer",
+      "filePath": "src/raftCore/kvServer.cpp",
+      "lineRange": [
+        377,
+        450
+      ],
+      "summary": "初始化 RPC 服务、Raft 节点、应用循环与快照阈值，启动键值服务器运行环境。",
+      "tags": [
+        "服务-初始化",
+        "raft-集成",
+        "rpc-服务"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/raftCore/raft.cpp",
+      "type": "file",
+      "name": "raft.cpp",
+      "filePath": "src/raftCore/raft.cpp",
+      "summary": "实现 Raft 的领导者选举、日志复制、提交推进、应用投递、持久化与快照处理。",
+      "tags": [
+        "raft-核心",
+        "共识-协议",
+        "日志-复制"
+      ],
+      "complexity": "complex",
+      "languageNotes": "使用协程调度和互斥锁协调定时器、并行 RPC 与共识状态更新。"
+    },
+    {
+      "id": "file:src/raftCore/raftRpcUtil.cpp",
+      "type": "file",
+      "name": "raftRpcUtil.cpp",
+      "filePath": "src/raftCore/raftRpcUtil.cpp",
+      "summary": "实现 Raft 节点到同伴节点的 AppendEntries、InstallSnapshot 与 RequestVote RPC 转发。",
+      "tags": [
+        "raft-rpc",
+        "节点-通信",
+        "请求-转发"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/raftRpcPro/kvServerRPC.pb.cc",
+      "type": "file",
+      "name": "kvServerRPC.pb.cc",
+      "filePath": "src/raftRpcPro/kvServerRPC.pb.cc",
+      "summary": "由 Protobuf 根据键值服务协议生成的消息序列化和服务存根实现。",
+      "tags": [
+        "protobuf-生成",
+        "键值-rpc",
+        "协议-实现"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/raftRpcPro/raftRPC.pb.cc",
+      "type": "file",
+      "name": "raftRPC.pb.cc",
+      "filePath": "src/raftRpcPro/raftRPC.pb.cc",
+      "summary": "由 Protobuf 根据 Raft RPC 协议生成的消息序列化和服务存根实现。",
+      "tags": [
+        "protobuf-生成",
+        "raft-rpc",
+        "协议-实现"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/raftRpcPro/include/kvServerRPC.pb.h",
+      "type": "file",
+      "name": "kvServerRPC.pb.h",
+      "filePath": "src/raftRpcPro/include/kvServerRPC.pb.h",
+      "summary": "由 Protobuf 生成的键值服务请求、响应和服务接口声明。",
+      "tags": [
+        "protobuf-生成",
+        "键值-rpc",
+        "协议-头文件"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/raftRpcPro/include/raftRPC.pb.h",
+      "type": "file",
+      "name": "raftRPC.pb.h",
+      "filePath": "src/raftRpcPro/include/raftRPC.pb.h",
+      "summary": "由 Protobuf 生成的 Raft 投票、复制、快照消息和服务接口声明。",
+      "tags": [
+        "protobuf-生成",
+        "raft-rpc",
+        "协议-头文件"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:src/rpc/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "src/rpc/CMakeLists.txt",
+      "summary": "配置通用 RPC 框架库的源文件收集及 Boost 序列化依赖链接。",
+      "tags": [
+        "cmake-构建",
+        "rpc-框架",
+        "依赖-链接"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/rpc/include/mprpcchannel.h",
+      "type": "file",
+      "name": "mprpcchannel.h",
+      "filePath": "src/rpc/include/mprpcchannel.h",
+      "summary": "声明自定义 Protobuf RpcChannel，负责请求封装、网络发送与连接重建。",
+      "tags": [
+        "rpc-通道",
+        "protobuf-集成",
+        "网络-连接"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/rpc/include/mprpcconfig.h",
+      "type": "file",
+      "name": "mprpcconfig.h",
+      "filePath": "src/rpc/include/mprpcconfig.h",
+      "summary": "声明 RPC 框架配置文件加载、键查询和字符串修剪接口。",
+      "tags": [
+        "rpc-配置",
+        "配置-加载",
+        "头文件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/rpc/include/mprpccontroller.h",
+      "type": "file",
+      "name": "mprpccontroller.h",
+      "filePath": "src/rpc/include/mprpccontroller.h",
+      "summary": "声明 Protobuf RpcController 实现，用于承载 RPC 失败状态与错误文本。",
+      "tags": [
+        "rpc-控制器",
+        "protobuf-集成",
+        "错误-处理"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/rpc/include/rpcheader.pb.h",
+      "type": "file",
+      "name": "rpcheader.pb.h",
+      "filePath": "src/rpc/include/rpcheader.pb.h",
+      "summary": "由 Protobuf 生成的通用 RPC 请求头消息声明。",
+      "tags": [
+        "protobuf-生成",
+        "rpc-协议",
+        "消息-头"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/rpc/include/rpcprovider.h",
+      "type": "file",
+      "name": "rpcprovider.h",
+      "filePath": "src/rpc/include/rpcprovider.h",
+      "summary": "声明基于 Muduo 的 RPC 服务发布、连接处理、请求分派和响应发送组件。",
+      "tags": [
+        "rpc-服务端",
+        "muduo-网络",
+        "请求-分派"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/raftCore/include/raftRpcUtil.h:RaftRpcUtil",
+      "type": "class",
+      "name": "RaftRpcUtil",
+      "filePath": "src/raftCore/include/raftRpcUtil.h",
+      "lineRange": [
+        12,
+        30
+      ],
+      "summary": "维护到单个 Raft 同伴的服务存根，并提供三类共识 RPC 调用。",
+      "tags": [
+        "raft-rpc",
+        "节点-代理",
+        "protobuf-存根"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/rpc/include/mprpcchannel.h:MprpcChannel",
+      "type": "class",
+      "name": "MprpcChannel",
+      "filePath": "src/rpc/include/mprpcchannel.h",
+      "lineRange": [
+        20,
+        38
+      ],
+      "summary": "实现 Protobuf RpcChannel，将服务存根调用编码为网络 RPC 请求。",
+      "tags": [
+        "rpc-通道",
+        "protobuf-集成",
+        "网络-连接"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/rpc/include/mprpcconfig.h:MprpcConfig",
+      "type": "class",
+      "name": "MprpcConfig",
+      "filePath": "src/rpc/include/mprpcconfig.h",
+      "lineRange": [
+        8,
+        19
+      ],
+      "summary": "维护配置键值表并提供配置文件解析与查询能力。",
+      "tags": [
+        "rpc-配置",
+        "配置-加载",
+        "键值-查询"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/rpc/include/mprpccontroller.h:MprpcController",
+      "type": "class",
+      "name": "MprpcController",
+      "filePath": "src/rpc/include/mprpccontroller.h",
+      "lineRange": [
+        5,
+        21
+      ],
+      "summary": "实现 Protobuf 控制器接口，记录远程调用失败状态和原因。",
+      "tags": [
+        "rpc-控制器",
+        "错误-处理",
+        "protobuf-集成"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/rpc/include/rpcprovider.h:RpcProvider",
+      "type": "class",
+      "name": "RpcProvider",
+      "filePath": "src/rpc/include/rpcprovider.h",
+      "lineRange": [
+        15,
+        44
+      ],
+      "summary": "注册 Protobuf 服务并用 Muduo 事件循环接收、分派和回复 RPC 请求。",
+      "tags": [
+        "rpc-服务端",
+        "服务-注册",
+        "muduo-网络"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:AppendEntries1",
+      "type": "function",
+      "name": "AppendEntries1",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        8,
+        153
+      ],
+      "summary": "在跟随者处理日志复制请求，校验前序日志、追加或覆盖条目并推进提交索引。",
+      "tags": [
+        "日志-复制",
+        "跟随者-处理",
+        "raft-核心"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:applierTicker",
+      "type": "function",
+      "name": "applierTicker",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        155,
+        175
+      ],
+      "summary": "持续收集已提交但尚未应用的日志，并投递给上层状态机。",
+      "tags": [
+        "状态机-应用",
+        "提交-日志",
+        "后台-循环"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:CondInstallSnapshot",
+      "type": "function",
+      "name": "CondInstallSnapshot",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        177,
+        200
+      ],
+      "summary": "根据索引和任期判断快照是否可安装，并更新 Raft 的快照边界。",
+      "tags": [
+        "快照-安装",
+        "一致性-校验",
+        "raft-核心"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:doElection",
+      "type": "function",
+      "name": "doElection",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        202,
+        245
+      ],
+      "summary": "在选举超时后提升为候选者、增加任期并并发请求同伴投票。",
+      "tags": [
+        "领导者-选举",
+        "投票-rpc",
+        "raft-核心"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:doHeartBeat",
+      "type": "function",
+      "name": "doHeartBeat",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        247,
+        311
+      ],
+      "summary": "由领导者构造并并发发送 AppendEntries 心跳或日志复制请求。",
+      "tags": [
+        "领导者-心跳",
+        "日志-复制",
+        "raft-rpc"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:electionTimeOutTicker",
+      "type": "function",
+      "name": "electionTimeOutTicker",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        313,
+        359
+      ],
+      "summary": "定期检查选举计时器，并在超时时启动新一轮领导者选举。",
+      "tags": [
+        "选举-定时器",
+        "领导者-选举",
+        "后台-循环"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:getApplyLogs",
+      "type": "function",
+      "name": "getApplyLogs",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        361,
+        382
+      ],
+      "summary": "提取提交索引之后尚未交付状态机的日志，并转换为应用消息。",
+      "tags": [
+        "状态机-应用",
+        "提交-日志",
+        "数据-转换"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:getPrevLogInfo",
+      "type": "function",
+      "name": "getPrevLogInfo",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        393,
+        404
+      ],
+      "summary": "按同伴复制进度计算下一次 AppendEntries 所需的前序日志索引和任期。",
+      "tags": [
+        "日志-复制",
+        "索引-计算",
+        "领导者-状态"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:GetState",
+      "type": "function",
+      "name": "GetState",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        408,
+        418
+      ],
+      "summary": "在线程安全条件下返回当前任期及本节点是否为领导者。",
+      "tags": [
+        "raft-状态",
+        "领导者-查询",
+        "线程-安全"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:InstallSnapshot",
+      "type": "function",
+      "name": "InstallSnapshot",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        420,
+        476
+      ],
+      "summary": "处理领导者快照安装请求，截断或重建日志并向上层投递快照消息。",
+      "tags": [
+        "快照-安装",
+        "日志-截断",
+        "raft-rpc"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:leaderHearBeatTicker",
+      "type": "function",
+      "name": "leaderHearBeatTicker",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        480,
+        526
+      ],
+      "summary": "领导者定期触发心跳，维持权威并驱动日志复制进度。",
+      "tags": [
+        "领导者-心跳",
+        "定时器-循环",
+        "日志-复制"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:leaderSendSnapShot",
+      "type": "function",
+      "name": "leaderSendSnapShot",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        528,
+        560
+      ],
+      "summary": "当同伴落后于快照边界时构造并发送 InstallSnapshot RPC。",
+      "tags": [
+        "快照-发送",
+        "领导者-复制",
+        "raft-rpc"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:leaderUpdateCommitIndex",
+      "type": "function",
+      "name": "leaderUpdateCommitIndex",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        562,
+        588
+      ],
+      "summary": "根据多数派 matchIndex 推进领导者的提交索引并唤醒应用流程。",
+      "tags": [
+        "提交-推进",
+        "多数派-确认",
+        "领导者-状态"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:matchLog",
+      "type": "function",
+      "name": "matchLog",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        591,
+        601
+      ],
+      "summary": "验证给定日志索引和任期是否与本地日志或快照边界匹配。",
+      "tags": [
+        "日志-一致性",
+        "任期-校验",
+        "raft-核心"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:RequestVote",
+      "type": "function",
+      "name": "RequestVote",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        611,
+        683
+      ],
+      "summary": "处理投票请求，依据任期、投票记录和候选人日志新旧程度决定是否授票。",
+      "tags": [
+        "投票-处理",
+        "任期-校验",
+        "raft-rpc"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:getLastLogIndexAndTerm",
+      "type": "function",
+      "name": "getLastLogIndexAndTerm",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        694,
+        704
+      ],
+      "summary": "返回本地最后日志条目的索引和任期，兼顾已压缩的快照边界。",
+      "tags": [
+        "日志-索引",
+        "任期-查询",
+        "快照-边界"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:getLogTermFromLogIndex",
+      "type": "function",
+      "name": "getLogTermFromLogIndex",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        729,
+        744
+      ],
+      "summary": "将逻辑日志索引映射为对应任期，并处理快照包含位置。",
+      "tags": [
+        "日志-索引",
+        "任期-查询",
+        "快照-边界"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:sendRequestVote",
+      "type": "function",
+      "name": "sendRequestVote",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        761,
+        826
+      ],
+      "summary": "向一个同伴发送 RequestVote，并据响应更新候选者任期、状态和得票数。",
+      "tags": [
+        "投票-rpc",
+        "选举-协调",
+        "并发-调用"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:sendAppendEntries",
+      "type": "function",
+      "name": "sendAppendEntries",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        828,
+        924
+      ],
+      "summary": "向同伴复制日志，依据响应处理成功推进、冲突回退、降级与快照发送。",
+      "tags": [
+        "日志-复制",
+        "appendentries-rpc",
+        "冲突-回退"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:Start",
+      "type": "function",
+      "name": "Start",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        947,
+        976
+      ],
+      "summary": "仅在领导者身份下接收上层命令、追加日志并返回其索引和任期。",
+      "tags": [
+        "命令-提交",
+        "领导者-检查",
+        "日志-追加"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:init",
+      "type": "function",
+      "name": "init",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        988,
+        1047
+      ],
+      "summary": "恢复持久化状态、初始化 Raft 索引和定时器，并启动选举、心跳与应用协程。",
+      "tags": [
+        "raft-初始化",
+        "状态-恢复",
+        "协程-调度"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:persistData",
+      "type": "function",
+      "name": "persistData",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        1049,
+        1063
+      ],
+      "summary": "将任期、投票、快照边界和日志序列化为可持久化的状态字节串。",
+      "tags": [
+        "状态-持久化",
+        "boost-序列化",
+        "raft-恢复"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:readPersist",
+      "type": "function",
+      "name": "readPersist",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        1065,
+        1085
+      ],
+      "summary": "反序列化并恢复 Raft 的任期、投票、日志和快照元数据。",
+      "tags": [
+        "状态-恢复",
+        "boost-序列化",
+        "raft-持久化"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/raftCore/raft.cpp:Snapshot",
+      "type": "function",
+      "name": "Snapshot",
+      "filePath": "src/raftCore/raft.cpp",
+      "lineRange": [
+        1087,
+        1122
+      ],
+      "summary": "接收状态机快照并压缩已覆盖日志，同时持久化新的 Raft 状态与快照。",
+      "tags": [
+        "快照-创建",
+        "日志-压缩",
+        "状态-持久化"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/rpc/mprpcchannel.cpp",
+      "type": "file",
+      "name": "mprpcchannel.cpp",
+      "filePath": "src/rpc/mprpcchannel.cpp",
+      "summary": "实现 Protobuf RpcChannel 客户端，将服务名、方法名和序列化参数编码为 TCP 请求，并接收、反序列化响应。连接失效时会尝试重连。",
+      "tags": [
+        "rpc",
+        "客户端",
+        "protobuf",
+        "tcp-传输"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "通过 CodedOutputStream 写入变长的 RPC 头长度，再依次附加头部和请求体。"
+    },
+    {
+      "id": "file:src/rpc/mprpcconfig.cpp",
+      "type": "file",
+      "name": "mprpcconfig.cpp",
+      "filePath": "src/rpc/mprpcconfig.cpp",
+      "summary": "加载键值形式的 RPC 配置文件，忽略注释和空行，并提供按键查询与空白裁剪功能。",
+      "tags": [
+        "rpc",
+        "配置加载",
+        "键值解析",
+        "工具"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/rpc/mprpccontroller.cpp",
+      "type": "file",
+      "name": "mprpccontroller.cpp",
+      "filePath": "src/rpc/mprpccontroller.cpp",
+      "summary": "实现 Protobuf RpcController 的最小失败状态管理，记录远程调用失败原因；取消相关接口目前为占位实现。",
+      "tags": [
+        "rpc",
+        "错误处理",
+        "protobuf",
+        "控制器"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/rpc/rpcheader.pb.cpp",
+      "type": "file",
+      "name": "rpcheader.pb.cpp",
+      "filePath": "src/rpc/rpcheader.pb.cpp",
+      "summary": "由 protoc 根据 RpcHeader 协议自动生成的 C++ 实现，负责 RPC 头消息的构造、解析、合并和序列化。",
+      "tags": [
+        "protobuf",
+        "自动生成",
+        "rpc",
+        "序列化"
+      ],
+      "complexity": "complex",
+      "languageNotes": "这是生成文件；协议字段应在 rpcheader.proto 中维护，而不是直接修改本文件。"
+    },
+    {
+      "id": "schema:src/rpc/rpcheader.proto",
+      "type": "schema",
+      "name": "rpcheader.proto",
+      "filePath": "src/rpc/rpcheader.proto",
+      "summary": "定义 RPC 传输头协议：服务名、方法名与参数字节数，用于在 TCP 字节流中定位并分派一次远程调用。",
+      "tags": [
+        "protobuf",
+        "rpc",
+        "协议模式",
+        "消息头"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "schema:src/rpc/rpcheader.proto:RpcHeader",
+      "type": "schema",
+      "name": "RpcHeader",
+      "filePath": "src/rpc/rpcheader.proto",
+      "lineRange": [
+        5,
+        10
+      ],
+      "summary": "承载 RPC 服务标识、方法标识和请求体长度的 Protobuf 消息定义。",
+      "tags": [
+        "protobuf",
+        "rpc-头",
+        "消息模式",
+        "序列化"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/rpc/rpcprovider.cpp",
+      "type": "file",
+      "name": "rpcprovider.cpp",
+      "filePath": "src/rpc/rpcprovider.cpp",
+      "summary": "实现基于 Muduo 的 RPC 服务端：注册 Protobuf 服务，启动 TCP 监听，解析请求头并调用对应服务方法后回传响应。",
+      "tags": [
+        "rpc",
+        "服务端",
+        "muduo",
+        "protobuf",
+        "网络分派"
+      ],
+      "complexity": "complex",
+      "languageNotes": "服务端用 Protobuf 描述符动态定位服务和方法，并以 Closure 将业务完成事件衔接到响应发送。"
+    },
+    {
+      "id": "document:src/skipList/CMakeLists.txt",
+      "type": "document",
+      "name": "CMakeLists.txt",
+      "filePath": "src/skipList/CMakeLists.txt",
+      "summary": "跳表目录的构建占位文件，目前未声明独立构建目标或依赖。",
+      "tags": [
+        "cmake",
+        "构建系统",
+        "跳表",
+        "占位"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/skipList/include/skipList.h",
+      "type": "file",
+      "name": "skipList.h",
+      "filePath": "src/skipList/include/skipList.h",
+      "summary": "提供线程安全的模板跳表及其节点、序列化辅助类型，支持插入、查询、删除、覆盖写入以及 Boost 文本归档持久化。",
+      "tags": [
+        "跳表",
+        "键值存储",
+        "模板",
+        "并发",
+        "持久化"
+      ],
+      "complexity": "complex",
+      "languageNotes": "模板实现全部置于头文件；写入与删除使用互斥锁，而查询未加锁，调用方需理解其并发边界。"
+    },
+    {
+      "id": "document:test/测试文件运行说明.md",
+      "type": "document",
+      "name": "测试文件运行说明.md",
+      "filePath": "test/测试文件运行说明.md",
+      "summary": "说明 defer_run 测试的编译命令与 C++ 标准要求，并记录模板宏在较旧编译配置下的常见报错。",
+      "tags": [
+        "文档",
+        "测试",
+        "cxx17",
+        "编译说明"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:test/defer_run.cpp",
+      "type": "file",
+      "name": "defer_run.cpp",
+      "filePath": "test/defer_run.cpp",
+      "summary": "验证 DEFER 宏在作用域退出时按捕获变量执行两个回调，演示 C++ RAII 式延迟执行。",
+      "tags": [
+        "测试",
+        "defer",
+        "raii",
+        "cxx17"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:test/format.cpp",
+      "type": "file",
+      "name": "format.cpp",
+      "filePath": "test/format.cpp",
+      "summary": "调用公共 format 工具格式化 Raft 断言信息，并通过自定义断言函数展示失败输出路径。",
+      "tags": [
+        "测试",
+        "日志格式化",
+        "断言",
+        "工具函数"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:test/include/defer.h",
+      "type": "file",
+      "name": "defer.h",
+      "filePath": "test/include/defer.h",
+      "summary": "定义不可复制的 Defer 模板与 DEFER 宏，将 lambda 封装为析构时自动执行的作用域退出动作。",
+      "tags": [
+        "raii",
+        "defer",
+        "模板",
+        "测试工具"
+      ],
+      "complexity": "simple",
+      "languageNotes": "借助 __LINE__ 生成局部变量名，避免同一作用域内多个 DEFER 声明冲突。"
+    },
+    {
+      "id": "file:test/run.cpp",
+      "type": "file",
+      "name": "run.cpp",
+      "filePath": "test/run.cpp",
+      "summary": "验证 Boost 文本归档对字符串键值对向量的序列化和反序列化流程。",
+      "tags": [
+        "测试",
+        "boost-serialization",
+        "持久化",
+        "数据验证"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/rpc/mprpcchannel.cpp:CallMethod",
+      "type": "function",
+      "name": "CallMethod",
+      "filePath": "src/rpc/mprpcchannel.cpp",
+      "lineRange": [
+        18,
+        125
+      ],
+      "summary": "序列化 RPC 请求头和参数，通过 TCP 发送请求，并将响应字节解析回 Protobuf Message。",
+      "tags": [
+        "rpc-调用",
+        "序列化",
+        "tcp",
+        "错误处理"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/rpc/mprpcchannel.cpp:newConnect",
+      "type": "function",
+      "name": "newConnect",
+      "filePath": "src/rpc/mprpcchannel.cpp",
+      "lineRange": [
+        127,
+        152
+      ],
+      "summary": "创建 TCP socket 并连接指定 IP 和端口，将连接错误写入调用方提供的错误消息。",
+      "tags": [
+        "tcp",
+        "连接管理",
+        "rpc-客户端",
+        "错误处理"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/rpc/mprpcchannel.cpp:MprpcChannel",
+      "type": "function",
+      "name": "MprpcChannel",
+      "filePath": "src/rpc/mprpcchannel.cpp",
+      "lineRange": [
+        154,
+        172
+      ],
+      "summary": "初始化目标地址和连接状态；按需立即建立连接并最多重试三次。",
+      "tags": [
+        "构造函数",
+        "rpc-客户端",
+        "连接重试",
+        "初始化"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/rpc/mprpcconfig.cpp:LoadConfigFile",
+      "type": "function",
+      "name": "LoadConfigFile",
+      "filePath": "src/rpc/mprpcconfig.cpp",
+      "lineRange": [
+        7,
+        47
+      ],
+      "summary": "逐行读取配置文件，将去除空白后的 key=value 条目保存到配置映射。",
+      "tags": [
+        "配置加载",
+        "文件读取",
+        "键值解析",
+        "rpc"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/rpc/mprpcconfig.cpp:Trim",
+      "type": "function",
+      "name": "Trim",
+      "filePath": "src/rpc/mprpcconfig.cpp",
+      "lineRange": [
+        59,
+        71
+      ],
+      "summary": "就地删除字符串首尾空格，供配置解析标准化键和值。",
+      "tags": [
+        "字符串处理",
+        "配置加载",
+        "工具函数",
+        "标准化"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/rpc/rpcprovider.cpp:NotifyService",
+      "type": "function",
+      "name": "NotifyService",
+      "filePath": "src/rpc/rpcprovider.cpp",
+      "lineRange": [
+        19,
+        39
+      ],
+      "summary": "读取 Protobuf 服务描述符，将服务对象及其方法描述符注册到按名称索引的服务表。",
+      "tags": [
+        "服务注册",
+        "protobuf",
+        "rpc-服务端",
+        "反射"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/rpc/rpcprovider.cpp:Run",
+      "type": "function",
+      "name": "Run",
+      "filePath": "src/rpc/rpcprovider.cpp",
+      "lineRange": [
+        42,
+        108
+      ],
+      "summary": "解析本机地址、记录节点地址信息并启动 Muduo TCP 服务及其事件循环。",
+      "tags": [
+        "服务启动",
+        "muduo",
+        "事件循环",
+        "节点配置"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/rpc/rpcprovider.cpp:OnMessage",
+      "type": "function",
+      "name": "OnMessage",
+      "filePath": "src/rpc/rpcprovider.cpp",
+      "lineRange": [
+        133,
+        235
+      ],
+      "summary": "解码带长度前缀的 RPC 请求，查找注册服务和方法，构造请求/响应对象并发起业务调用。",
+      "tags": [
+        "请求分派",
+        "protobuf",
+        "rpc-服务端",
+        "反序列化",
+        "回调"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/rpc/rpcprovider.cpp:SendRpcResponse",
+      "type": "function",
+      "name": "SendRpcResponse",
+      "filePath": "src/rpc/rpcprovider.cpp",
+      "lineRange": [
+        238,
+        248
+      ],
+      "summary": "将业务响应序列化为字节串并通过 Muduo TCP 连接发回客户端。",
+      "tags": [
+        "响应发送",
+        "protobuf",
+        "tcp",
+        "rpc-服务端"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/skipList/include/skipList.h:Node",
+      "type": "class",
+      "name": "Node",
+      "filePath": "src/skipList/include/skipList.h",
+      "lineRange": [
+        28,
+        68
+      ],
+      "summary": "跳表节点模板，保存键值、节点层级及各层后继指针数组。",
+      "tags": [
+        "跳表",
+        "数据结构",
+        "模板",
+        "链表节点"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/skipList/include/skipList.h:SkipListDump",
+      "type": "class",
+      "name": "SkipListDump",
+      "filePath": "src/skipList/include/skipList.h",
+      "lineRange": [
+        85,
+        100
+      ],
+      "summary": "为跳表持久化准备的键和值向量容器，并提供 Boost 序列化入口。",
+      "tags": [
+        "跳表",
+        "持久化",
+        "boost-serialization",
+        "数据模型"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/skipList/include/skipList.h:SkipList",
+      "type": "class",
+      "name": "SkipList",
+      "filePath": "src/skipList/include/skipList.h",
+      "lineRange": [
+        102,
+        157
+      ],
+      "summary": "模板化跳表容器，封装多层索引、互斥锁和增删查及归档恢复接口。",
+      "tags": [
+        "跳表",
+        "键值存储",
+        "并发",
+        "模板",
+        "持久化"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/skipList/include/skipList.h:insert_element",
+      "type": "function",
+      "name": "insert_element",
+      "filePath": "src/skipList/include/skipList.h",
+      "lineRange": [
+        174,
+        239
+      ],
+      "summary": "在互斥锁保护下查找各层前驱节点，随机生成层级并插入新的键值节点。",
+      "tags": [
+        "跳表",
+        "插入",
+        "并发控制",
+        "随机层级"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/skipList/include/skipList.h:dump_file",
+      "type": "function",
+      "name": "dump_file",
+      "filePath": "src/skipList/include/skipList.h",
+      "lineRange": [
+        249,
+        269
+      ],
+      "summary": "遍历底层链表，将全部键值写入 SkipListDump 并编码为 Boost 文本归档字符串。",
+      "tags": [
+        "跳表",
+        "持久化",
+        "序列化",
+        "boost-serialization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/skipList/include/skipList.h:load_file",
+      "type": "function",
+      "name": "load_file",
+      "filePath": "src/skipList/include/skipList.h",
+      "lineRange": [
+        272,
+        304
+      ],
+      "summary": "从 Boost 文本归档恢复键值集合，并逐项重新插入跳表。",
+      "tags": [
+        "跳表",
+        "持久化",
+        "反序列化",
+        "恢复"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/skipList/include/skipList.h:delete_element",
+      "type": "function",
+      "name": "delete_element",
+      "filePath": "src/skipList/include/skipList.h",
+      "lineRange": [
+        331,
+        370
+      ],
+      "summary": "在锁保护下定位目标节点，重连各层前驱指针并回收节点及空闲层级。",
+      "tags": [
+        "跳表",
+        "删除",
+        "并发控制",
+        "内存管理"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/skipList/include/skipList.h:search_element",
+      "type": "function",
+      "name": "search_element",
+      "filePath": "src/skipList/include/skipList.h",
+      "lineRange": [
+        402,
+        427
+      ],
+      "summary": "从最高层向下遍历跳表，命中键时返回其关联值。",
+      "tags": [
+        "跳表",
+        "查询",
+        "多层索引",
+        "键值存储"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:test/include/defer.h:Defer",
+      "type": "class",
+      "name": "Defer",
+      "filePath": "test/include/defer.h",
+      "lineRange": [
+        11,
+        27
+      ],
+      "summary": "保存可调用对象并在析构时执行，且禁止复制以避免同一回调被重复触发。",
+      "tags": [
+        "raii",
+        "defer",
+        "模板",
+        "资源管理"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:test/run.cpp:SerializablePair",
+      "type": "class",
+      "name": "SerializablePair",
+      "filePath": "test/run.cpp",
+      "lineRange": [
+        11,
+        25
+      ],
+      "summary": "包含两个字符串字段的示例类型，提供 Boost archive 所需的 serialize 模板函数。",
+      "tags": [
+        "测试",
+        "boost-serialization",
+        "数据模型",
+        "模板"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:test/run.cpp:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "test/run.cpp",
+      "lineRange": [
+        27,
+        64
+      ],
+      "summary": "写入三组键值对到文本归档，再读取并打印恢复结果以验证序列化回路。",
+      "tags": [
+        "测试入口",
+        "序列化",
+        "反序列化",
+        "boost"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:example/rpcExample/CMakeLists.txt",
+      "target": "document:example/rpcExample/callee/CMakeLists.txt",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:example/rpcExample/CMakeLists.txt",
+      "target": "document:example/rpcExample/caller/CMakeLists.txt",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "schema:example/rpcExample/friend.proto",
+      "target": "schema:example/rpcExample/friend.proto:ResultCode",
+      "type": "defines_schema",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "schema:example/rpcExample/friend.proto",
+      "target": "file:example/rpcExample/callee/friendService.cpp",
+      "type": "defines_schema",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "schema:example/rpcExample/friend.proto",
+      "target": "file:example/rpcExample/caller/callFriendService.cpp",
+      "type": "defines_schema",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "document:example/rpcExample/rpc_example.md",
+      "target": "schema:example/rpcExample/friend.proto",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:example/rpcExample/rpc_example.md",
+      "target": "file:example/rpcExample/callee/friendService.cpp",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:example/rpcExample/rpc_example.md",
+      "target": "file:example/rpcExample/caller/callFriendService.cpp",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "schema:src/raftRpcPro/kvServerRPC.proto",
+      "target": "schema:src/raftRpcPro/kvServerRPC.proto:GetArgs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/kvServerRPC.proto",
+      "target": "schema:src/raftRpcPro/kvServerRPC.proto:GetReply",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/kvServerRPC.proto",
+      "target": "schema:src/raftRpcPro/kvServerRPC.proto:PutAppendArgs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/kvServerRPC.proto",
+      "target": "schema:src/raftRpcPro/kvServerRPC.proto:PutAppendReply",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/kvServerRPC.proto",
+      "target": "endpoint:src/raftRpcPro/kvServerRPC.proto:rpc-kvServerRpc.PutAppend",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/kvServerRPC.proto",
+      "target": "endpoint:src/raftRpcPro/kvServerRPC.proto:rpc-kvServerRpc.Get",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/raftRPC.proto",
+      "target": "schema:src/raftRpcPro/raftRPC.proto:LogEntry",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/raftRPC.proto",
+      "target": "schema:src/raftRpcPro/raftRPC.proto:AppendEntriesArgs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/raftRPC.proto",
+      "target": "schema:src/raftRpcPro/raftRPC.proto:AppendEntriesReply",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/raftRPC.proto",
+      "target": "schema:src/raftRpcPro/raftRPC.proto:RequestVoteArgs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/raftRPC.proto",
+      "target": "schema:src/raftRpcPro/raftRPC.proto:RequestVoteReply",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/raftRPC.proto",
+      "target": "schema:src/raftRpcPro/raftRPC.proto:InstallSnapshotRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/raftRPC.proto",
+      "target": "schema:src/raftRpcPro/raftRPC.proto:InstallSnapshotResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/raftRPC.proto",
+      "target": "endpoint:src/raftRpcPro/raftRPC.proto:rpc-raftRpc.AppendEntries",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/raftRPC.proto",
+      "target": "endpoint:src/raftRpcPro/raftRPC.proto:rpc-raftRpc.InstallSnapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/raftRpcPro/raftRPC.proto",
+      "target": "endpoint:src/raftRpcPro/raftRPC.proto:rpc-raftRpc.RequestVote",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/fiberExample/server.cpp",
+      "target": "function:example/fiberExample/server.cpp:test_accept",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/fiberExample/server.cpp",
+      "target": "function:example/fiberExample/server.cpp:test_iomanager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/fiberExample/test_hook.cpp",
+      "target": "function:example/fiberExample/test_hook.cpp:test_sleep",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/fiberExample/test_hook.cpp",
+      "target": "function:example/fiberExample/test_hook.cpp:test_sock",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/fiberExample/test_iomanager.cpp",
+      "target": "function:example/fiberExample/test_iomanager.cpp:do_io_write",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/fiberExample/test_iomanager.cpp",
+      "target": "function:example/fiberExample/test_iomanager.cpp:do_io_read",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/fiberExample/test_iomanager.cpp",
+      "target": "function:example/fiberExample/test_iomanager.cpp:test_io",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/fiberExample/test_scheduler.cpp",
+      "target": "function:example/fiberExample/test_scheduler.cpp:test_user_caller_1",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/fiberExample/test_scheduler.cpp",
+      "target": "function:example/fiberExample/test_scheduler.cpp:test_user_caller_2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/fiberExample/test_thread.cc",
+      "target": "function:example/fiberExample/test_thread.cc:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/raftCoreExample/caller.cpp",
+      "target": "function:example/raftCoreExample/caller.cpp:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/raftCoreExample/raftKvDB.cpp",
+      "target": "function:example/raftCoreExample/raftKvDB.cpp:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/rpcExample/callee/friendService.cpp",
+      "target": "class:example/rpcExample/callee/friendService.cpp:FriendService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/rpcExample/caller/callFriendService.cpp",
+      "target": "function:example/rpcExample/caller/callFriendService.cpp:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:example/rpcExample/friend.pb.cc",
+      "target": "file:example/rpcExample/friend.pb.h",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/common/util.cpp",
+      "target": "function:src/common/util.cpp:getReleasePort",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/common/util.cpp",
+      "target": "function:src/common/util.cpp:isReleasePort",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/common/util.cpp",
+      "target": "function:src/common/util.cpp:DPrintf",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/fd_manager.cpp",
+      "target": "function:src/fiber/fd_manager.cpp:init",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/fd_manager.cpp",
+      "target": "function:src/fiber/fd_manager.cpp:get",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/fiber.cpp",
+      "target": "class:src/fiber/fiber.cpp:StackAllocator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/fiber.cpp",
+      "target": "function:src/fiber/fiber.cpp:GetThis",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/fiber.cpp",
+      "target": "function:src/fiber/fiber.cpp:resume",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/fiber.cpp",
+      "target": "function:src/fiber/fiber.cpp:yield",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/fiber.cpp",
+      "target": "function:src/fiber/fiber.cpp:MainFunc",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/fiber.cpp",
+      "target": "function:src/fiber/fiber.cpp:reset",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/hook.cpp",
+      "target": "class:src/fiber/hook.cpp:_HOOKIniter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/hook.cpp",
+      "target": "function:src/fiber/hook.cpp:hook_init",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/iomanager.cpp",
+      "target": "function:src/fiber/iomanager.cpp:IOManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/iomanager.cpp",
+      "target": "function:src/fiber/iomanager.cpp:addEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/iomanager.cpp",
+      "target": "function:src/fiber/iomanager.cpp:delEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/iomanager.cpp",
+      "target": "function:src/fiber/iomanager.cpp:cancelEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/iomanager.cpp",
+      "target": "function:src/fiber/iomanager.cpp:cancelAll",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/iomanager.cpp",
+      "target": "function:src/fiber/iomanager.cpp:idle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/scheduler.cpp",
+      "target": "function:src/fiber/scheduler.cpp:Scheduler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/scheduler.cpp",
+      "target": "function:src/fiber/scheduler.cpp:start",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/scheduler.cpp",
+      "target": "function:src/fiber/scheduler.cpp:run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/scheduler.cpp",
+      "target": "function:src/fiber/scheduler.cpp:stop",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/thread.cpp",
+      "target": "function:src/fiber/thread.cpp:Thread",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/thread.cpp",
+      "target": "function:src/fiber/thread.cpp:join",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/timer.cpp",
+      "target": "function:src/fiber/timer.cpp:Comparator::operator()",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/timer.cpp",
+      "target": "function:src/fiber/timer.cpp:cancel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/timer.cpp",
+      "target": "function:src/fiber/timer.cpp:refresh",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/timer.cpp",
+      "target": "function:src/fiber/timer.cpp:reset",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/timer.cpp",
+      "target": "function:src/fiber/timer.cpp:getNextTimer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/timer.cpp",
+      "target": "function:src/fiber/timer.cpp:listExpiredCb",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/timer.cpp",
+      "target": "function:src/fiber/timer.cpp:addTimer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/fiber/iomanager.cpp",
+      "target": "file:src/fiber/scheduler.cpp",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/fiber/iomanager.cpp",
+      "target": "file:src/fiber/timer.cpp",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/fiber/scheduler.cpp",
+      "target": "file:src/fiber/fiber.cpp",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/fiber/hook.cpp",
+      "target": "file:src/fiber/iomanager.cpp",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/raftClerk/include/clerk.h",
+      "target": "class:src/raftClerk/include/clerk.h:Clerk",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftClerk/include/raftServerRpcUtil.h",
+      "target": "class:src/raftClerk/include/raftServerRpcUtil.h:raftServerRpcUtil",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/include/ApplyMsg.h",
+      "target": "class:src/raftCore/include/ApplyMsg.h:ApplyMsg",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/include/Persister.h",
+      "target": "class:src/raftCore/include/Persister.h:Persister",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/include/kvServer.h",
+      "target": "class:src/raftCore/include/kvServer.h:KvServer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/include/raft.h",
+      "target": "class:src/raftCore/include/raft.h:Raft",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/include/raft.h",
+      "target": "class:src/raftCore/include/raft.h:BoostPersistRaftNode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftClerk/clerk.cpp",
+      "target": "function:src/raftClerk/clerk.cpp:Get",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftClerk/clerk.cpp",
+      "target": "function:src/raftClerk/clerk.cpp:PutAppend",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftClerk/clerk.cpp",
+      "target": "function:src/raftClerk/clerk.cpp:Init",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/Persister.cpp",
+      "target": "function:src/raftCore/Persister.cpp:ReadSnapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/Persister.cpp",
+      "target": "function:src/raftCore/Persister.cpp:ReadRaftState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/Persister.cpp",
+      "target": "function:src/raftCore/Persister.cpp:Persister",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/kvServer.cpp",
+      "target": "function:src/raftCore/kvServer.cpp:DprintfKVDB",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/kvServer.cpp",
+      "target": "function:src/raftCore/kvServer.cpp:ExecuteAppendOpOnKVDB",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/kvServer.cpp",
+      "target": "function:src/raftCore/kvServer.cpp:ExecuteGetOpOnKVDB",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/kvServer.cpp",
+      "target": "function:src/raftCore/kvServer.cpp:Get",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/kvServer.cpp",
+      "target": "function:src/raftCore/kvServer.cpp:GetCommandFromRaft",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/kvServer.cpp",
+      "target": "function:src/raftCore/kvServer.cpp:PutAppend",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/kvServer.cpp",
+      "target": "function:src/raftCore/kvServer.cpp:ReadRaftApplyCommandLoop",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/kvServer.cpp",
+      "target": "function:src/raftCore/kvServer.cpp:ReadSnapShotToInstall",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/kvServer.cpp",
+      "target": "function:src/raftCore/kvServer.cpp:SendMessageToWaitChan",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/kvServer.cpp",
+      "target": "function:src/raftCore/kvServer.cpp:KvServer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/include/raftRpcUtil.h",
+      "target": "class:src/raftCore/include/raftRpcUtil.h:RaftRpcUtil",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/rpc/include/mprpcchannel.h",
+      "target": "class:src/rpc/include/mprpcchannel.h:MprpcChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/rpc/include/mprpcconfig.h",
+      "target": "class:src/rpc/include/mprpcconfig.h:MprpcConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/rpc/include/mprpccontroller.h",
+      "target": "class:src/rpc/include/mprpccontroller.h:MprpcController",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/rpc/include/rpcprovider.h",
+      "target": "class:src/rpc/include/rpcprovider.h:RpcProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:AppendEntries1",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:applierTicker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:CondInstallSnapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:doElection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:doHeartBeat",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:electionTimeOutTicker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:getApplyLogs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:getPrevLogInfo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:GetState",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:InstallSnapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:leaderHearBeatTicker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:leaderSendSnapShot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:leaderUpdateCommitIndex",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:matchLog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:RequestVote",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:getLastLogIndexAndTerm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:getLogTermFromLogIndex",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:sendRequestVote",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:sendAppendEntries",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:Start",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:init",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:persistData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:readPersist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/raftCore/raft.cpp",
+      "target": "function:src/raftCore/raft.cpp:Snapshot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/rpc/mprpcchannel.cpp",
+      "target": "function:src/rpc/mprpcchannel.cpp:CallMethod",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/rpc/mprpcchannel.cpp",
+      "target": "function:src/rpc/mprpcchannel.cpp:newConnect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/rpc/mprpcchannel.cpp",
+      "target": "function:src/rpc/mprpcchannel.cpp:MprpcChannel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/rpc/mprpcconfig.cpp",
+      "target": "function:src/rpc/mprpcconfig.cpp:LoadConfigFile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/rpc/mprpcconfig.cpp",
+      "target": "function:src/rpc/mprpcconfig.cpp:Trim",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/rpc/rpcprovider.cpp",
+      "target": "function:src/rpc/rpcprovider.cpp:NotifyService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/rpc/rpcprovider.cpp",
+      "target": "function:src/rpc/rpcprovider.cpp:Run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/rpc/rpcprovider.cpp",
+      "target": "function:src/rpc/rpcprovider.cpp:OnMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/rpc/rpcprovider.cpp",
+      "target": "function:src/rpc/rpcprovider.cpp:SendRpcResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "schema:src/rpc/rpcheader.proto",
+      "target": "schema:src/rpc/rpcheader.proto:RpcHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/skipList/include/skipList.h",
+      "target": "class:src/skipList/include/skipList.h:Node",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/skipList/include/skipList.h",
+      "target": "class:src/skipList/include/skipList.h:SkipListDump",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/skipList/include/skipList.h",
+      "target": "class:src/skipList/include/skipList.h:SkipList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/skipList/include/skipList.h",
+      "target": "function:src/skipList/include/skipList.h:insert_element",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/skipList/include/skipList.h",
+      "target": "function:src/skipList/include/skipList.h:dump_file",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/skipList/include/skipList.h",
+      "target": "function:src/skipList/include/skipList.h:load_file",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/skipList/include/skipList.h",
+      "target": "function:src/skipList/include/skipList.h:delete_element",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/skipList/include/skipList.h",
+      "target": "function:src/skipList/include/skipList.h:search_element",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:test/include/defer.h",
+      "target": "class:test/include/defer.h:Defer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:test/run.cpp",
+      "target": "class:test/run.cpp:SerializablePair",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:test/run.cpp",
+      "target": "function:test/run.cpp:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:test/defer_run.cpp",
+      "target": "file:test/include/defer.h",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test/format.cpp",
+      "target": "file:src/common/include/util.h",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:src/rpc/mprpcchannel.cpp:CallMethod",
+      "target": "function:src/rpc/mprpcchannel.cpp:newConnect",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/rpc/mprpcconfig.cpp:LoadConfigFile",
+      "target": "function:src/rpc/mprpcconfig.cpp:Trim",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "schema:src/rpc/rpcheader.proto",
+      "target": "file:src/rpc/rpcheader.pb.cpp",
+      "type": "defines_schema",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "schema:src/rpc/rpcheader.proto",
+      "target": "file:src/rpc/mprpcchannel.cpp",
+      "type": "defines_schema",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "schema:src/rpc/rpcheader.proto",
+      "target": "file:src/rpc/rpcprovider.cpp",
+      "type": "defines_schema",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "document:test/测试文件运行说明.md",
+      "target": "file:test/defer_run.cpp",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:test/测试文件运行说明.md",
+      "target": "file:test/include/defer.h",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:automation",
+      "name": "自动化与社区协作",
+      "description": "GitHub Actions 工作流负责首次互动和贡献者名单更新，支撑仓库的持续社区维护。",
+      "nodeIds": [
+        "pipeline:.github/workflows/greetings.yml",
+        "pipeline:.github/workflows/update_readme_contributors.yml"
+      ]
+    },
+    {
+      "id": "layer:build-development",
+      "name": "构建与开发支撑",
+      "description": "CMake 入口、IDE 运行配置与代码质量工具共同定义 C++20 工程的构建、调试和格式化流程。",
+      "nodeIds": [
+        "document:example/rpcExample/CMakeLists.txt",
+        "document:src/raftRpcPro/CMakeLists.txt",
+        "file:.clang-format",
+        "file:.clang-tidy",
+        "config:.run/provider.run.xml",
+        "config:.run/raftCoreRun.run.xml",
+        "document:CMakeLists.txt",
+        "document:example/CMakeLists.txt",
+        "document:example/fiberExample/CMakeLists.txt",
+        "document:example/raftCoreExample/CMakeLists.txt",
+        "document:example/rpcExample/callee/CMakeLists.txt",
+        "document:example/rpcExample/caller/CMakeLists.txt",
+        "file:format.sh",
+        "document:src/CMakeLists.txt",
+        "document:src/common/CMakeLists.txt",
+        "document:src/fiber/CMakeLists.txt",
+        "document:src/raftClerk/CMakeLists.txt",
+        "document:src/raftCore/CMakeLists.txt",
+        "document:src/rpc/CMakeLists.txt",
+        "document:src/skipList/CMakeLists.txt"
+      ]
+    },
+    {
+      "id": "layer:documentation",
+      "name": "项目文档",
+      "description": "目录导览和 RPC 编码图示记录项目结构与协议设计，帮助学习者理解实现背景。",
+      "nodeIds": [
+        "document:docs/目录导览.md",
+        "file:docs/rpc编码方式的改进.html"
+      ]
+    },
+    {
+      "id": "layer:coroutine-runtime",
+      "name": "协程并发运行时",
+      "description": "Fiber、调度器、epoll I/O、定时器、线程和 Hook 组成协作式并发与异步网络的基础运行时。",
+      "nodeIds": [
+        "file:src/fiber/fd_manager.cpp",
+        "file:src/fiber/fiber.cpp",
+        "file:src/fiber/hook.cpp",
+        "file:src/fiber/include/fd_manager.hpp",
+        "file:src/fiber/include/fiber.hpp",
+        "file:src/fiber/include/hook.hpp",
+        "file:src/fiber/include/iomanager.hpp",
+        "file:src/fiber/include/monsoon.h",
+        "file:src/fiber/include/mutex.hpp",
+        "file:src/fiber/include/noncopyable.hpp",
+        "file:src/fiber/include/scheduler.hpp",
+        "file:src/fiber/include/singleton.hpp",
+        "file:src/fiber/include/thread.hpp",
+        "file:src/fiber/include/timer.hpp",
+        "file:src/fiber/include/utils.hpp",
+        "file:src/fiber/iomanager.cpp",
+        "file:src/fiber/scheduler.cpp",
+        "file:src/fiber/thread.cpp",
+        "file:src/fiber/timer.cpp",
+        "file:src/fiber/utils.cpp"
+      ]
+    },
+    {
+      "id": "layer:rpc-protocol",
+      "name": "RPC 传输与协议契约",
+      "description": "自定义 RPC 通道、服务发布器、传输头及 Raft/KV Protobuf 契约共同提供节点间和客户端到服务端的通信边界。",
+      "nodeIds": [
+        "schema:src/raftRpcPro/kvServerRPC.proto",
+        "schema:src/raftRpcPro/kvServerRPC.proto:GetArgs",
+        "schema:src/raftRpcPro/kvServerRPC.proto:GetReply",
+        "schema:src/raftRpcPro/kvServerRPC.proto:PutAppendArgs",
+        "schema:src/raftRpcPro/kvServerRPC.proto:PutAppendReply",
+        "endpoint:src/raftRpcPro/kvServerRPC.proto:rpc-kvServerRpc.PutAppend",
+        "endpoint:src/raftRpcPro/kvServerRPC.proto:rpc-kvServerRpc.Get",
+        "schema:src/raftRpcPro/raftRPC.proto",
+        "schema:src/raftRpcPro/raftRPC.proto:LogEntry",
+        "schema:src/raftRpcPro/raftRPC.proto:AppendEntriesArgs",
+        "schema:src/raftRpcPro/raftRPC.proto:AppendEntriesReply",
+        "schema:src/raftRpcPro/raftRPC.proto:RequestVoteArgs",
+        "schema:src/raftRpcPro/raftRPC.proto:RequestVoteReply",
+        "schema:src/raftRpcPro/raftRPC.proto:InstallSnapshotRequest",
+        "schema:src/raftRpcPro/raftRPC.proto:InstallSnapshotResponse",
+        "endpoint:src/raftRpcPro/raftRPC.proto:rpc-raftRpc.AppendEntries",
+        "endpoint:src/raftRpcPro/raftRPC.proto:rpc-raftRpc.InstallSnapshot",
+        "endpoint:src/raftRpcPro/raftRPC.proto:rpc-raftRpc.RequestVote",
+        "file:src/raftRpcPro/kvServerRPC.pb.cc",
+        "file:src/raftRpcPro/raftRPC.pb.cc",
+        "file:src/raftRpcPro/include/kvServerRPC.pb.h",
+        "file:src/raftRpcPro/include/raftRPC.pb.h",
+        "file:src/rpc/include/mprpcchannel.h",
+        "file:src/rpc/include/mprpcconfig.h",
+        "file:src/rpc/include/mprpccontroller.h",
+        "file:src/rpc/include/rpcheader.pb.h",
+        "file:src/rpc/include/rpcprovider.h",
+        "file:src/rpc/mprpcchannel.cpp",
+        "file:src/rpc/mprpcconfig.cpp",
+        "file:src/rpc/mprpccontroller.cpp",
+        "file:src/rpc/rpcheader.pb.cpp",
+        "schema:src/rpc/rpcheader.proto",
+        "schema:src/rpc/rpcheader.proto:RpcHeader",
+        "file:src/rpc/rpcprovider.cpp",
+        "schema:example/rpcExample/friend.proto:ResultCode"
+      ]
+    },
+    {
+      "id": "layer:raft-kv-core",
+      "name": "Raft 与键值核心",
+      "description": "Raft 共识、KV 状态机、持久化、快照、跳表和公共工具实现复制状态机的核心行为与本地数据承载。",
+      "nodeIds": [
+        "file:src/common/include/config.h",
+        "file:src/common/include/util.h",
+        "file:src/common/util.cpp",
+        "file:src/raftCore/Persister.cpp",
+        "file:src/raftCore/include/ApplyMsg.h",
+        "file:src/raftCore/include/Persister.h",
+        "file:src/raftCore/include/kvServer.h",
+        "file:src/raftCore/include/raft.h",
+        "file:src/raftCore/include/raftRpcUtil.h",
+        "file:src/raftCore/kvServer.cpp",
+        "file:src/raftCore/raft.cpp",
+        "file:src/raftCore/raftRpcUtil.cpp",
+        "file:src/skipList/include/skipList.h"
+      ]
+    },
+    {
+      "id": "layer:client-access",
+      "name": "客户端访问层",
+      "description": "Clerk 与节点 RPC 代理封装客户端身份、请求序号、领导者重试及键值读写调用。",
+      "nodeIds": [
+        "file:src/raftClerk/clerk.cpp",
+        "file:src/raftClerk/include/clerk.h",
+        "file:src/raftClerk/include/raftServerRpcUtil.h",
+        "file:src/raftClerk/raftServerRpcUtil.cpp"
+      ]
+    },
+    {
+      "id": "layer:examples",
+      "name": "示例与集成演示",
+      "description": "协程、基础 RPC 与 Raft KV 示例将各模块组合为可执行的学习场景，并包含示例专用的协议生成代码。",
+      "nodeIds": [
+        "schema:example/rpcExample/friend.proto",
+        "document:example/rpcExample/rpc_example.md",
+        "file:example/fiberExample/server.cpp",
+        "file:example/fiberExample/test_hook.cpp",
+        "file:example/fiberExample/test_iomanager.cpp",
+        "file:example/fiberExample/test_scheduler.cpp",
+        "file:example/fiberExample/test_thread.cc",
+        "file:example/raftCoreExample/caller.cpp",
+        "file:example/raftCoreExample/raftKvDB.cpp",
+        "file:example/rpcExample/callee/friendService.cpp",
+        "file:example/rpcExample/caller/callFriendService.cpp",
+        "file:example/rpcExample/friend.pb.cc",
+        "file:example/rpcExample/friend.pb.h"
+      ]
+    },
+    {
+      "id": "layer:tests",
+      "name": "测试与验证",
+      "description": "轻量测试和运行说明覆盖 RAII 延迟执行、格式化与序列化等基础行为，作为学习过程中的验证材料。",
+      "nodeIds": [
+        "document:test/测试文件运行说明.md",
+        "file:test/defer_run.cpp",
+        "file:test/format.cpp",
+        "file:test/include/defer.h",
+        "file:test/run.cpp"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "先建立项目地图与构建入口",
+      "description": "先阅读目录导览，确认 common、fiber、rpc、raftCore、raftClerk 和 skipList 的职责；再从顶层 CMake 看到项目以 C++20 构建，并把 src 与 example 组合进同一工程。后续阅读始终以这个分层地图校准当前位置。",
+      "nodeIds": [
+        "document:docs/目录导览.md",
+        "document:CMakeLists.txt",
+        "document:src/CMakeLists.txt",
+        "document:example/CMakeLists.txt"
+      ],
+      "languageLesson": "练习 CMake 的 add_subdirectory 式分层构建，以及 target 如何把多个 C++ 源码目录组织为一个可调试工程。注意顶层明确设置 C++20；脱离这套构建配置单独编译源文件，容易遇到标准版本或依赖路径不一致。"
+    },
+    {
+      "order": 2,
+      "title": "把 Protobuf 当作跨模块契约",
+      "description": "先读通用 RpcHeader：它在 TCP 字节流上标识服务、方法与参数长度；然后比较 KV 客户端协议和 Raft 节点间协议，理解同一个系统中“业务请求”和“共识控制消息”是两条不同边界。不要直接修改生成的 .pb 文件，应从 .proto 重新生成。",
+      "nodeIds": [
+        "schema:src/rpc/rpcheader.proto",
+        "schema:src/raftRpcPro/kvServerRPC.proto",
+        "schema:src/raftRpcPro/raftRPC.proto",
+        "file:src/raftRpcPro/include/kvServerRPC.pb.h",
+        "file:src/raftRpcPro/include/raftRPC.pb.h"
+      ],
+      "languageLesson": "学习 proto3 的消息、service 与生成 C++ Stub 的关系。特别留意 KV 请求中的 clientId 与 requestId：它们是服务端去重、实现至少一次网络重试语义的基础；Raft RPC 中的 term、日志位置和 commitIndex 则维护共识不变量。"
+    },
+    {
+      "order": 3,
+      "title": "跟踪一次自定义 RPC 的收发链路",
+      "description": "从客户端通道的 CallMethod 开始，观察它如何序列化 RpcHeader 和参数、建立或重连 TCP 连接；再转到服务端 Provider，理解其注册服务、解析请求、分派 Protobuf 方法并回写响应的镜像流程。编码设计说明可作为字节帧格式的辅助材料。",
+      "nodeIds": [
+        "file:src/rpc/include/mprpcchannel.h",
+        "file:src/rpc/mprpcchannel.cpp",
+        "file:src/rpc/include/rpcprovider.h",
+        "file:src/rpc/rpcprovider.cpp",
+        "file:docs/rpc编码方式的改进.html"
+      ],
+      "languageLesson": "重点理解 Protobuf::RpcChannel 与 RpcController 的职责分界：Channel 负责传输和编解码，Controller 承载单次调用失败状态。注意 TCP 没有消息边界，因此请求头中的参数长度不是装饰字段，而是正确切帧和安全解析的前提。"
+    },
+    {
+      "order": 4,
+      "title": "从 Fiber 到 epoll 的协程运行时",
+      "description": "先掌握 Fiber 的上下文切换和状态，再阅读 Scheduler 如何在线程池中挑选可运行任务，最后看 IOManager 把 epoll 事件与定时器、调度器连接起来。Hook 层解释了阻塞式 socket 或 sleep 调用如何让出当前协程而非阻塞整个工作线程。",
+      "nodeIds": [
+        "file:src/fiber/include/fiber.hpp",
+        "file:src/fiber/fiber.cpp",
+        "file:src/fiber/include/scheduler.hpp",
+        "file:src/fiber/scheduler.cpp",
+        "file:src/fiber/include/iomanager.hpp",
+        "file:src/fiber/iomanager.cpp",
+        "file:src/fiber/hook.cpp"
+      ],
+      "languageLesson": "这里实现的是用户态 Fiber，不是 C++20 coroutine 关键字协程；二者都依赖挂起/恢复，但本项目以 ucontext 和显式调度实现。阅读时优先追踪 resume、yield、run、idle 的状态转移，并注意 Hook 的线程局部开关决定系统调用是否被协程化。"
+    },
+    {
+      "order": 5,
+      "title": "用小示例验证并发运行时直觉",
+      "description": "不要直接在 Raft 中猜测协程行为：先运行或阅读调度、I/O、Hook 示例，观察任务投递、事件回调、socket 读写和 sleep 让出的效果。server 示例把监听 socket 和连接事件注册到 IOManager，是把运行时概念落到网络程序的最短路径。",
+      "nodeIds": [
+        "file:example/fiberExample/test_scheduler.cpp",
+        "file:example/fiberExample/test_iomanager.cpp",
+        "file:example/fiberExample/test_hook.cpp",
+        "file:example/fiberExample/server.cpp",
+        "document:example/fiberExample/CMakeLists.txt"
+      ],
+      "languageLesson": "通过独立可执行示例验证假设，再把结论带入共识代码。关注生命周期：调度器停止前必须让任务、定时器和 epoll 事件收敛；否则学习 Raft 时出现的“卡住”现象可能其实来自运行时未退出。"
+    },
+    {
+      "order": 6,
+      "title": "进入 Raft：选举、复制与提交",
+      "description": "从 Raft 类型声明建立状态字段与公共接口的全景，再读实现中的选举超时、投票、心跳、AppendEntries、提交推进和应用循环。对照 raftRPC.proto 中的请求与响应，逐项确认每个网络字段服务于哪条共识规则。",
+      "nodeIds": [
+        "file:src/raftCore/include/raft.h",
+        "file:src/raftCore/raft.cpp",
+        "file:src/raftCore/include/raftRpcUtil.h",
+        "file:src/raftCore/raftRpcUtil.cpp",
+        "schema:src/raftRpcPro/raftRPC.proto"
+      ],
+      "languageLesson": "按状态机读 Raft：Follower、Candidate、Leader 的转换应总是与 term、投票和超时绑定；按日志复制读时，要保持 prevLog、nextIndex、matchIndex 与 commitIndex 的关系。分布式问题的关键不是单个函数能否运行，而是失败、延迟和重试后这些不变量是否仍成立。"
+    },
+    {
+      "order": 7,
+      "title": "理解持久化、快照与状态机投递",
+      "description": "Raft 不能只靠内存日志：Persister 负责保存 Raft 状态与快照，ApplyMsg 是把已提交命令或快照交给上层状态机的边界。将这些文件与 raft.cpp 的 persist、readPersist、Snapshot、InstallSnapshot 路径一起阅读，才能理解节点重启和落后节点追赶。",
+      "nodeIds": [
+        "file:src/raftCore/include/Persister.h",
+        "file:src/raftCore/Persister.cpp",
+        "file:src/raftCore/include/ApplyMsg.h",
+        "file:src/raftCore/raft.cpp",
+        "schema:src/raftRpcPro/raftRPC.proto:InstallSnapshotRequest"
+      ],
+      "languageLesson": "区分“已提交”“已应用”“已持久化”三种位置：它们通常不同步，但都必须在崩溃恢复时被正确重建。快照会截断日志历史，因此索引换算和安装时机是最容易破坏正确性的区域。"
+    },
+    {
+      "order": 8,
+      "title": "把共识日志变成 KV 服务",
+      "description": "KvServer 接收 Get、Put、Append RPC，把写操作提交给 Raft，并在应用循环中执行已提交命令；它还利用客户端标识和请求序号避免重试造成重复写入。读取接口、等待通知和快照安装共同构成业务层与共识层之间的适配器。",
+      "nodeIds": [
+        "file:src/raftCore/include/kvServer.h",
+        "file:src/raftCore/kvServer.cpp",
+        "schema:src/raftRpcPro/kvServerRPC.proto",
+        "endpoint:src/raftRpcPro/kvServerRPC.proto:rpc-kvServerRpc.Get",
+        "endpoint:src/raftRpcPro/kvServerRPC.proto:rpc-kvServerRpc.PutAppend"
+      ],
+      "languageLesson": "这里是复制状态机模式的落点：业务命令只有在 Raft 提交并通过 ApplyMsg 抵达后才能修改 KV 状态。注意请求去重必须覆盖客户端重试；仅仅依赖网络调用成功与否，不能保证写操作只执行一次。"
+    },
+    {
+      "order": 9,
+      "title": "从 Clerk 视角理解领导者重试",
+      "description": "Clerk 为每个服务器维护 RPC 代理，并优先尝试最近一次成功的领导者；请求失败或遇到非领导者时会轮换节点。把它与 KV 协议一起读，就能从外部调用者角度理解 Raft 领导者变化如何被封装为可重试的 Get、Put、Append。",
+      "nodeIds": [
+        "file:src/raftClerk/include/clerk.h",
+        "file:src/raftClerk/clerk.cpp",
+        "file:src/raftClerk/include/raftServerRpcUtil.h",
+        "file:src/raftClerk/raftServerRpcUtil.cpp",
+        "schema:src/raftRpcPro/kvServerRPC.proto:PutAppendArgs"
+      ],
+      "languageLesson": "客户端重试应保持同一 clientId/requestId，而不是每次生成新请求；否则服务端无法识别重复操作。最近领导者缓存只是性能优化，不能被当作正确性前提，因为领导权可能在任意请求间变化。"
+    },
+    {
+      "order": 10,
+      "title": "补齐本地数据结构：线程安全跳表",
+      "description": "跳表提供插入、查询、删除、覆盖写和序列化的可学习实现，是理解 KV 状态机本地数据承载方式的独立切入点。它与 Raft 的日志复制职责不同：跳表解决单副本数据组织，Raft 解决多副本命令顺序与故障一致性。",
+      "nodeIds": [
+        "file:src/skipList/include/skipList.h",
+        "document:src/skipList/CMakeLists.txt",
+        "file:test/run.cpp"
+      ],
+      "languageLesson": "学习模板类、随机层高、指针更新与互斥保护如何配合；再看 Boost 文本归档如何持久化辅助数据。注意项目中的跳表构建文件目前是占位入口，阅读其实现不等于它已被完整接入主 KV 执行路径。"
+    },
+    {
+      "order": 11,
+      "title": "以端到端示例、测试和 CI 收尾",
+      "description": "Raft KV 服务端示例会按节点数与配置启动多个 KvServer，客户端示例持续发起查询，适合用来串起前面所有模块。最后阅读基础测试与 GitHub Actions：测试展示 RAII 延迟执行、格式化和序列化等小知识点，CI 则说明仓库目前主要维护社区交互与贡献者名单，而非完整的构建测试门禁。",
+      "nodeIds": [
+        "file:example/raftCoreExample/raftKvDB.cpp",
+        "file:example/raftCoreExample/caller.cpp",
+        "document:example/raftCoreExample/CMakeLists.txt",
+        "document:test/测试文件运行说明.md",
+        "file:test/defer_run.cpp",
+        "pipeline:.github/workflows/greetings.yml",
+        "pipeline:.github/workflows/update_readme_contributors.yml"
+      ],
+      "languageLesson": "端到端调试时从进程参数、端口和日志观察请求是否经过 Clerk、KV、Raft 与 RPC；不要只看最终返回值。测试覆盖范围偏基础工具，因此修改共识或 RPC 后应额外做多节点、领导者切换、重试和重启恢复验证。"
+    }
+  ]
+}
