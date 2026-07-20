@@ -8,6 +8,14 @@ project(KVRaftCpp)
 
 
 set(CMAKE_CXX_STANDARD 20)
+
+if(NOT DEFINED Protobuf_ROOT AND EXISTS "/usr/local/include/google/protobuf/message.h" AND
+   EXISTS "/usr/local/lib/libprotobuf.so")
+  set(Protobuf_ROOT "/usr/local" CACHE PATH "Root directory of the preferred Protobuf installation")
+endif()
+
+find_package(Protobuf REQUIRED MODULE)
+
 # 生成debug版本，可以进行gdb调试
 set(CMAKE_BUILD_TYPE "Debug")
 
