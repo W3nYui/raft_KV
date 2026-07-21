@@ -4,6 +4,7 @@ package fixbug;  //所在的命名空间
 
 option cc_generic_services = true;  //开启桩stub服务
 
+// 定义返回的类型
 message ResultCode
 {
     int32 errcode = 1;

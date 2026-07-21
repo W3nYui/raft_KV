@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
   };
 
   std::random_device random_device;
-  std::mt19937 generator(random_device());
+  std::mt19937 generator(random_device()); // 生成伪随机数
   // 随机打乱名称，使每次写入的是不同顺序的名字。
   std::shuffle(friend_names.begin(), friend_names.end(), generator);
 
@@ -40,10 +40,6 @@ int main(int argc, char **argv) {
     operations.push_back(false);  // false: GetFriendsList
   }
   std::shuffle(operations.begin(), operations.end(), generator);
-
-
-
-
 
   //長連接測試 ，發送20次請求 且这20次是随机穿插的写入/读取
   int count = 20;

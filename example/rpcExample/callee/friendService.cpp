@@ -84,9 +84,10 @@ int main(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
-  std::string ip = "127.0.0.1";
-  short port = 7788;
-  auto stub = new fixbug::FiendServiceRpc_Stub(new MprpcChannel(ip, port, false));
+  // 这里的服务端并没有使用到stub的方法。
+  // std::string ip = "127.0.0.1";
+  // short port = 7788;
+  // auto stub = new fixbug::FiendServiceRpc_Stub(new MprpcChannel(ip, port, false));
   // provider是一个rpc网络服务对象。把UserService对象发布到rpc节点上
   RpcProvider provider;
   provider.NotifyService(new FriendService());
