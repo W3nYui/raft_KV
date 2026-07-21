@@ -10,20 +10,21 @@
 #include "mprpccontroller.h"
 #include "rpcprovider.h"
 
+// 这里充当客户端
 int main(int argc, char **argv) {
   // https://askubuntu.com/questions/754213/what-is-difference-between-localhost-address-127-0-0-1-and-127-0-1-1
   std::string ip = "127.0.1.1";
   short port = 7788;
 
-  // 演示调用远程发布的rpc方法Login
+  // 演示调用远程发布的rpc方法Login 定义rpc的IP 端口与方法
   fixbug::FiendServiceRpc_Stub stub(
       new MprpcChannel(ip, port, true));  //注册进自己写的channel类，channel类用于自定义发送格式和负责序列化等操作
   // rpc方法的请求参数
-  fixbug::GetFriendsListRequest request;
+  fixbug::GetFriendsListRequest request; // 定义请求的protobuf 并设置参数user_id
   request.set_userid(1000);
   // rpc方法的响应
-  fixbug::GetFriendsListResponse response;
-  // 发起rpc方法的调用,消费这的stub最后都会调用到channel的 call_method方法  同步的rpc调用过程  MprpcChannel::callmethod
+  fixbug::GetFriendsListResponse response; // 定义返回
+  // 发起rpc方法的调用,消费者的stub最后都会调用到channel的 call_method方法  同步的rpc调用过程  MprpcChannel::callmethod
   MprpcController controller;
   //長連接測試 ，發送10次請求
   int count = 10;
