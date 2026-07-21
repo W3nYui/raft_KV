@@ -11,28 +11,57 @@
 
 class FriendService : public fixbug::FiendServiceRpc {
  public:
-  std::vector<std::string> GetFriendsList(uint32_t userid) {
-    std::cout << "local do GetFriendsList service! userid:" << userid << std::endl;
-    std::vector<std::string> vec;
-    vec.push_back("gao yang");
-    vec.push_back("liu hong");
-    vec.push_back("wang shuo");
-    return vec;
-  }
+  // std::vector<std::string> GetFriendsList(uint32_t userid) {
+  //   std::cout << "local do GetFriendsList service! userid:" << userid << std::endl;
+  //   std::vector<std::string> vec;
+  //   vec.push_back("gao yang");
+  //   vec.push_back("liu hong");
+  //   vec.push_back("wang shuo");
+  //   return vec;
+  // }
 
   // 重写基类方法
   void GetFriendsList(::google::protobuf::RpcController *controller, const ::fixbug::GetFriendsListRequest *request,
                       ::fixbug::GetFriendsListResponse *response, ::google::protobuf::Closure *done) {
-    uint32_t userid = request->userid();
-    std::vector<std::string> friendsList = GetFriendsList(userid);
+    // uint32_t userid = request->userid();
+    // std::vector<std::string> friendsList = GetFriendsList(userid);
+    std::cout << "local do GetFriendsList service! userid:" << request->userid() << std::endl;
     response->mutable_result()->set_errcode(0);
     response->mutable_result()->set_errmsg("");
-    for (std::string &name : friendsList) {
-      std::string *p = response->add_friends();
-      *p = name;
+
+    // for (std::string &name : friendsList) {
+    //   std::string *p = response->add_friends();
+    //   *p = name;
+    // }
+    for (std::string& friend_name : friendsList_) {
+      response->add_friends(friend_name);
+    }
+
+    if (friendsList_.empty()) {
+      response->add_friends("cur has no friend");
+    }
+
+    done->Run();
+  }
+
+  void AddFriend(google::protobuf::RpcController* controller,
+                 const fixbug::AddFriendRequest* request,
+                 fixbug::AddFriendResponse* response,
+                 google::protobuf::Closure* done) override {
+    std::cout << "AddFriend, userid: " << request->userid() << ", friend: " << request->friend_name() << std::endl;
+    if (request->friend_name().empty()) {
+      response->mutable_result()->set_errcode(1);
+      response->mutable_result()->set_errmsg("friend name cannot be empty");
+    } else {
+      friendsList_.push_back(request->friend_name());
+      response->mutable_result()->set_errcode(0);
+      response->mutable_result()->set_errmsg("");
     }
     done->Run();
   }
+
+  private:
+  std::vector<std::string> friendsList_;
 };
 
 void ShowArgsHelp() { std::cout << "format: callee -f <configFileName>" << std::endl; }
@@ -67,3 +96,4 @@ int main(int argc, char **argv) {
 
   return 0;
 }
+

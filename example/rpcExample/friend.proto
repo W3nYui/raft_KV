@@ -21,8 +21,21 @@ message GetFriendsListResponse  //请求，响应
     repeated bytes friends = 2;
 }
 
+// 增加函数 请求与响应
+message AddFriendRequest
+{
+    uint32 userid = 1;
+    bytes friend_name = 2;
+}
+
+message AddFriendResponse
+{
+    ResultCode result = 1;
+}
+
 // 好友模块
 service FiendServiceRpc  //具体的服务模块和服务方法
 {
     rpc GetFriendsList(GetFriendsListRequest) returns(GetFriendsListResponse);
+    rpc AddFriend(AddFriendRequest) returns(AddFriendResponse);
 }
