@@ -18,7 +18,7 @@ class RpcProvider {
   void NotifyService(google::protobuf::Service *service);
 
   // 启动rpc服务节点，开始提供rpc远程网络调用服务
-  void Run(int nodeIndex, short port);
+  void Run(int nodeIndex, std::string nodeInforFileName, short port);
 
  private:
   // 组合EventLoop
@@ -39,6 +39,7 @@ class RpcProvider {
   void OnMessage(const muduo::net::TcpConnectionPtr &, muduo::net::Buffer *, muduo::Timestamp);
   // Closure的回调操作，用于序列化rpc的响应和网络发送
   void SendRpcResponse(const muduo::net::TcpConnectionPtr &, google::protobuf::Message *);
+
 
  public:
   ~RpcProvider();

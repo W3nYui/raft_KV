@@ -35,7 +35,26 @@ class FriendService : public fixbug::FiendServiceRpc {
   }
 };
 
+void ShowArgsHelp() { std::cout << "format: callee -f <configFileName>" << std::endl; }
+
 int main(int argc, char **argv) {
+  std::string configFileName;
+  int option = 0;
+
+  while ((option = getopt(argc, argv, "f:")) != -1) {
+    if (option == 'f') {
+      configFileName = optarg;
+    } else {
+      ShowArgsHelp();
+      return EXIT_FAILURE;
+    }
+  }
+
+  if (configFileName.empty()) {
+    ShowArgsHelp();
+    return EXIT_FAILURE;
+  }
+
   std::string ip = "127.0.0.1";
   short port = 7788;
   auto stub = new fixbug::FiendServiceRpc_Stub(new MprpcChannel(ip, port, false));
@@ -44,7 +63,7 @@ int main(int argc, char **argv) {
   provider.NotifyService(new FriendService());
 
   // 启动一个rpc服务发布节点   Run以后，进程进入阻塞状态，等待远程的rpc调用请求
-  provider.Run(1, 7788);
+  provider.Run(1, configFileName, 7788);
 
   return 0;
 }

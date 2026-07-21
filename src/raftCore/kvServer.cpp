@@ -385,14 +385,14 @@ KvServer::KvServer(int me, int maxraftstate, std::string nodeInforFileName, shor
   m_raftNode = std::make_shared<Raft>();
   ////////////////clerk层面 kvserver开启rpc接受功能
   //    同时raft与raft节点之间也要开启rpc功能，因此有两个注册
-  std::thread t([this, port]() -> void {
+  std::thread t([this, nodeInforFileName ,port]() -> void {
     // provider是一个rpc网络服务对象。把UserService对象发布到rpc节点上
     RpcProvider provider;
     provider.NotifyService(this);
     provider.NotifyService(
         this->m_raftNode.get());  // todo：这里获取了原始指针，后面检查一下有没有泄露的问题 或者 shareptr释放的问题
     // 启动一个rpc服务发布节点   Run以后，进程进入阻塞状态，等待远程的rpc调用请求
-    provider.Run(m_me, port);
+    provider.Run(m_me, nodeInforFileName, port);
   });
   t.detach();
 
