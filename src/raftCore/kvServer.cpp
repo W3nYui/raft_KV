@@ -394,7 +394,7 @@ KvServer::KvServer(int me, int maxraftstate, std::string nodeInforFileName, shor
     // 启动一个rpc服务发布节点   Run以后，进程进入阻塞状态，等待远程的rpc调用请求
     provider.Run(m_me, nodeInforFileName, port);
   });
-  t.detach();
+  t.detach(); // 将provider接受线程在后台运行
 
   ////开启rpc远程调用能力，需要注意必须要保证所有节点都开启rpc接受功能之后才能开启rpc远程调用能力
   ////这里使用睡眠来保证
@@ -415,6 +415,7 @@ KvServer::KvServer(int me, int maxraftstate, std::string nodeInforFileName, shor
     }
     ipPortVt.emplace_back(nodeIp, atoi(nodePortStr.c_str()));  //沒有atos方法，可以考慮自己实现
   }
+  
   std::vector<std::shared_ptr<RaftRpcUtil> > servers;
   //进行连接
   for (int i = 0; i < ipPortVt.size(); ++i) {

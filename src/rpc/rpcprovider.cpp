@@ -15,7 +15,6 @@ json   protobuf
 */
 // 这里是框架提供给外部使用的，可以发布rpc方法的函数接口
 // 只是简单的把服务描述符和方法描述符全部保存在本地而已
-// todo 待修改 要把本机开启的ip和端口写在文件里面
 void RpcProvider::NotifyService(google::protobuf::Service *service) {
   ServiceInfo service_info;
 
@@ -54,15 +53,6 @@ void RpcProvider::Run(int nodeIndex, std::string nodeInforFileName, short port) 
   // 固定rpc端口IP号测试
   std::string ip = "127.0.1.1";
 
-  //    // 获取端口
-  //    if(getReleasePort(port)) //在port的基础上获取一个可用的port，不知道为何没有效果
-  //    {
-  //        std::cout << "可用的端口号为：" << port << std::endl;
-  //    }
-  //    else
-  //    {
-  //        std::cout << "获取可用端口号失败！" << std::endl;
-  //    }
   //写入文件 "test.conf"
   std::string node = "node" + std::to_string(nodeIndex);
   std::ofstream outfile;
@@ -76,7 +66,7 @@ void RpcProvider::Run(int nodeIndex, std::string nodeInforFileName, short port) 
   outfile << node + "port=" + std::to_string(port) << std::endl;
   outfile.close();
 
-  //创建服务器
+  //创建本节点服务器
   muduo::net::InetAddress address(ip, port);
 
   // 创建TcpServer对象
@@ -139,6 +129,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn, muduo::net
   // 网络上接收的远程rpc调用请求的字符流    Login args
   std::string recv_buf = buffer->retrieveAllAsString();
 
+  // 建立 Protobuf 字节流读取器
   // 使用protobuf的CodedInputStream来解析数据流
   google::protobuf::io::ArrayInputStream array_input(recv_buf.data(), recv_buf.size());
   google::protobuf::io::CodedInputStream coded_input(&array_input);
@@ -157,7 +148,9 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn, muduo::net
   coded_input.ReadString(&rpc_header_str, header_size);
   // 恢复之前的限制，以便安全地继续读取其他数据
   coded_input.PopLimit(msg_limit);
+
   uint32_t args_size{};
+  // 反序列化 rpcHeader
   if (rpcHeader.ParseFromString(rpc_header_str)) {
     // 数据头反序列化成功
     service_name = rpcHeader.service_name();
@@ -171,7 +164,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn, muduo::net
 
   // 获取rpc方法参数的字符流数据
   std::string args_str;
-  // 直接读取args_size长度的字符串数据
+  // 根据解析的长度 读取业务参数
   bool read_args_success = coded_input.ReadString(&args_str, args_size);
 
   if (!read_args_success) {
@@ -188,6 +181,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn, muduo::net
   //    std::cout << "args_str: " << args_str << std::endl;
   //    std::cout << "============================================" << std::endl;
 
+  // 从serviceName中获取service与methods的map
   // 获取service对象和method对象
   auto it = m_serviceMap.find(service_name);
   if (it == m_serviceMap.end()) {
@@ -200,6 +194,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn, muduo::net
     return;
   }
 
+  // 从method的map中获取对应方法
   auto mit = it->second.m_methodMap.find(method_name);
   if (mit == it->second.m_methodMap.end()) {
     std::cout << service_name << ":" << method_name << " is not exist!" << std::endl;
@@ -211,7 +206,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn, muduo::net
 
   // 生成rpc方法调用的请求request和响应response参数,由于是rpc的请求，因此请求需要通过request来序列化
   google::protobuf::Message *request = service->GetRequestPrototype(method).New();
-  if (!request->ParseFromString(args_str)) {
+  if (!request->ParseFromString(args_str)) { // 将字节反序列化成请求对象
     std::cout << "request parse error, content:" << args_str << std::endl;
     return;
   }
@@ -235,7 +230,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn, muduo::net
   由于xx方法被 用户注册的service类 重写了，因此这个方法运行的时候会调用 用户注册的service类 的xx方法
   真的是妙呀
   */
-  //真正调用方法
+  //真正调用方法 注册了方法，获取了请求，实现了回调，最终利用done的回调与方法的 done->Run() 实现回调返回
   service->CallMethod(method, nullptr, request, response, done);
 }
 
@@ -244,7 +239,7 @@ void RpcProvider::SendRpcResponse(const muduo::net::TcpConnectionPtr &conn, goog
   std::string response_str;
   if (response->SerializeToString(&response_str))  // response进行序列化
   {
-    // 序列化成功后，通过网络把rpc方法执行的结果发送会rpc的调用方
+    // 序列化成功后，通过原网络把rpc方法执行的结果发送会rpc的调用方
     conn->send(response_str);
   } else {
     std::cout << "serialize response_str error!" << std::endl;
