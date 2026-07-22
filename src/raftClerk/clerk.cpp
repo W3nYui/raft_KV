@@ -64,7 +64,7 @@ void Clerk::PutAppend(std::string key, std::string value, std::string op) {
       server = (server + 1) % m_servers.size();  // try the next server
       continue;
     }
-    if (reply.err() == OK) {  //什么时候reply errno为ok呢？？？
+    if (reply.err() == OK) {
       m_recentLeaderId = server;
       return;
     }
@@ -76,7 +76,7 @@ void Clerk::Put(std::string key, std::string value) { PutAppend(key, value, "Put
 void Clerk::Append(std::string key, std::string value) { PutAppend(key, value, "Append"); }
 //初始化客户端
 void Clerk::Init(std::string configFileName) {
-  //获取所有raft节点ip、port ，并进行连接
+  // 自定义的一种 config 类 用于解析raft初始化时得到的节点。
   MprpcConfig config;
   config.LoadConfigFile(configFileName.c_str());
   std::vector<std::pair<std::string, short>> ipPortVt;
@@ -88,7 +88,8 @@ void Clerk::Init(std::string configFileName) {
     if (nodeIp.empty()) {
       break;
     }
-    ipPortVt.emplace_back(nodeIp, atoi(nodePortStr.c_str()));  //沒有atos方法，可以考慮自己实现
+    // 获取所有的IP与对应节点
+    ipPortVt.emplace_back(nodeIp, atoi(nodePortStr.c_str()));  
   }
   //进行连接
   for (const auto& item : ipPortVt) {
