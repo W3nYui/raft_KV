@@ -195,25 +195,28 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn, muduo::net
   }
 
   // 从method的map中获取对应方法
-  auto mit = it->second.m_methodMap.find(method_name);
-  if (mit == it->second.m_methodMap.end()) {
+  auto method_it = it->second.m_methodMap.find(method_name);
+  if (method_it == it->second.m_methodMap.end()) {
     std::cout << service_name << ":" << method_name << " is not exist!" << std::endl;
     return;
   }
 
   google::protobuf::Service *service = it->second.m_service;       // 获取service对象  new UserService
-  const google::protobuf::MethodDescriptor *method = mit->second;  // 获取method对象  Login
+  const google::protobuf::MethodDescriptor *method = method_it->second;  // 获取method对象  Login
 
   // 生成rpc方法调用的请求request和响应response参数,由于是rpc的请求，因此请求需要通过request来序列化
+
+  // 它根据已找到的 method 描述符，创建该方法请求参数类型的空对象，用于把网络中收到的 args_str 反序列化进去
   google::protobuf::Message *request = service->GetRequestPrototype(method).New();
   if (!request->ParseFromString(args_str)) { // 将字节反序列化成请求对象
     std::cout << "request parse error, content:" << args_str << std::endl;
     return;
   }
+  // 同样的 获取该method类型的 response 空对象
   google::protobuf::Message *response = service->GetResponsePrototype(method).New();
 
   // 给下面的method方法的调用，绑定一个Closure的回调函数
-  // closure是执行完本地方法之后会发生的回调，因此需要完成序列化和反向发送请求的操作
+  // closure是执行完本地方法之后会发生的回调 如 done->Run()
   google::protobuf::Closure *done =
       google::protobuf::NewCallback<RpcProvider, const muduo::net::TcpConnectionPtr &, google::protobuf::Message *>(
           this, &RpcProvider::SendRpcResponse, conn, response);
