@@ -27,6 +27,8 @@ class KvServer : raftKVRpcProctoc::kvServerRpc {
   std::mutex m_mtx;
   int m_me;
   std::shared_ptr<Raft> m_raftNode;
+
+  // applyChan 是一个阻塞队列 会将raft节点一致同意并提交的命令写入
   std::shared_ptr<LockQueue<ApplyMsg> > applyChan;  // kvServer和raft节点的通信管道
   int m_maxRaftState;                               // snapshot if log grows this big
 

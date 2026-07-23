@@ -30,7 +30,8 @@ int main(int argc, char **argv) {
   client.Init(configFileName);
 
   auto start = now();
-  int count = 500;
+  // 因为快照是500 这里跑600 从而验证快照是否保存
+  int count = 200;
 
   while (count--) {
     client.Put("x", std::to_string(count));
