@@ -987,20 +987,26 @@ void Raft::Start(Op command, int* newLogIndex, int* newLogTerm, bool* isLeader) 
 // for any long-running work.
 void Raft::init(std::vector<std::shared_ptr<RaftRpcUtil>> peers, int me, std::shared_ptr<Persister> persister,
                 std::shared_ptr<LockQueue<ApplyMsg>> applyCh) {
+  // 构建邻居、日志对象、个人节点信息
   m_peers = peers;
   m_persister = persister;
   m_me = me;
   // Your initialization code here (2A, 2B, 2C).
   m_mtx.lock();
 
-  // applier
-  this->applyChan = applyCh;
+  // applier 管道 或 有锁队列
+  applyChan = applyCh;
+  // this->applyChan = applyCh;
   //    rf.ApplyMsgQueue = make(chan ApplyMsg)
   m_currentTerm = 0;
   m_status = Follower;
   m_commitIndex = 0;
   m_lastApplied = 0;
   m_logs.clear();
+
+  // 避免重复Init()
+  m_matchIndex.clear();
+  m_nextIndex.clear();
   for (int i = 0; i < m_peers.size(); i++) {
     m_matchIndex.push_back(0);
     m_nextIndex.push_back(0);
@@ -1013,7 +1019,8 @@ void Raft::init(std::vector<std::shared_ptr<RaftRpcUtil>> peers, int me, std::sh
   m_lastResetHearBeatTime = now();
 
   // initialize from state persisted before a crash
-  readPersist(m_persister->ReadRaftState());
+  readPersist(m_persister->ReadRaftState()); // 恢复持久化状态
+  // 根据恢复的状态设置新的快照边界
   if (m_lastSnapshotIncludeIndex > 0) {
     m_lastApplied = m_lastSnapshotIncludeIndex;
     // rf.commitIndex = rf.lastSnapshotIncludeIndex   todo ：崩溃恢复为何不能读取commitIndex
@@ -1024,15 +1031,19 @@ void Raft::init(std::vector<std::shared_ptr<RaftRpcUtil>> peers, int me, std::sh
 
   m_mtx.unlock();
 
+  // 创建携程
   m_ioManager = std::make_unique<monsoon::IOManager>(FIBER_THREAD_NUM, FIBER_USE_CALLER_THREAD);
 
   // start ticker fiber to start elections
   // 启动三个循环定时器
   // todo:原来是启动了三个线程，现在是直接使用了协程，三个函数中leaderHearBeatTicker
   // 、electionTimeOutTicker执行时间是恒定的，applierTicker时间受到数据库响应延迟和两次apply之间请求数量的影响，这个随着数据量增多可能不太合理，最好其还是启用一个线程。
+  
+  // 将Leader下心跳与身份过期选举加入携程自我运行
   m_ioManager->scheduler([this]() -> void { this->leaderHearBeatTicker(); });
   m_ioManager->scheduler([this]() -> void { this->electionTimeOutTicker(); });
 
+  // 开启线程 通过管道 发送 已提交日志 给KvServer(上层管理)
   std::thread t3(&Raft::applierTicker, this);
   t3.detach();
 
@@ -1062,6 +1073,11 @@ std::string Raft::persistData() {
   return ss.str();
 }
 
+/**
+ * @brief 根据从文档读取的内容 重新序列化恢复：任期、投票、快照、日志
+ * 
+ * @param data 
+ */
 void Raft::readPersist(std::string data) {
   if (data.empty()) {
     return;
