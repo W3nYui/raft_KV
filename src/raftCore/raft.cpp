@@ -998,6 +998,7 @@ void Raft::init(std::vector<std::shared_ptr<RaftRpcUtil>> peers, int me, std::sh
   applyChan = applyCh;
   // this->applyChan = applyCh;
   //    rf.ApplyMsgQueue = make(chan ApplyMsg)
+  m_votedFor = -1;
   m_currentTerm = 0;
   m_status = Follower;
   m_commitIndex = 0;
@@ -1011,7 +1012,7 @@ void Raft::init(std::vector<std::shared_ptr<RaftRpcUtil>> peers, int me, std::sh
     m_matchIndex.push_back(0);
     m_nextIndex.push_back(0);
   }
-  m_votedFor = -1;
+  
 
   m_lastSnapshotIncludeIndex = 0;
   m_lastSnapshotIncludeTerm = 0;
