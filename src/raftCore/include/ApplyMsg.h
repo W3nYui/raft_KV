@@ -3,13 +3,13 @@
 #include <string>
 class ApplyMsg {
  public:
-  bool CommandValid;
-  std::string Command;
-  int CommandIndex;
-  bool SnapshotValid;
-  std::string Snapshot;
-  int SnapshotTerm;
-  int SnapshotIndex;
+  bool CommandValid;   // 是否是命令
+  std::string Command; // 序列化的Op命令
+  int CommandIndex;    // 该命令在全局 Raft 日志中的位置
+  bool SnapshotValid;  // 是否是快照
+  std::string Snapshot;// 快照内容
+  int SnapshotTerm;    // 快照Term
+  int SnapshotIndex;   // 快照等级
 
  public:
   //两个valid最开始要赋予false！！

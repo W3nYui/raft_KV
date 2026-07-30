@@ -197,6 +197,14 @@ void KvServer::GetCommandFromRaft(ApplyMsg message) {
   SendMessageToWaitChan(op, message.CommandIndex);
 }
 
+/**
+ * @brief 检测该客户端的请求Index是否重复
+ * 
+ * @param ClientId 
+ * @param RequestId 
+ * @return true 
+ * @return false 
+ */
 bool KvServer::ifRequestDuplicate(std::string ClientId, int RequestId) {
   std::lock_guard<std::mutex> lg(m_mtx);
   if (m_lastRequestId.find(ClientId) == m_lastRequestId.end()) {
@@ -220,6 +228,7 @@ void KvServer::PutAppend(const raftKVRpcProctoc::PutAppendArgs *args, raftKVRpcP
   int _ = -1;
   bool isleader = false;
 
+  // 在当前节点写入Log
   m_raftNode->Start(op, &raftIndex, &_, &isleader);
 
   if (!isleader) {
@@ -235,6 +244,8 @@ void KvServer::PutAppend(const raftKVRpcProctoc::PutAppendArgs *args, raftKVRpcP
       "[func -KvServer::PutAppend -kvserver{%d}]From Client %s (Request %d) To Server %d, key %s, raftIndex %d , is "
       "leader ",
       m_me, &args->clientid(), args->requestid(), m_me, &op.Key, raftIndex);
+
+  // 建立“等待该日志应用完成”的本地队列 会根据当前的logIndex 设定对应的阻塞队列
   m_mtx.lock();
   if (waitApplyCh.find(raftIndex) == waitApplyCh.end()) {
     waitApplyCh.insert(std::make_pair(raftIndex, new LockQueue<Op>()));
@@ -243,7 +254,7 @@ void KvServer::PutAppend(const raftKVRpcProctoc::PutAppendArgs *args, raftKVRpcP
 
   m_mtx.unlock();  //直接解锁，等待任务执行完成，不能一直拿锁等待
 
-  // timeout
+  // 超时检测
   Op raftCommitOp;
 
   if (!chForRaftIndex->timeOutPop(CONSENSUS_TIMEOUT, &raftCommitOp)) {
@@ -262,7 +273,9 @@ void KvServer::PutAppend(const raftKVRpcProctoc::PutAppendArgs *args, raftKVRpcP
         "[func -KvServer::PutAppend -kvserver{%d}]WaitChanGetRaftApplyMessage<--Server %d , get Command <-- Index:%d , "
         "ClientId %s, RequestId %d, Opreation %s, Key :%s, Value :%s",
         m_me, m_me, raftIndex, &op.ClientId, op.RequestId, &op.Operation, &op.Key, &op.Value);
-    if (raftCommitOp.ClientId == op.ClientId && raftCommitOp.RequestId == op.RequestId) {
+
+    // 如果 timeOutPop() 成功，说明 KV 状态机已处理到对应日志索引
+    if (raftCommitOp.ClientId == op.ClientId && raftCommitOp.RequestId == op.RequestId) { // 检查返回命令与实际命令是否一致
       //可能发生leader的变更导致日志被覆盖，因此必须检查
       reply->set_err(OK);
     } else {
@@ -272,6 +285,7 @@ void KvServer::PutAppend(const raftKVRpcProctoc::PutAppendArgs *args, raftKVRpcP
 
   m_mtx.lock();
 
+  // 删除等待队列
   auto tmp = waitApplyCh[raftIndex];
   waitApplyCh.erase(raftIndex);
   delete tmp;
@@ -281,7 +295,7 @@ void KvServer::PutAppend(const raftKVRpcProctoc::PutAppendArgs *args, raftKVRpcP
 void KvServer::ReadRaftApplyCommandLoop() {
   while (true) {
     //如果只操作applyChan不用拿锁，因为applyChan自己带锁
-    auto message = applyChan->Pop();  //阻塞弹出
+    auto message = applyChan->Pop();  //阻塞弹 出 这里才是真正拿取内容的地方
     DPrintf(
         "---------------tmp-------------[func-KvServer::ReadRaftApplyCommandLoop()-kvserver{%d}] 收到了下raft的消息",
         m_me);
@@ -331,6 +345,8 @@ bool KvServer::SendMessageToWaitChan(const Op &op, int raftIndex) {
   if (waitApplyCh.find(raftIndex) == waitApplyCh.end()) {
     return false;
   }
+
+  // 说明状态机已经改变 可以将 waitApplyCh 内的该 Index给唤醒
   waitApplyCh[raftIndex]->Push(op);
   DPrintf(
       "[RaftApplyMessageSendToWaitChan--> raftserver{%d}] , Send Command --> Index:{%d} , ClientId {%d}, RequestId "

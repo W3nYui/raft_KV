@@ -155,10 +155,13 @@ void Raft::AppendEntries1(const raftRpcProctoc::AppendEntriesArgs* args, raftRpc
 void Raft::applierTicker() {
   while (true) {
     m_mtx.lock();
+    // 如果是 Leader节点 打印Leader信息
     if (m_status == Leader) {
       DPrintf("[Raft::applierTicker() - raft{%d}]  m_lastApplied{%d}   m_commitIndex{%d}", m_me, m_lastApplied,
               m_commitIndex);
     }
+
+    // 获取 **可以执行但还没执行** 的Logs
     auto applyMsgs = getApplyLogs();
     m_mtx.unlock();
     //使用匿名函数是因为传递管道的时候不用拿锁
@@ -167,7 +170,7 @@ void Raft::applierTicker() {
       DPrintf("[func- Raft::applierTicker()-raft{%d}] 向kvserver報告的applyMsgs長度爲：{%d}", m_me, applyMsgs.size());
     }
     for (auto& message : applyMsgs) {
-      applyChan->Push(message);
+      applyChan->Push(message); // 这里需要注意的是，获取了Log更新了m_lastApplied，但是这里的Push是另一层语义，如果这时崩溃会出现日志缺失
     }
     // usleep(1000 * ApplyInterval);
     sleepNMilliseconds(ApplyInterval);
@@ -358,11 +361,17 @@ void Raft::electionTimeOutTicker() {
   }
 }
 
+/**
+ * @brief 
+ * 
+ * @return std::vector<ApplyMsg> 
+ */
 std::vector<ApplyMsg> Raft::getApplyLogs() {
   std::vector<ApplyMsg> applyMsgs;
+  // 获取最新的logID,与已提交ID对比
   myAssert(m_commitIndex <= getLastLogIndex(), format("[func-getApplyLogs-rf{%d}] commitIndex{%d} >getLastLogIndex{%d}",
                                                       m_me, m_commitIndex, getLastLogIndex()));
-
+  // 获取所有新的、持久化的的LogsID
   while (m_lastApplied < m_commitIndex) {
     m_lastApplied++;
     myAssert(m_logs[getSlicesIndexFromLogIndex(m_lastApplied)].logindex() == m_lastApplied,
@@ -825,6 +834,16 @@ bool Raft::sendRequestVote(int server, std::shared_ptr<raftRpcProctoc::RequestVo
   return true;
 }
 
+/**
+ * @brief 多数派同意与提交
+ * 
+ * @param server 
+ * @param args 
+ * @param reply 
+ * @param appendNums 
+ * @return true 
+ * @return false 
+ */
 bool Raft::sendAppendEntries(int server, std::shared_ptr<raftRpcProctoc::AppendEntriesArgs> args,
                              std::shared_ptr<raftRpcProctoc::AppendEntriesReply> reply,
                              std::shared_ptr<int> appendNums) {
@@ -958,6 +977,7 @@ void Raft::Start(Op command, int* newLogIndex, int* newLogTerm, bool* isLeader) 
     return;
   }
 
+  // 更新Log
   raftRpcProctoc::LogEntry newLogEntry;
   newLogEntry.set_command(command.asString());
   newLogEntry.set_logterm(m_currentTerm);
@@ -969,7 +989,7 @@ void Raft::Start(Op command, int* newLogIndex, int* newLogTerm, bool* isLeader) 
   // leader应该不停的向各个Follower发送AE来维护心跳和保持日志同步，目前的做法是新的命令来了不会直接执行，而是等待leader的心跳触发
   DPrintf("[func-Start-rf{%d}]  lastLogIndex:%d,command:%s\n", m_me, lastLogIndex, &command);
   // rf.timer.Reset(10) //接收到命令后马上给follower发送,改成这样不知为何会出现问题，待修正 todo
-  persist();
+  persist(); // 持久化
   *newLogIndex = newLogEntry.logindex();
   *newLogTerm = newLogEntry.logterm();
   *isLeader = true;

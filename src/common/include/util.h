@@ -89,7 +89,7 @@ class LockQueue {
     auto now = std::chrono::system_clock::now();
     auto timeout_time = now + std::chrono::milliseconds(timeout);
 
-    // 在超时之前，不断检查队列是否为空
+    // 在超时之前，不断检查队列是否为空 如果部位空 说明KvSever已经完成了状态机的变化 将commad插入
     while (m_queue.empty()) {
       // 如果已经超时了，就返回一个空对象
       if (m_condvariable.wait_until(lock, timeout_time) == std::cv_status::timeout) {
@@ -101,7 +101,7 @@ class LockQueue {
 
     T data = m_queue.front();
     m_queue.pop();
-    *ResData = data;
+    *ResData = data; // 将已经完成的命令返回
     return true;
   }
 

@@ -33,7 +33,7 @@ constexpr int Normal = 3;
 
 class Raft : public raftRpcProctoc::raftRpc {
  private:
-  std::mutex m_mtx; // Raft节点内部变量锁
+  std::mutex m_mtx; // Raft节点内部变量锁 如log
   std::vector<std::shared_ptr<RaftRpcUtil>> m_peers;
   std::shared_ptr<Persister> m_persister;
   int m_me;
