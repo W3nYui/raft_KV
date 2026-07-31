@@ -380,6 +380,7 @@ std::string KvServer::MakeSnapShot() {
 
 void KvServer::PutAppend(google::protobuf::RpcController *controller, const ::raftKVRpcProctoc::PutAppendArgs *request,
                          ::raftKVRpcProctoc::PutAppendReply *response, ::google::protobuf::Closure *done) {
+  // 调用业务的重载
   KvServer::PutAppend(request, response);
   done->Run();
 }
