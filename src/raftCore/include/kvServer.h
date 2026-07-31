@@ -22,6 +22,7 @@
 #include "raft.h"
 #include "skipList.h"
 
+// class默认private继承
 class KvServer : raftKVRpcProctoc::kvServerRpc {
  private:
   std::mutex m_mtx;
