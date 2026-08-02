@@ -393,12 +393,8 @@ MprpcChannel::MprpcChannel(string ip, short port, bool connectNow, int timeoutMs
     return;
   }  //可以允许延迟连接
   std::string errMsg;
-  auto rt = newConnect(ip.c_str(), port, &errMsg);
-  // 重复尝试连接TCP
-  int tryCount = 3;
-  while (!rt && tryCount--) {
+  if (!newConnect(ip.c_str(), port, &errMsg)) {
     std::cout << errMsg << std::endl;
-    rt = newConnect(ip.c_str(), port, &errMsg);
   }
 }
 
