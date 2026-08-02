@@ -6,6 +6,7 @@
 #define RAFTSERVERRPC_H
 
 #include <iostream>
+#include <memory>
 #include "kvServerRPC.pb.h"
 #include "mprpcchannel.h"
 #include "mprpccontroller.h"
@@ -15,6 +16,7 @@
 // 对于一个节点来说，对于任意其他的节点都要维护一个rpc连接，
 class raftServerRpcUtil {
  private:
+  std::unique_ptr<MprpcChannel> channel_;
   raftKVRpcProctoc::kvServerRpc_Stub* stub;
 
  public:

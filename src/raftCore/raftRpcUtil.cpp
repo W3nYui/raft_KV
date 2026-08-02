@@ -8,6 +8,10 @@
 #include <mprpccontroller.h>
 
 bool RaftRpcUtil::AppendEntries(raftRpcProctoc::AppendEntriesArgs *args, raftRpcProctoc::AppendEntriesReply *response) {
+  std::string errMsg;
+  if (!channel_->Connect(&errMsg)) {
+    return false;
+  }
   MprpcController controller;
   stub_->AppendEntries(&controller, args, response, nullptr);
   return !controller.Failed();
@@ -15,12 +19,20 @@ bool RaftRpcUtil::AppendEntries(raftRpcProctoc::AppendEntriesArgs *args, raftRpc
 
 bool RaftRpcUtil::InstallSnapshot(raftRpcProctoc::InstallSnapshotRequest *args,
                                   raftRpcProctoc::InstallSnapshotResponse *response) {
+  std::string errMsg;
+  if (!channel_->Connect(&errMsg)) {
+    return false;
+  }
   MprpcController controller;
   stub_->InstallSnapshot(&controller, args, response, nullptr);
   return !controller.Failed();
 }
 
 bool RaftRpcUtil::RequestVote(raftRpcProctoc::RequestVoteArgs *args, raftRpcProctoc::RequestVoteReply *response) {
+  std::string errMsg;
+  if (!channel_->Connect(&errMsg)) {
+    return false;
+  }
   MprpcController controller;
   stub_->RequestVote(&controller, args, response, nullptr);
   return !controller.Failed();
@@ -28,11 +40,11 @@ bool RaftRpcUtil::RequestVote(raftRpcProctoc::RequestVoteArgs *args, raftRpcProc
 
 //先开启服务器，再尝试连接其他的节点，中间给一个间隔时间，等待其他的rpc服务器节点启动
 
-RaftRpcUtil::RaftRpcUtil(std::string ip, short port) {
+RaftRpcUtil::RaftRpcUtil(std::string ip, short port)
+    : channel_(std::make_unique<MprpcChannel>(ip, port, true)), stub_(nullptr) {
   //*********************************************  */
   //发送rpc设置
-  stub_ = new raftRpcProctoc::raftRpc_Stub(
-      new MprpcChannel(ip, port, true), google::protobuf::Service::STUB_OWNS_CHANNEL);
+  stub_ = new raftRpcProctoc::raftRpc_Stub(channel_.get(), google::protobuf::Service::STUB_DOESNT_OWN_CHANNEL);
 }
 
 RaftRpcUtil::~RaftRpcUtil() { delete stub_; }
