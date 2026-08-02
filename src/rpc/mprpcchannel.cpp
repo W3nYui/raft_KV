@@ -123,6 +123,10 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
   // 最后，将请求参数附加到send_rpc_str后面
   send_rpc_str += args_str;
 
+  const bool hasDeadline = m_timeoutMs > 0;
+  const auto deadline = hasDeadline ? SteadyClock::now() + std::chrono::milliseconds(m_timeoutMs)
+                                    : SteadyClock::time_point::max();
+
   // 打印调试信息
   //    std::cout << "============================================" << std::endl;
   //    std::cout << "header_size: " << header_size << std::endl;
@@ -139,10 +143,25 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
     controller->SetFailed(errMsg);
     return;
   }
-  if (!SendAll(send_rpc_str, &errMsg)) {
+  if (!SendAll(send_rpc_str, deadline, &errMsg)) {
     CloseSocket(&m_clientFd);
     controller->SetFailed(errMsg);
     return;
+  }
+
+  if (hasDeadline) {
+    const int remainingMs = RemainingTimeoutMs(deadline);
+    if (remainingMs == 0) {
+      CloseSocket(&m_clientFd);
+      SetSocketError(&errMsg, "recv", ETIMEDOUT);
+      controller->SetFailed(errMsg);
+      return;
+    }
+    if (!ApplySocketOptionTimeout(m_clientFd, SO_RCVTIMEO, remainingMs, "setsockopt SO_RCVTIMEO", &errMsg)) {
+      CloseSocket(&m_clientFd);
+      controller->SetFailed(errMsg);
+      return;
+    }
   }
 
   /*
@@ -156,7 +175,10 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
   // 同步等待响应 如果等待响应失败返回fail
   recv_size = recv(m_clientFd, recv_buf, 1024, 0);
   if (recv_size <= 0) {
-    const int errorNumber = recv_size == 0 ? ECONNRESET : errno;
+    int errorNumber = recv_size == 0 ? ECONNRESET : errno;
+    if (recv_size == -1 && (errorNumber == EAGAIN || errorNumber == EWOULDBLOCK || errorNumber == ETIMEDOUT)) {
+      errorNumber = ETIMEDOUT;
+    }
     CloseSocket(&m_clientFd);
     SetSocketError(&errMsg, "recv", errorNumber);
     controller->SetFailed(errMsg);
@@ -331,7 +353,7 @@ bool MprpcChannel::newConnect(const char* ip, uint16_t port, string* errMsg) {
   return true;
 }
 
-bool MprpcChannel::SendAll(const std::string& payload, std::string* errMsg) {
+bool MprpcChannel::SendAll(const std::string& payload, SteadyClock::time_point deadline, std::string* errMsg) {
   if (m_timeoutMs < 0) {
     if (errMsg != nullptr) {
       *errMsg = "timeout must be non-negative";
@@ -339,9 +361,7 @@ bool MprpcChannel::SendAll(const std::string& payload, std::string* errMsg) {
     return false;
   }
 
-  const bool hasDeadline = m_timeoutMs > 0;
-  const auto deadline = hasDeadline ? SteadyClock::now() + std::chrono::milliseconds(m_timeoutMs)
-                                    : SteadyClock::time_point{};
+  const bool hasDeadline = deadline != SteadyClock::time_point::max();
   size_t sent = 0;
   while (sent < payload.size()) {
     if (hasDeadline) {

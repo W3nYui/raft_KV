@@ -31,7 +31,8 @@ bool RaftRpcUtil::RequestVote(raftRpcProctoc::RequestVoteArgs *args, raftRpcProc
 RaftRpcUtil::RaftRpcUtil(std::string ip, short port) {
   //*********************************************  */
   //发送rpc设置
-  stub_ = new raftRpcProctoc::raftRpc_Stub(new MprpcChannel(ip, port, true));
+  stub_ = new raftRpcProctoc::raftRpc_Stub(
+      new MprpcChannel(ip, port, true), google::protobuf::Service::STUB_OWNS_CHANNEL);
 }
 
 RaftRpcUtil::~RaftRpcUtil() { delete stub_; }

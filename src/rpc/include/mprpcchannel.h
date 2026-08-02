@@ -4,6 +4,7 @@
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/message.h>
 #include <google/protobuf/service.h>
+#include <chrono>
 #include <algorithm>
 #include <algorithm>  // 包含 std::generate_n() 和 std::generate() 函数的头文件
 #include <functional>
@@ -25,6 +26,8 @@ class MprpcChannel : public google::protobuf::RpcChannel {
                   google::protobuf::Closure *done) override;
   MprpcChannel(string ip, short port, bool connectNow, int timeoutMs = 0);
   ~MprpcChannel() override;
+  MprpcChannel(const MprpcChannel&) = delete;
+  MprpcChannel& operator=(const MprpcChannel&) = delete;
   bool Connect(std::string *errMsg);
   bool SetTimeoutMs(int timeoutMs, std::string *errMsg);
 
@@ -34,7 +37,8 @@ class MprpcChannel : public google::protobuf::RpcChannel {
   const uint16_t m_port;
   int m_timeoutMs;
   static bool ApplySocketTimeout(int fd, int timeoutMs, std::string *errMsg);
-  bool SendAll(const std::string &payload, std::string *errMsg);
+  bool SendAll(const std::string &payload, std::chrono::steady_clock::time_point deadline,
+               std::string *errMsg);
   /// @brief 连接ip和端口,并设置m_clientFd
   /// @param ip ip地址，本机字节序
   /// @param port 端口，本机字节序
