@@ -504,9 +504,9 @@ void Raft::leaderHearBeatTicker() {
     }
 
     if (std::chrono::duration<double, std::milli>(suitableSleepTime).count() > 1) {
-      std::cout << atomicCount << "\033[1;35m leaderHearBeatTicker();函数设置睡眠时间为: "
-                << std::chrono::duration_cast<std::chrono::milliseconds>(suitableSleepTime).count() << " 毫秒\033[0m"
-                << std::endl;
+      // std::cout << atomicCount << "\033[1;35m leaderHearBeatTicker();函数设置睡眠时间为: "
+      //           << std::chrono::duration_cast<std::chrono::milliseconds>(suitableSleepTime).count() << " 毫秒\033[0m"
+      //           << std::endl;
       // 获取当前时间点
       auto start = std::chrono::steady_clock::now();
 
@@ -520,8 +520,8 @@ void Raft::leaderHearBeatTicker() {
       std::chrono::duration<double, std::milli> duration = end - start;
 
       // 使用ANSI控制序列将输出颜色修改为紫色
-      std::cout << atomicCount << "\033[1;35m leaderHearBeatTicker();函数实际睡眠时间为: " << duration.count()
-                << " 毫秒\033[0m" << std::endl;
+      // std::cout << atomicCount << "\033[1;35m leaderHearBeatTicker();函数实际睡眠时间为: " << duration.count()
+      //           << " 毫秒\033[0m" << std::endl;
       ++atomicCount;
     }
 

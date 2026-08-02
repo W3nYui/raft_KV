@@ -296,9 +296,9 @@ void KvServer::ReadRaftApplyCommandLoop() {
   while (true) {
     //如果只操作applyChan不用拿锁，因为applyChan自己带锁
     auto message = applyChan->Pop();  //阻塞弹 出 这里才是真正拿取内容的地方
-    DPrintf(
-        "---------------tmp-------------[func-KvServer::ReadRaftApplyCommandLoop()-kvserver{%d}] 收到了下raft的消息",
-        m_me);
+    // DPrintf(
+    //     "---------------tmp-------------[func-KvServer::ReadRaftApplyCommandLoop()-kvserver{%d}] 收到了下raft的消息",
+    //     m_me);
     // listen to every command applied by its raft ,delivery to relative RPC Handler
 
     if (message.CommandValid) {

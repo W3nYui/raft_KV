@@ -220,7 +220,7 @@ int SkipList<K, V>::insert_element(const K key, const V value) {
       inserted_node->forward[i] = update[i]->forward[i];
       update[i]->forward[i] = inserted_node;
     }
-    std::cout << "Successfully inserted key:" << key << ", value:" << value << std::endl;
+    // std::cout << "Successfully inserted key:" << key << ", value:" << value << std::endl;
     _element_count++;
   }
   _mtx.unlock();
@@ -230,16 +230,16 @@ int SkipList<K, V>::insert_element(const K key, const V value) {
 // Display skip list
 template <typename K, typename V>
 void SkipList<K, V>::display_list() {
-  std::cout << "\n*****Skip List*****"
-            << "\n";
+  // std::cout << "\n*****Skip List*****"
+  //           << "\n";
   for (int i = 0; i <= _skip_list_level; i++) {
     Node<K, V> *node = this->_header->forward[i];
-    std::cout << "Level " << i << ": ";
+    // std::cout << "Level " << i << ": ";
     while (node != NULL) {
-      std::cout << node->get_key() << ":" << node->get_value() << ";";
+      // std::cout << node->get_key() << ":" << node->get_value() << ";";
       node = node->forward[i];
     }
-    std::cout << std::endl;
+    // std::cout << std::endl;
   }
 }
 
@@ -357,7 +357,7 @@ void SkipList<K, V>::delete_element(K key) {
       _skip_list_level--;
     }
 
-    std::cout << "Successfully deleted key " << key << std::endl;
+    // std::cout << "Successfully deleted key " << key << std::endl;
     delete current;
     _element_count--;
   }
@@ -400,7 +400,7 @@ level 0         1    4   9 10         30   40    50+-->60      70       100
 */
 template <typename K, typename V>
 bool SkipList<K, V>::search_element(K key, V &value) {
-  std::cout << "search_element-----------------" << std::endl;
+  // std::cout << "search_element-----------------" << std::endl;
   Node<K, V> *current = _header;
 
   // start from highest level of skip list
@@ -416,11 +416,11 @@ bool SkipList<K, V>::search_element(K key, V &value) {
   // if current node have key equal to searched key, we get it
   if (current and current->get_key() == key) {
     value = current->get_value();
-    std::cout << "Found key: " << key << ", value: " << current->get_value() << std::endl;
+    // std::cout << "Found key: " << key << ", value: " << current->get_value() << std::endl;
     return true;
   }
 
-  std::cout << "Not Found Key:" << key << std::endl;
+  // std::cout << "Not Found Key:" << key << std::endl;
   return false;
 }
 
