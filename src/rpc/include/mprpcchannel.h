@@ -23,12 +23,16 @@ class MprpcChannel : public google::protobuf::RpcChannel {
   void CallMethod(const google::protobuf::MethodDescriptor *method, google::protobuf::RpcController *controller,
                   const google::protobuf::Message *request, google::protobuf::Message *response,
                   google::protobuf::Closure *done) override;
-  MprpcChannel(string ip, short port, bool connectNow);
+  MprpcChannel(string ip, short port, bool connectNow, int timeoutMs = 0);
+  bool SetTimeoutMs(int timeoutMs, std::string *errMsg);
 
  private:
   int m_clientFd;
   const std::string m_ip;  //保存ip和端口，如果断了可以尝试重连
   const uint16_t m_port;
+  int m_timeoutMs;
+  static bool ApplySocketTimeout(int fd, int timeoutMs, std::string *errMsg);
+  bool SendAll(const std::string &payload, std::string *errMsg);
   /// @brief 连接ip和端口,并设置m_clientFd
   /// @param ip ip地址，本机字节序
   /// @param port 端口，本机字节序
