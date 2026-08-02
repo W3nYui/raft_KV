@@ -5,8 +5,8 @@
 #ifndef RAFTSERVERRPC_H
 #define RAFTSERVERRPC_H
 
-#include <iostream>
 #include <memory>
+#include <string>
 #include "kvServerRPC.pb.h"
 #include "mprpcchannel.h"
 #include "mprpccontroller.h"
@@ -17,14 +17,14 @@
 class raftServerRpcUtil {
  private:
   std::unique_ptr<MprpcChannel> channel_;
-  raftKVRpcProctoc::kvServerRpc_Stub* stub;
+  std::unique_ptr<raftKVRpcProctoc::kvServerRpc_Stub> stub_;
 
  public:
-  //主动调用其他节点的三个方法,可以按照mit6824来调用，但是别的节点调用自己的好像就不行了，要继承protoc提供的service类才行
+  // 主动调用其他节点的三个方法,可以按照mit6824来调用，但是别的节点调用自己的好像就不行了，要继承protoc提供的service类才行
 
-  //响应其他节点的方法
-  bool Get(raftKVRpcProctoc::GetArgs* GetArgs, raftKVRpcProctoc::GetReply* reply);
-  bool PutAppend(raftKVRpcProctoc::PutAppendArgs* args, raftKVRpcProctoc::PutAppendReply* reply);
+  // 响应其他节点的方法
+  bool Get(raftKVRpcProctoc::GetArgs* GetArgs, raftKVRpcProctoc::GetReply* reply, int timeoutMs = 0);
+  bool PutAppend(raftKVRpcProctoc::PutAppendArgs* args, raftKVRpcProctoc::PutAppendReply* reply, int timeoutMs = 0);
 
   raftServerRpcUtil(std::string ip, short port);
   ~raftServerRpcUtil();
