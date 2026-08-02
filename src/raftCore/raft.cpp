@@ -346,11 +346,11 @@ void Raft::electionTimeOutTicker() {
       std::chrono::duration<double, std::milli> duration = end - start;
 
       // 使用ANSI控制序列将输出颜色修改为紫色
-      std::cout << "\033[1;35m electionTimeOutTicker();函数设置睡眠时间为: "
-                << std::chrono::duration_cast<std::chrono::milliseconds>(suitableSleepTime).count() << " 毫秒\033[0m"
-                << std::endl;
-      std::cout << "\033[1;35m electionTimeOutTicker();函数实际睡眠时间为: " << duration.count() << " 毫秒\033[0m"
-                << std::endl;
+      // std::cout << "\033[1;35m electionTimeOutTicker();函数设置睡眠时间为: "
+      //           << std::chrono::duration_cast<std::chrono::milliseconds>(suitableSleepTime).count() << " 毫秒\033[0m"
+      //           << std::endl;
+      // std::cout << "\033[1;35m electionTimeOutTicker();函数实际睡眠时间为: " << duration.count() << " 毫秒\033[0m"
+      //           << std::endl;
     }
 
     if (std::chrono::duration<double, std::milli>(m_lastResetElectionTime - wakeTime).count() > 0) {
