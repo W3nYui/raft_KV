@@ -68,18 +68,8 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
   (void)done;
   // 检查TCP连接                                
   if (m_clientFd == -1) {
-    std::string errMsg;
-
-    // 获取当前stub的ip端口号，连接指定raft节点
-    bool rt = newConnect(m_ip.c_str(), m_port, &errMsg); 
-    
-    if (!rt) {
-      DPrintf("[func-MprpcChannel::CallMethod]重连接ip：{%s} port{%d}失败", m_ip.c_str(), m_port);
-      controller->SetFailed(errMsg);
-      return;
-    } else {
-      DPrintf("[func-MprpcChannel::CallMethod]连接ip：{%s} port{%d}成功", m_ip.c_str(), m_port);
-    }
+    controller->SetFailed("RPC channel is not connected");
+    return;
   }
 
   // 获取方案与路由信息
@@ -223,6 +213,16 @@ bool MprpcChannel::SetTimeoutMs(int timeoutMs, string* errMsg) {
     errMsg->clear();
   }
   return true;
+}
+
+bool MprpcChannel::Connect(std::string* errMsg) {
+  if (m_clientFd != -1) {
+    if (errMsg != nullptr) {
+      errMsg->clear();
+    }
+    return true;
+  }
+  return newConnect(m_ip.c_str(), m_port, errMsg);
 }
 
 bool MprpcChannel::newConnect(const char* ip, uint16_t port, string* errMsg) {
@@ -383,7 +383,7 @@ MprpcChannel::MprpcChannel(string ip, short port, bool connectNow, int timeoutMs
   }
 
   // 使用tcp编程，完成rpc方法的远程调用，使用的是长连接服用，因此每次都要重新连接上去，待改成长连接。
-  // 没有连接或者连接已经断开，那么就要重新连接呢,会一直不断地重试
+  // 没有连接时由 Connect 建立连接，断开后的逻辑重试由上层负责。
   // 读取配置文件rpcserver的信息
   // std::string ip = MprpcApplication::GetInstance().GetConfig().Load("rpcserverip");
   // uint16_t port = atoi(MprpcApplication::GetInstance().GetConfig().Load("rpcserverport").c_str());
@@ -393,7 +393,7 @@ MprpcChannel::MprpcChannel(string ip, short port, bool connectNow, int timeoutMs
     return;
   }  //可以允许延迟连接
   std::string errMsg;
-  if (!newConnect(ip.c_str(), port, &errMsg)) {
+  if (!Connect(&errMsg)) {
     std::cout << errMsg << std::endl;
   }
 }

@@ -25,6 +25,7 @@ class MprpcChannel : public google::protobuf::RpcChannel {
                   google::protobuf::Closure *done) override;
   MprpcChannel(string ip, short port, bool connectNow, int timeoutMs = 0);
   ~MprpcChannel() override;
+  bool Connect(std::string *errMsg);
   bool SetTimeoutMs(int timeoutMs, std::string *errMsg);
 
  private:
