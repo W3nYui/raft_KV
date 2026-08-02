@@ -8,6 +8,7 @@
 #include "util.h"
 
 #include <chrono>
+#include <limits>
 #include <string>
 #include <vector>
 
@@ -16,7 +17,14 @@ namespace {
 using SteadyClock = std::chrono::steady_clock;
 
 int RemainingMilliseconds(SteadyClock::time_point deadline) {
-  return static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(deadline - SteadyClock::now()).count());
+  const auto remainingMs = std::chrono::duration_cast<std::chrono::milliseconds>(deadline - SteadyClock::now()).count();
+  if (remainingMs <= 0) {
+    return 0;
+  }
+  if (remainingMs > std::numeric_limits<int>::max()) {
+    return std::numeric_limits<int>::max();
+  }
+  return static_cast<int>(remainingMs);
 }
 
 }  // namespace
