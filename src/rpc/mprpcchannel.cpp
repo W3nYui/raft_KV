@@ -1,5 +1,6 @@
 #include "mprpcchannel.h"
 #include <arpa/inet.h>
+#include <chrono>
 #include <fcntl.h>
 #include <netinet/in.h>
 #include <poll.h>
@@ -8,12 +9,15 @@
 #include <unistd.h>
 #include <cerrno>
 #include <cstring>
+#include <stdexcept>
 #include <string>
 #include "mprpccontroller.h"
 #include "rpcheader.pb.h"
 #include "util.h"
 
 namespace {
+
+using SteadyClock = std::chrono::steady_clock;
 
 void SetSocketError(std::string* errMsg, const char* operation, int errorNumber) {
   if (errMsg == nullptr) {
@@ -30,6 +34,26 @@ void CloseSocket(int* fd) {
   }
 }
 
+int RemainingTimeoutMs(SteadyClock::time_point deadline) {
+  const auto now = SteadyClock::now();
+  if (now >= deadline) {
+    return 0;
+  }
+  const auto remainingMs = std::chrono::duration_cast<std::chrono::milliseconds>(deadline - now).count();
+  return remainingMs > 0 ? static_cast<int>(remainingMs) : 1;
+}
+
+bool ApplySocketOptionTimeout(int fd, int option, int timeoutMs, const char* operation, std::string* errMsg) {
+  timeval timeout{};
+  timeout.tv_sec = timeoutMs / 1000;
+  timeout.tv_usec = (timeoutMs % 1000) * 1000;
+  if (setsockopt(fd, SOL_SOCKET, option, &timeout, sizeof(timeout)) == -1) {
+    SetSocketError(errMsg, operation, errno);
+    return false;
+  }
+  return true;
+}
+
 }  // namespace
 
 /*
@@ -41,6 +65,7 @@ header_size + service_name method_name args_size + args
 void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
                               google::protobuf::RpcController* controller, const google::protobuf::Message* request,
                               google::protobuf::Message* response, google::protobuf::Closure* done) {
+  (void)done;
   // 检查TCP连接                                
   if (m_clientFd == -1) {
     std::string errMsg;
@@ -152,6 +177,7 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
   // std::string response_str(recv_buf, 0, recv_size);
   // 利用 ParseFromArray 去反序列化 并写入response
   if (!response->ParseFromArray(recv_buf, static_cast<int>(recv_size))) {
+    CloseSocket(&m_clientFd);
     controller->SetFailed("parse error! response parse failed");
     return;
   }
@@ -169,15 +195,10 @@ bool MprpcChannel::ApplySocketTimeout(int fd, int timeoutMs, string* errMsg) {
     errMsg->clear();
   }
 
-  timeval timeout{};
-  timeout.tv_sec = timeoutMs / 1000;
-  timeout.tv_usec = (timeoutMs % 1000) * 1000;
-  if (setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, &timeout, sizeof(timeout)) == -1) {
-    SetSocketError(errMsg, "setsockopt SO_SNDTIMEO", errno);
+  if (!ApplySocketOptionTimeout(fd, SO_SNDTIMEO, timeoutMs, "setsockopt SO_SNDTIMEO", errMsg)) {
     return false;
   }
-  if (setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) == -1) {
-    SetSocketError(errMsg, "setsockopt SO_RCVTIMEO", errno);
+  if (!ApplySocketOptionTimeout(fd, SO_RCVTIMEO, timeoutMs, "setsockopt SO_RCVTIMEO", errMsg)) {
     return false;
   }
   return true;
@@ -241,6 +262,7 @@ bool MprpcChannel::newConnect(const char* ip, uint16_t port, string* errMsg) {
       return false;
     }
 
+    const auto deadline = SteadyClock::now() + std::chrono::milliseconds(m_timeoutMs);
     int connectError = 0;
     if (connect(clientfd, reinterpret_cast<struct sockaddr*>(&server_addr), sizeof(server_addr)) == -1) {
       const int initialError = errno;
@@ -248,18 +270,32 @@ bool MprpcChannel::newConnect(const char* ip, uint16_t port, string* errMsg) {
         pollfd pollFd{};
         pollFd.fd = clientfd;
         pollFd.events = POLLOUT;
-        const int pollResult = poll(&pollFd, 1, m_timeoutMs);
-        if (pollResult == 0) {
-          connectError = ETIMEDOUT;
-        } else if (pollResult == -1) {
-          connectError = errno;
-        } else {
-          int socketError = 0;
-          socklen_t socketErrorLength = sizeof(socketError);
-          if (getsockopt(clientfd, SOL_SOCKET, SO_ERROR, &socketError, &socketErrorLength) == -1) {
+        int pollResult = -1;
+        while (true) {
+          const int remainingMs = RemainingTimeoutMs(deadline);
+          if (remainingMs == 0) {
+            connectError = ETIMEDOUT;
+            break;
+          }
+          pollResult = poll(&pollFd, 1, remainingMs);
+          if (pollResult == -1 && errno == EINTR) {
+            continue;
+          }
+          break;
+        }
+        if (connectError == 0) {
+          if (pollResult == 0) {
+            connectError = ETIMEDOUT;
+          } else if (pollResult == -1) {
             connectError = errno;
-          } else if (socketError != 0) {
-            connectError = socketError;
+          } else {
+            int socketError = 0;
+            socklen_t socketErrorLength = sizeof(socketError);
+            if (getsockopt(clientfd, SOL_SOCKET, SO_ERROR, &socketError, &socketErrorLength) == -1) {
+              connectError = errno;
+            } else if (socketError != 0) {
+              connectError = socketError;
+            }
           }
         }
       } else {
@@ -296,15 +332,41 @@ bool MprpcChannel::newConnect(const char* ip, uint16_t port, string* errMsg) {
 }
 
 bool MprpcChannel::SendAll(const std::string& payload, std::string* errMsg) {
+  if (m_timeoutMs < 0) {
+    if (errMsg != nullptr) {
+      *errMsg = "timeout must be non-negative";
+    }
+    return false;
+  }
+
+  const bool hasDeadline = m_timeoutMs > 0;
+  const auto deadline = hasDeadline ? SteadyClock::now() + std::chrono::milliseconds(m_timeoutMs)
+                                    : SteadyClock::time_point{};
   size_t sent = 0;
   while (sent < payload.size()) {
-    const ssize_t bytesSent = send(m_clientFd, payload.data() + sent, payload.size() - sent, 0);
+    if (hasDeadline) {
+      const int remainingMs = RemainingTimeoutMs(deadline);
+      if (remainingMs == 0) {
+        SetSocketError(errMsg, "send", ETIMEDOUT);
+        return false;
+      }
+      if (!ApplySocketOptionTimeout(m_clientFd, SO_SNDTIMEO, remainingMs, "setsockopt SO_SNDTIMEO", errMsg)) {
+        return false;
+      }
+    }
+
+    const ssize_t bytesSent = send(m_clientFd, payload.data() + sent, payload.size() - sent, MSG_NOSIGNAL);
     if (bytesSent > 0) {
       sent += static_cast<size_t>(bytesSent);
       continue;
     }
     if (bytesSent == -1 && errno == EINTR) {
       continue;
+    }
+
+    if (bytesSent == -1 && (errno == EAGAIN || errno == EWOULDBLOCK || errno == ETIMEDOUT)) {
+      SetSocketError(errMsg, "send", ETIMEDOUT);
+      return false;
     }
 
     const int errorNumber = bytesSent == 0 ? EPIPE : errno;
@@ -315,7 +377,11 @@ bool MprpcChannel::SendAll(const std::string& payload, std::string* errMsg) {
 }
 
 MprpcChannel::MprpcChannel(string ip, short port, bool connectNow, int timeoutMs)
-    : m_clientFd(-1), m_ip(ip), m_port(port), m_timeoutMs(timeoutMs > 0 ? timeoutMs : 0) {
+    : m_clientFd(-1), m_ip(ip), m_port(port), m_timeoutMs(timeoutMs) {
+  if (timeoutMs < 0) {
+    throw std::invalid_argument("timeout must be non-negative");
+  }
+
   // 使用tcp编程，完成rpc方法的远程调用，使用的是长连接服用，因此每次都要重新连接上去，待改成长连接。
   // 没有连接或者连接已经断开，那么就要重新连接呢,会一直不断地重试
   // 读取配置文件rpcserver的信息
@@ -335,3 +401,5 @@ MprpcChannel::MprpcChannel(string ip, short port, bool connectNow, int timeoutMs
     rt = newConnect(ip.c_str(), port, &errMsg);
   }
 }
+
+MprpcChannel::~MprpcChannel() { CloseSocket(&m_clientFd); }
