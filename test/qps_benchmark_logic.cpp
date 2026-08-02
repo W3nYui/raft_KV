@@ -61,6 +61,48 @@ void TestValueContainsWorkerAndSequence() {
   assert(second.value.size() > std::string("value_t2_1_").size());
 }
 
+void TestExclusiveOperationWeights() {
+  qps::WorkloadGenerator putOnly(11, 0, 4, 0, 1, 0);
+  qps::WorkloadGenerator appendOnly(11, 0, 4, 0, 0, 1);
+
+  for (int i = 0; i < 32; ++i) {
+    assert(putOnly.Next().type == qps::OperationType::Put);
+    assert(appendOnly.Next().type == qps::OperationType::Append);
+  }
+}
+
+void TestNonDefaultOperationWeights() {
+  qps::WorkloadGenerator generator(123, 0, 8, 0, 3, 1);
+  bool sawPut = false;
+  bool sawAppend = false;
+
+  for (int i = 0; i < 64; ++i) {
+    const auto operation = generator.Next();
+    assert(operation.type != qps::OperationType::Get);
+    sawPut = sawPut || operation.type == qps::OperationType::Put;
+    sawAppend = sawAppend || operation.type == qps::OperationType::Append;
+  }
+
+  assert(sawPut);
+  assert(sawAppend);
+}
+
+void TestWorkerIdsHaveIndependentSequences() {
+  qps::WorkloadGenerator firstWorker(99, 1, 16, 1, 1, 1);
+  qps::WorkloadGenerator secondWorker(99, 2, 16, 1, 1, 1);
+  bool randomSequenceDiffers = false;
+
+  for (int i = 0; i < 16; ++i) {
+    const auto first = firstWorker.Next();
+    const auto second = secondWorker.Next();
+    assert(first.value.rfind("value_t1_", 0) == 0);
+    assert(second.value.rfind("value_t2_", 0) == 0);
+    randomSequenceDiffers = randomSequenceDiffers || first.type != second.type || first.key != second.key;
+  }
+
+  assert(randomSequenceDiffers);
+}
+
 void TestInvalidArguments() {
   AssertInvalidArgument("keySpace", [] { qps::WorkloadGenerator(1, 0, 0, 1, 1, 1); });
   AssertInvalidArgument("weight", [] { qps::WorkloadGenerator(1, 0, 1, 0, 0, 0); });
@@ -71,6 +113,9 @@ void TestInvalidArguments() {
 int main() {
   TestDeterminismAndVariation();
   TestValueContainsWorkerAndSequence();
+  TestExclusiveOperationWeights();
+  TestNonDefaultOperationWeights();
+  TestWorkerIdsHaveIndependentSequences();
   TestInvalidArguments();
   return 0;
 }

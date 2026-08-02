@@ -12,13 +12,10 @@ std::uint64_t DeriveWorkerSeed(std::uint64_t seed, std::size_t workerId) {
   return mixed ^ (mixed >> 31);
 }
 
-std::discrete_distribution<int> MakeOperationDistribution(std::size_t keySpace, std::uint32_t getWeight,
-                                                          std::uint32_t putWeight, std::uint32_t appendWeight) {
+std::discrete_distribution<int> MakeOperationDistribution(std::uint32_t getWeight, std::uint32_t putWeight,
+                                                          std::uint32_t appendWeight) {
   const auto totalWeight = static_cast<std::uint64_t>(getWeight) + static_cast<std::uint64_t>(putWeight) +
                            static_cast<std::uint64_t>(appendWeight);
-  if (keySpace == 0) {
-    throw std::invalid_argument("keySpace must be greater than zero");
-  }
   if (totalWeight == 0) {
     throw std::invalid_argument("operation weights must not all be zero");
   }
@@ -34,8 +31,12 @@ WorkloadGenerator::WorkloadGenerator(std::uint64_t seed, std::size_t workerId, s
     : m_random(DeriveWorkerSeed(seed, workerId)),
       m_workerId(workerId),
       m_sequence(0),
-      m_operation(MakeOperationDistribution(keySpace, getWeight, putWeight, appendWeight)),
-      m_key(0, keySpace == 0 ? 0 : keySpace - 1) {}
+      m_operation(MakeOperationDistribution(getWeight, putWeight, appendWeight)),
+      m_key(0, keySpace == 0 ? 0 : keySpace - 1) {
+  if (keySpace == 0) {
+    throw std::invalid_argument("keySpace must be greater than zero");
+  }
+}
 
 GeneratedOperation WorkloadGenerator::Next() {
   const auto selectedOperation = m_operation(m_random);
