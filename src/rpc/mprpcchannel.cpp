@@ -173,7 +173,25 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
   ssize_t recv_size = 0;
 
   // 同步等待响应 如果等待响应失败返回fail
-  recv_size = recv(m_clientFd, recv_buf, 1024, 0);
+  while (true) {
+    recv_size = recv(m_clientFd, recv_buf, 1024, 0);
+    if (recv_size != -1 || errno != EINTR) {
+      break;
+    }
+    if (!hasDeadline) {
+      continue;
+    }
+    const int remainingMs = RemainingTimeoutMs(deadline);
+    if (remainingMs == 0) {
+      errno = ETIMEDOUT;
+      break;
+    }
+    if (!ApplySocketOptionTimeout(m_clientFd, SO_RCVTIMEO, remainingMs, "setsockopt SO_RCVTIMEO", &errMsg)) {
+      CloseSocket(&m_clientFd);
+      controller->SetFailed(errMsg);
+      return;
+    }
+  }
   if (recv_size <= 0) {
     int errorNumber = recv_size == 0 ? ECONNRESET : errno;
     if (recv_size == -1 && (errorNumber == EAGAIN || errorNumber == EWOULDBLOCK || errorNumber == ETIMEDOUT)) {
